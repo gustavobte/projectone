@@ -1,0 +1,56 @@
+#telaLogin {
+    background:  no-repeat center center fixed;
+    background-image: url(../img/bg.jpg);
+    background-size: 100% 100%;
+    position: relative;
+    width: 100%;
+    height: 637px;
+}
+@media screen and (max-width: 500px) {
+    #telaLogin {
+        background-image: url(img/bgRes.jpg);
+        background-size: 100% 100%;
+
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #imgLogoGoias {
+        width: 120px;
+        height: 70px;
+    }
+}
+
+#navTrasparente{
+    opacity: 0.3;
+    filter: alpha(opacity=01);
+    height: 50px;
+
+
+}
+
+#logoSofia {
+    opacity: 0.1;
+    filter: alpha(opacity=99); /* For IE8 and earlier */
+    height: 100px;
+}
+
+
+#loginform {
+    background-color: #f7f7f7;
+    display: block;
+    height: 390px;
+    margin: 0 auto;
+    width: 390px;
+    padding: 30px;
+    border-radius: 25px;
+    opacity: 0.9;
+
+}
+
+
+
+img {
+    max-width: 100%;
+    height: auto;
+}
