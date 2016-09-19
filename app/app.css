@@ -1,9 +1,9 @@
 body{
-    background: #c0c0c0;
+    background: rgba(155, 192, 128, 0.19);
 }
-
-
-
+html{
+font-family: GillSans, Calibri, Trebuchet, sans-serif;
+}
 
 
 
