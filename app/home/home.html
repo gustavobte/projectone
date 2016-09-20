@@ -1,113 +1,234 @@
-<div ng-controller="AppCtrl">
     <!-- Button menu-->
-    <div class="navbar-fixed " style="position: absolute; z-index: 0">
+<div ng-controller="AppCtrl">
+    <div class="navbar-fixed " style="position: absolute; z-index: 2">
         <nav class="navbar-fixed">
             <div class="navbar-fixed teal darken-3">
                 <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
                     <md-tooltip>Menu</md-tooltip>
-                    <md-icon class="md-primary"  style="color:white;" class="material-icons">&#xE5D2;</md-icon>
+                    <md-icon class="md-primary" style="color:white;" class="material-icons">&#xE5D2;</md-icon>
                 </md-button>
+
                 <ul class="right hide-on-med-and-down">
                     <li><a href=""><i class="material-icons">search</i></a></li>
-                    <li><a href=""><i class="material-icons">&#xE853;</i></a> </li>
-                    <li> <a href="">Gustavo Silva</li>
+                    <li><a href=""><i class="material-icons">&#xE853;</i></a></li>
+                    <li><a href="">Gustavo Silva </a></li>
                     <li></li>
                 </ul>
             </div>
         </nav>
     </div>
-<!--SideNav-->
-    <md-sidenav class="md-sidenav-left md-whiteframe-11dp" md-component-id="left"  >
-        <md-toolbar class="md-whiteframe-24dp" layout="row" style="height: 200px; background-color: #4db6ac ; padding-top: 60px; padding-left: 30px" >
-            <div class="md-toolbar-tools" >
-                 <img src="../img/LogoGoias.png" alt="">
-                <md-button class="md-icon-button " aria-label="Close Side Panel" ng-click="closeSideNavPanel()"  style="position: relative" >
+    <!--SideNav-->
+    <md-sidenav class="md-sidenav-left md-whiteframe-11dp" md-component-id="left">
+        <md-toolbar class="md-whiteframe-24dp" layout="row"
+                    style="height: 200px; background-color: #4db6ac ; padding-top: 60px; padding-left: 30px">
+            <div class="md-toolbar-tools">
+                <img src="../img/LogoGoias.png" alt="">
+                <md-button class="md-icon-button " aria-label="Close Side Panel" ng-click="closeSideNavPanel()"
+                           style="position: relative">
                     <md-tooltip>Fechar</md-tooltip>
-                    <md-icon class="md-default-theme" class="material-icons" >&#xE5CD;</md-icon>
+                    <md-icon class="md-default-theme" class="material-icons">&#xE5CD;</md-icon>
                 </md-button>
             </div>
 
-    <!--Menu SideNar-->
+            <!--Menu SideBar-->
         </md-toolbar>
         <md-content layout-padding="50px">
             <md-list>
                 <md-subheader class="md-no-sticky">Pesquisa</md-subheader>
                 <md-list-item>
                     <md-icon class="md-default-theme" class="material-icons">&#xE0C9;</md-icon>
-                   Buscar Pessoas</p>
-                </md-list-item>
-                <md-list-item>
-                    <md-icon class="md-default-theme" class="material-icons">&#xE8D1;</md-icon>
-                    <p>Buscar Empresas</p>
-                    <md-icon class="md-secondary">2</md-icon>
-                </md-list-item>
-                <md-list-item>
-                    <md-icon class="md-default-theme" class="material-icons">&#xE234;</md-icon>
-                    <p>Lista .CSV</p>
-                </md-list-item>
-                <md-divider></md-divider>
-                <md-subheader class="md-no-sticky">Dashboard</md-subheader>
-                <md-list-item>
-                    <md-icon class="md-default-theme" class="material-icons">&#xE1AF;</md-icon>
-                    <p>Dashboard</p>
-                </md-list-item>
-                <md-list-item>
-                    <md-icon class="md-default-theme" class="material-icons">&#xE0C6;</md-icon>
-                    <p>Ajuda</p>
-                </md-list-item>
-            </md-list>
-        </md-content>
-    </md-sidenav>
-
-<!--Inicio Conteudo-->
+                    <p ><a href="#/buscaPessoas">Buscar Pessoas</a></p>
+            </md-list-item>
+            <md-list-item>
+                <md-icon class="md-default-theme" class="material-icons">&#xE8D1;</md-icon>
+                <p>Buscar Empresas</p>
+                <md-icon class="md-secondary">2</md-icon>
+            </md-list-item>
+            <md-list-item>
+                <md-icon class="md-default-theme" class="material-icons">&#xE234;</md-icon>
+                <p>Lista .CSV</p>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-subheader class="md-no-sticky">Dashboard</md-subheader>
+            <md-list-item>
+                <md-icon class="md-default-theme" class="material-icons">&#xE1AF;</md-icon>
+                <p>Dashboard</p>
+            </md-list-item>
+            <md-list-item>
+                <md-icon class="md-default-theme" class="material-icons">&#xE0C6;</md-icon>
+                <p>Ajuda</p>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</md-sidenav>
     <br><br><br><br>
-
-    <div class="row">
-        <div class="col s4 ">
-            <div class="card"  style="height: 130px; background-color: #039be5">
-                <div class="card-image waves-effect waves-block waves-light">
+    <!--Select Municipios-->
+<!--<div class="row">-->
+    <!--<div class="col s3 offset-s9">-->
+        <!--<select class="browser-default">-->
+            <!--<option value="Todos">Todos</option>-->
+            <!--<option value="1">Goiania</option>-->
+            <!--<option value="2">Trindade</option>-->
+            <!--<option value="3">Aparecida de Goiania</option>-->
+        <!--</select>-->
+    <!--</div>-->
+<!--</div>-->
+    <!-- Modulos dados Endereços-->
+<div class="row">
+    <div class="col s4 m4 l4 ">
+        <div class="" >
+                <div class="waves-effect waves-light btn-flat  right-align  " style="height: 130px; background-color: #0277bd">
+                    <span class="md-display-2  " style="color:white;">9.073</span>
+                    <br>
+                    <span class="md-headline" style="color:white;">Endereços Cadastrados</span>
                 </div>
-                <div class="card-content right-align">
-                    <span class="card-title activator grey-text text-darken-4" ><p class="flow-text">1344</p></span>
-                    <span class="card-title activator grey-text text-darken-4 " style="bac"><p>Endereços Estruturados</p></span>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                    <p>Here.</p>
-                </div>
+        </div>
+    </div>
+    <div class="col s4 m4 l4 ">
+        <div class="">
+            <div class="waves-effect waves-light btn-flat  right-align  " style="height: 130px; background-color: #006064">
+                <span class="md-display-2  " style="color:white;">14.881</span>
+                <br>
+                <span class="md-headline" style="color:white;"> Endereço n Estruturado</span>
             </div>
         </div>
-        <div class="col s4" >
-            <md-card  md-theme-watch style="height: 130px; background-color: #039be5">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">Card with image</span>
-                        <span class="md-subhead">Large</span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <div class="md-media-lg card-media"></div>
-                    </md-card-title-media>
-                </md-card-title>
-          </div>
-        <div class="col s4">
-        <md-card  md-theme-watch style="height: 130px; background-color: #9575cd">
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">Card with image</span>
-                    <span class="md-subhead">Large</span>
-                </md-card-title-text>
-                <md-card-title-media>
-                    <div class="md-media-lg card-media"></div>
-                </md-card-title-media>
-            </md-card-title>
+    </div>
+    <div class="col s4 m4 l4 ">
+        <div class="">
+            <div class="waves-effect waves-light btn-flat  right-align  " style="height: 130px; background-color: #e65100">
+                <span class="md-display-2  " style="color:white;">113.351</span>
+                <br>
+                <span class="md-headline" style="color:white;">Endereços Estruturados</span>
+            </div>
+        </div>
+    </div>
 
-        </md-card>
-    </div>
-    </div>
 
 </div>
 
+<!--Graficos-->
+</div>
+    <div class="row">
 
+        <div class="col s7 push-s5">
+            <div class="card ">
+                <div ng-controller="myctrl">
+                    <div class="span12">
+
+                    </div>
+                    <div class="row">
+                        <highchart id="chart1" config="chartConfig" class="span10"></highchart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s5 pull-s7">
+
+            <div class="card ">
+                <div ng-controller="myctrl2">
+                    <div class="span12">
+
+                    </div>
+                    <div class="row">
+                        <highchart id="chart2" config="chartConfig" class="span10"></highchart>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div>
+    </div>
+
+</div>
+    <div class="row">
+        <div class="col s3">
+            <div class="card  ">
+
+            </div>
+         </div>
+    </div>
+
+    <!--Exemplooooo-->
+    <div ng-controller="AppCtrl" ng-cloak layout-gt-sm="row" layout="column">
+
+        <div flex-gt-sm="50" flex>
+
+            <md-toolbar layout="row" class="md-hue-3">
+                <div class="md-toolbar-tools">
+                    <span>Normal</span>
+                </div>
+            </md-toolbar>
+
+            <md-content>
+                <md-list flex>
+                    <md-subheader class="md-no-sticky">3 line item (with hover)</md-subheader>
+                    <md-list-item class="md-3-line" ng-repeat="item in todos" ng-click="null">
+                        <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+                        <div class="md-list-item-text" layout="column">
+                            <h3>{{ item.who }}</h3>
+                            <h4>{{ item.what }}</h4>
+                            <p>{{ item.notes }}</p>
+                        </div>
+                    </md-list-item>
+                    <md-divider ></md-divider>
+                    <md-subheader class="md-no-sticky">2 line item</md-subheader>
+                    <md-list-item class="md-2-line">
+                        <img ng-src="{{todos[0].face}}?20" class="md-avatar" alt="{{todos[0].who}}" />
+                        <div class="md-list-item-text">
+                            <h3>{{ todos[0].who }}</h3>
+                            <p>Secondary text</p>
+                        </div>
+                    </md-list-item>
+                    <md-divider ></md-divider>
+                    <md-subheader class="md-no-sticky">3 line item, long paragraph (see on mobile)</md-subheader>
+                    <md-list-item class="md-3-line md-long-text">
+                        <img ng-src="{{todos[0].face}}?25" class="md-avatar" alt="{{todos[0].who}}" />
+                        <div class="md-list-item-text">
+                            <h3>{{ todos[0].who }}</h3>
+                            <p>
+                                Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.
+                                Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum
+                                velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                            </p>
+                        </div>
+                    </md-list-item>
+                    <md-list-item class="md-3-line md-long-text">
+                        <img ng-src="{{todos[1].face}}?25" class="md-avatar" alt="{{todos[1].who}}" />
+                        <div class="md-list-item-text">
+                            <h3>{{ todos[1].who }}</h3>
+                            <p>
+                                Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.
+                                Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum
+                                velit. Class aptent taciti sociosqu ad litra torquent per conubia nostra, per inceptos himenaeos.
+                            </p>
+                        </div>
+                    </md-list-item>
+                    <md-divider ></md-divider>
+                    <md-subheader class="md-no-sticky">Classes</md-subheader>
+                    <md-list-item class="md-2-line" ng-repeat="phone in phones">
+                        <md-icon md-svg-icon="{{phone.options.icon}}" ng-if="phone.options.icon" ng-class="{'md-avatar-icon': phone.options.avatarIcon}"></md-icon>
+                        <img ng-src="{{phone.options.face}}?25" class="md-avatar" alt="{{phone.options.face}}"
+                             ng-if="phone.options.face"/>
+                        <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
+                            <h3> {{ phone.number }} </h3>
+                            <p> {{ phone.type }} </p>
+                        </div>
+                        <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
+                            <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
+                        </md-button>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+        </div>
+
+        <md-divider></md-divider>
+
+
+
+    </div>
+
+    <!--Exemplooooo-->
 <br><br><br><br><br><br>
 <footer class="page-footer teal darken-3">
     <div class="container">
