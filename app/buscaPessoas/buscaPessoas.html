@@ -1,10 +1,10 @@
 <div ng-controller="AppCtrlPessoa">
     <!-- Button menu-->
-    <div class="navbar-fixed " style="position: absolute; z-index: 1">
+    <div class="navbar-fixed " style="position: absolute; z-index: 5">
         <nav class="navbar-fixed">
             <div class="navbar-fixed teal darken-3">
                 <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
-                    <md-tooltip>Menasdasdadasdadasu</md-tooltip>
+                    <md-tooltip>Menu</md-tooltip>
                     <md-icon class="md-primary"  style="color:white;" class="material-icons">&#xE5D2;</md-icon>
                 </md-button>
                 <ul class="right hide-on-med-and-down">
@@ -60,21 +60,67 @@
     </md-sidenav>
 
 <!--Inicio Conteudo-->
-    <br><br><br><br>
+    <br><br><br>
 
+    <div class="row ">
+        <div class="col s10 offset-s1 ">
+            <div class="card sticky-action ">
+                <div class="card-action card-title">Busca Pessoas</div>
+                <div class="row">
 
-        <div ng-controller="myctrl">
-            <div class="span12">
+                    <div class="input-field col s4 ">
+                        <input id="cpf" type="text" class="validate">
+                        <label class="active" for="cpf">Cpf</label>
+                    </div>
 
-            </div>
-            <div class="row">
-                <highchart id="chart1" config="chartConfig" class="span10"></highchart>
+                    <div class="input-field col s8 ">
+                        <input id="nome" type="text" class="validate">
+                        <label class="active" for="Nome">Nome</label>
+                    </div>
+                    <div>
+
+                        <p class="center-align">
+                            <button class="btn waves-effect waves-light btn-large teal darken-3 " type="submit" name="action">Pesquisar
+                                <i class="material-icons right">search</i>
+                            </button></p>
+                    </div>
+                </div>
             </div>
         </div>
 
 
+    </div>
 
-<br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+<div >
+    <md-autocomplete flex required
+                     md-input-name="autocompleteField"
+                     md-input-minlength="2"
+                     md-input-maxlength="18"
+                     md-no-cache="ctrl.noCache"
+                     md-selected-item="ctrl.selectedItem"
+                     md-search-text="ctrl.searchText"
+                     md-items="item in ctrl.querySearch(ctrl.searchText)"
+                     md-item-text="item.display"
+                     md-require-match
+                     md-floating-label="Favorite state">
+        <md-item-template>
+            <span md-highlight-text="ctrl.searchText">{{item.display}}</span>
+        </md-item-template>
+        <div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
+            <div ng-message="required">You <b>must</b> have a favorite state.</div>
+            <div ng-message="md-require-match">Please select an existing state.</div>
+            <div ng-message="minlength">Your entry is not long enough.</div>
+            <div ng-message="maxlength">Your entry is too long.</div>
+        </div>
+    </md-autocomplete>
+</div>
+
+
+
+<!--Fim Conteudo-->
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <footer class="page-footer teal darken-3">
     <div class="container">
         <div class="row">
