@@ -54,41 +54,41 @@
 );
 
 /* abertura nav */
-function openNav() {
-  document.getElementById("mySidenav").style.width = "300px";
-  document.getElementById("main").style.marginLeft = "300px";
-}
-
-/* Saida Nav */
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-document.getElementById("main").style.marginLeft = "0";
-}
-
-var $toastContent = $('<span>I am toast content</span>');
-Materialize.toast($toastContent, 100);
-
-$('.message a').click(function(){
-   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
-});
-
-$('.datepicker').pickadate({
-  selectMonths: true, // Creates a dropdown to control month
-  selectYears: 15 // Creates a dropdown of 15 years to control year
-});
-$('.modal-trigger').leanModal({
-    dismissible: true, // Modal can be dismissed by clicking outside of the modal
-    opacity: .5, // Opacity of modal background
-    in_duration: 300, // Transition in duration
-    out_duration: 200, // Transition out duration
-    starting_top: '4%', // Starting top style attribute
-    ending_top: '10%', // Ending top style attribute
-    ready: function() { alert('Ready'); }, // Callback for Modal open
-    complete: function() { alert('Closed'); } // Callback for Modal close
+  function openNav() {
+      document.getElementById("mySidenav").style.width = "300px";
+      document.getElementById("main").style.marginLeft = "300px";
   }
-);
 
-//Conectar sofia
+  /* Saida Nav */
+  function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("main").style.marginLeft = "0";
+  }
+
+  var $toastContent = $('<span>I am toast content</span>');
+  Materialize.toast($toastContent, 100);
+
+  $('.message a').click(function(){
+      $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+  });
+
+  $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+  $('.modal-trigger').leanModal({
+          dismissible: true, // Modal can be dismissed by clicking outside of the modal
+          opacity: .5, // Opacity of modal background
+          in_duration: 300, // Transition in duration
+          out_duration: 200, // Transition out duration
+          starting_top: '4%', // Starting top style attribute
+          ending_top: '10%', // Ending top style attribute
+          ready: function() { alert('Ready'); }, // Callback for Modal open
+          complete: function() { alert('Closed'); } // Callback for Modal close
+      }
+  );
+
+  //Conectar sofia
 var sessionKey;
 
 $(function(){
@@ -104,8 +104,8 @@ function errorHandler(message, ex){
 
 
 function conectarSIB(token, instance){
-  var token = "aacdc8494d56413ba85d7b0b4f50da4b";
-  var instance=  "Kp_IRGS_G:IRGS01"
+  var token = "995f66bf89d94ffdb1198ce2de0f1e1b";
+  var instance=  "ts:ts"
   sofia2.joinToken(token, instance, function(mensajeSSAP){
     if(mensajeSSAP != null && mensajeSSAP.body.data != null && mensajeSSAP.body.ok == true){
       sessionKey = mensajeSSAP.sessionKey;
@@ -169,13 +169,11 @@ function inserirEndNao(endereco){
 }
 
 var a;
-var b;
-var c;
 
 //Lista Pessas
 function listarDados(){
 
-       sofia2.queryWithQueryType("select (Pessoa_IRGS) from Pessoa_IRGS","Pessoa_IRGS","SQLLIKE",null,function(mensajeSSAP){
+       sofia2.queryWithQueryType("select (islgyn_dadoscadastrais_parquet) from islgyn_dadoscadastrais_parquet","islgyn_dadoscadastrais_parquet","SQLLIKE",null,function(mensajeSSAP){
        if(mensajeSSAP != null && mensajeSSAP.body.data != null && mensajeSSAP.body.ok == true){
               $("#infoSensorTemperatura").text("Dado Alterado").show();
        }else{
@@ -187,34 +185,6 @@ function listarDados(){
 }, sessionKey);
 }
 
-
-//ListaCadastral
-function listarDadosCad(){
-       sofia2.queryWithQueryType("select (Enderecos_Cadastro_IRGS) from Enderecos_Cadastro_IRGS","Enderecos_Cadastro_IRGS","SQLLIKE",null,function(mensajeSSAP){
-       if(mensajeSSAP != null && mensajeSSAP.body.data != null && mensajeSSAP.body.ok == true){
-              $("#infoSensorTemperatura").text("Dado Alterado").show();
-       }else{
-              $("#infoSensorTemperatura").text("Erro ao alterar!").show();
-       }
-       console.log(JSON.stringify(mensajeSSAP.body.data));
-       //var conteudo = JSON.stringify(mensajeSSAP.body.data);
-       b = mensajeSSAP.body.data;
-}, sessionKey);
-}
-
-///ListarDadosChekinNãoEstruturados
-function listarCkNao(){
-       sofia2.queryWithQueryType("select (Checkin_N_Estruturado_IRGS) from Checkin_N_Estruturado_IRGS","Checkin_N_Estruturado_IRGS","SQLLIKE",null,function(mensajeSSAP){
-       if(mensajeSSAP != null && mensajeSSAP.body.data != null && mensajeSSAP.body.ok == true){
-              $("#infoSensorTemperatura").text("Dado Alterado").show();
-       }else{
-              $("#infoSensorTemperatura").text("Erro ao alterar!").show();
-       }
-       console.log(JSON.stringify(mensajeSSAP.body.data));
-       //var conteudo = JSON.stringify(mensajeSSAP.body.data);
-       c = mensajeSSAP.body.data;
-}, sessionKey);
-}
 
 //MostraNãoEstruturados
 
