@@ -13,10 +13,10 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" type="text/css" href="css/app.css">
-  <link rel="stylesheet" type="text/css" href="login/login.css">
-  <link rel="stylesheet" type="text/css" href="home/home.css">
-  <link rel="stylesheet" type="text/css" href="resultadoBusca/resultadoBusca.css">
-  <link rel="stylesheet" type="text/css" href="buscaPessoas/buscaPessoas.css">
+  <link rel="stylesheet" type="text/css" href="views/login/login.css">
+  <link rel="stylesheet" type="text/css" href="views/home/home.css">
+  <link rel="stylesheet" type="text/css" href="views/resultadoBusca/resultadoBusca.css">
+  <link rel="stylesheet" type="text/css" href="views/buscaPessoas/buscaPessoas.css">
 
   <!-- Materialize CSS -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -27,17 +27,17 @@
   <link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
 
   <!--SOFIA-->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="js/sofia/jquery-2.1.1.min.js"></script>
   <script type="text/javascript"> var pathToDwrServlet = 'http://sofia2.com/sib/dwr';</script>
-  <script type='text/javascript' src='http://sofia2.com/sib/dwr/engine.js'></script>
-  <script type='text/javascript' src='http://sofia2.com/sib/dwr/util.js'></script>
-  <script type='text/javascript' src='http://sofia2.com/sib/dwr/interface/GatewayDWR.js'></script>
+  <script type='text/javascript' src='js/sofia/engine.js'></script>
+  <script type='text/javascript' src='js/sofia/GatewayDWR.js'></script>
   <script type='text/javascript' src="js/sofia/sofia2-api-js_v2.13.0.js">;</script>
-  <script type='text/javascript' src="js/sofia/XXTEA.js">;</script>
-  <script src="js/sofia/jquery.min.js" type="text/javascript"></script>
-  <script src="js/sofia/funcoes.js" type="text/javascript"></script>
+  <!--<script type='text/javascript' src="js/sofia/sofia2-api-js_v2.15.0.js">;</script>-->
+  <script type="text/javascript" src="js/sofia/funcoes.js" ></script>
   <script type='text/javascript' src="js/sofia/base64.js"></script>
-  <script src="js/sofia/jquery.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="js/sofia/jquery.min.js" ></script>
+  <!--<script type='text/javascript' src='js/sofia/util.js'></script>-->
+  <!--<script type='text/javascript' src="js/sofia/XXTEA.js">;</script>-->
 
   <!-- JavaScript -->
   <script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
@@ -48,7 +48,108 @@
 </head>
 <!--<body>-->
 <body onload="conectarSIB()">
-  <div ng-view=""></div>
+
+
+
+
+  <!-- Button menu-->
+  <div ng-controller="AppCtrl">
+      <div class="navbar-fixed " style="position: absolute; z-index: 5">
+          <nav class="navbar-fixed">
+              <div class="navbar-fixed teal darken-3">
+                  <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
+                      <md-tooltip>Menu</md-tooltip>
+                      <md-icon class="md-primary" style="color:white;" class="material-icons">&#xE5D2;</md-icon>
+                  </md-button>
+
+                  <ul class="right hide-on-med-and-down">
+                      <li><a href=""><i class="material-icons">search</i></a></li>
+                      <li><a href=""><i class="material-icons">&#xE853;</i></a></li>
+                      <li><a href="">Gustavo Silva </a></li>
+                      <li></li>
+                  </ul>
+              </div>
+          </nav>
+      </div>
+      <!--SideNav-->
+      <md-sidenav class="md-sidenav-left md-whiteframe-11dp" md-component-id="left">
+          <md-toolbar class="md-whiteframe-24dp" layout="row"
+                      style="height: 200px; background-color: #4db6ac ; padding-top: 60px; padding-left: 30px">
+              <div class="md-toolbar-tools">
+                  <img src="../img/LogoGoias.png" alt="">
+                  <md-button class="md-icon-button " aria-label="Close Side Panel" ng-click="closeSideNavPanel()"
+                             style="position: relative">
+                      <md-tooltip>Fechar</md-tooltip>
+                      <md-icon class="md-default-theme" class="material-icons">&#xE5CD;</md-icon>
+                  </md-button>
+              </div>
+
+              <!--Menu SideBar-->
+          </md-toolbar>
+
+          <md-content layout-padding="50px">
+              <md-list >
+                  <md-subheader class="">Pesquisa</md-subheader>
+                  <md-list-item ng-click="" ui-sref="/buscaPessoas">
+                      <md-icon class="md-default-theme" class="material-icons">&#xE0C9;</md-icon>
+                      <p><a href="#buscaPessoas" style="color: #424242"  >Buscar Pessoas</a></p>
+                  </md-list-item>
+                  <md-list-item ng-click="" ui-sref="/buscaEmpresas">
+                      <md-icon class="md-default-theme" class="material-icons">&#xE8D1;</md-icon>
+                      <p>Buscar Empresas</p>
+                      <md-icon class="md-secondary">2</md-icon>
+                  </md-list-item>
+                  <md-list-item ng-click="null" ui-sref="/Lista">
+                      <md-icon class="md-default-theme" class="material-icons">&#xE234;</md-icon>
+                      <p>Lista .CSV</p>
+                  </md-list-item>
+                  <md-divider></md-divider>
+                  <md-subheader class="md-no-sticky">Dashboard</md-subheader>
+                  <md-list-item ng-click="null" ui-sref="/home">
+                      <md-icon class="md-default-theme" class="material-icons">&#xE1AF;</md-icon>
+                      <p>Dashboard</p>
+                  </md-list-item>
+                  <md-list-item ng-click="null" ui-sref="/help">
+                      <md-icon class="md-default-theme" class="material-icons">&#xE0C6;</md-icon>
+                      <p>Ajuda</p>
+                  </md-list-item>
+
+              </md-list>
+          </md-content>
+      </md-sidenav>
+      <br><br><br><br>
+
+      <!--Conteudo-->
+
+      <div ng-view=""></div>
+
+      <!--Rodape-->
+
+      <footer class="page-footer teal darken-3">
+          <div class="container">
+              <div class="row">
+                  <div class="col l6 s12">
+                      <h5 class="white-text">Footer Content</h5>
+                      <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                  </div>
+                  <div class="col l4 offset-l2 s12">
+                      <h5 class="white-text">Links</h5>
+                      <ul>
+                          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+          <div class="footer-copyright">
+              <div class="container">
+                  © 2014 Copyright Text
+                  <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+              </div>
+          </div>
+      </footer>
 
 
 
@@ -70,10 +171,10 @@
   <script type="text/javascript" src="js/angular-materialize.min.js"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
-  <script type="text/javascript" src="login/login.js"></script>
-  <script type="text/javascript" src="home/home.js"></script>
-  <script type="text/javascript" src="buscaPessoas/buscaPessoas.js"></script>
-  <script type="text/javascript" src="resultadoBusca/resultadoBusca.js"></script>
+  <script type="text/javascript" src="views/login/login.js"></script>
+  <script type="text/javascript" src="views/home/home.js"></script>
+  <script type="text/javascript" src="views/buscaPessoas/buscaPessoas.js"></script>
+  <script type="text/javascript" src="views/resultadoBusca/resultadoBusca.js"></script>
 
 </body>
 </html>

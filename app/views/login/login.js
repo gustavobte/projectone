@@ -1,14 +1,16 @@
 'use strict';
 
-var app = angular.module('myApp.login', ['ngRoute'])
+var app = angular.module('login', ['ngRoute'])
 
 // Declared route
     app.config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/login', {
-            templateUrl: 'login/login.html',
-            controller: 'MinMaxCtrl'
+            templateUrl: 'views/login/login.html',
+            controller: ''
         });
     }])
+
+
 
     // Home controller
     app.controller('MinMaxCtrl', function($scope, $http) {
@@ -20,6 +22,8 @@ var app = angular.module('myApp.login', ['ngRoute'])
 
 
         };
+
+
 
     });
 

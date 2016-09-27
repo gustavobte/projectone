@@ -56,9 +56,10 @@ function conectarSIB(token, instance){
       sessionKey = mensajeSSAP.sessionKey;
       Materialize.toast('Conexão efetuada com sucesso! ' , 4000);
       Materialize.toast('Chave da seção: '+ mensajeSSAP.sessionKey , 4000);
-
+      console.log("Sucesso!!");
     }else{
       Materialize.toast('Falha na conexão! ' , 4000);
+      console.log("Falha ao Logar!!");
     }
   });
 }

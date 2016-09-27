@@ -1,18 +1,6 @@
 'use strict';
 
-var app = angular.module('myApp.resultadoBusca', ['ngRoute','ngMaterial','ui.materialize','highcharts-ng'])
-
-app.controller('AppCtrlResultado', function($scope, $mdSidenav) {
-    $scope.showMobileMainHeader = true;
-    $scope.openSideNavPanel = function() {
-        $mdSidenav('left').open();
-    };
-    $scope.closeSideNavPanel = function() {
-        $mdSidenav('left').close();
-    };
-
-
-})
+var app = angular.module('myApp.resultadoBusca', ['ngRoute','ngMaterial','ui.materialize'])
 
 
 app.controller('SwitchDemoCtrl', function($scope) {
@@ -32,7 +20,7 @@ app.controller('SwitchDemoCtrl', function($scope) {
 // Declared route
     app.config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/resultadoBusca', {
-            templateUrl: 'resultadoBusca/resultadoBusca.html',
+            templateUrl: 'views/resultadoBusca/resultadoBusca.html',
             controller: ''
         });
     }])
