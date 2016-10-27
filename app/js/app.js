@@ -1,17 +1,13 @@
 'use strict';
 
 var app = angular.module('myApp', ['ngRoute','ngMaterial','ui.materialize'
-    ,'myApp.home', 'myApp.buscaPessoas', 'myApp.resultadoBusca']).
+    ,'myApp.home', 'myApp.buscaPessoas', 'myApp.resultadoBusca', 'myApp.login', 'myApp.controllers' , 'myApp.services']).
 
 
 config(['$routeProvider', function($routeProvider) {
-  // Set defualt view of our app to login
 
       $routeProvider.otherwise({
-        redirectTo: '/'
+        redirectTo: '/login'
       });
-
-
-
 
 }]);

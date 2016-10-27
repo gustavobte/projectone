@@ -1,9 +1,11 @@
 body{
     background: rgba(155, 192, 128, 0.19);
+    font-family: GillSans, Calibri, Trebuchet, sans-serif, 'Roboto';
+
 }
 html{
-font-family: GillSans, Calibri, Trebuchet, sans-serif;
 }
+
 
 
 

@@ -2,7 +2,7 @@
 
 var app = angular.module('myApp.home', ['ngRoute','ngMaterial','ui.materialize','highcharts-ng'])
 
-app.controller('AppCtrl', function($scope, $mdSidenav) {
+app.controller('NavCtrl', function($scope, $mdSidenav) {
     $scope.showMobileMainHeader = true;
     $scope.openSideNavPanel = function() {
         $mdSidenav('left').open();
@@ -17,8 +17,16 @@ app.controller('AppCtrl', function($scope, $mdSidenav) {
 // Declared route
     app.config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/home', {
+            resolve:{
+            "check": function ($location, $rootScope) {
+                if(!$rootScope.loggedIn){
+                    $location.path('/home');
+                }
+            }
+            },
             templateUrl: 'views/home/home.html',
             controller: ''
+
         });
     }])
 

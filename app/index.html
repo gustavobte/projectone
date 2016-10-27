@@ -18,7 +18,9 @@
   <link rel="stylesheet" type="text/css" href="views/resultadoBusca/resultadoBusca.css">
   <link rel="stylesheet" type="text/css" href="views/buscaPessoas/buscaPessoas.css">
 
-  <!-- Materialize CSS -->
+
+
+    <!-- Materialize CSS -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
 
@@ -29,13 +31,14 @@
   <!--SOFIA-->
   <script type="text/javascript" src="js/sofia/jquery-2.1.1.min.js"></script>
   <script type="text/javascript"> var pathToDwrServlet = 'http://sofia2.com/sib/dwr';</script>
+  <!--<script type="text/javascript"> var pathToDwrServlet = 'http://10.7.149.100:8080/sib/dwr';</script>-->
   <script type='text/javascript' src='js/sofia/engine.js'></script>
   <script type='text/javascript' src='js/sofia/GatewayDWR.js'></script>
   <script type='text/javascript' src="js/sofia/sofia2-api-js_v2.13.0.js">;</script>
   <!--<script type='text/javascript' src="js/sofia/sofia2-api-js_v2.15.0.js">;</script>-->
   <script type="text/javascript" src="js/sofia/funcoes.js" ></script>
   <script type='text/javascript' src="js/sofia/base64.js"></script>
-  <script type="text/javascript" src="js/sofia/jquery.min.js" ></script>
+  <!--<script type="text/javascript" src="js/sofia/jquery.min.js" ></script>-->
   <!--<script type='text/javascript' src='js/sofia/util.js'></script>-->
   <!--<script type='text/javascript' src="js/sofia/XXTEA.js">;</script>-->
 
@@ -47,13 +50,13 @@
 
 </head>
 <!--<body>-->
-<body onload="conectarSIB()">
+<body ng-app="myApp" onload="">
 
 
-
+<div ng-show="!$rootScope.loggedIn">
 
   <!-- Button menu-->
-  <div ng-controller="AppCtrl">
+  <div ng-controller="NavCtrl">
       <div class="navbar-fixed " style="position: absolute; z-index: 5">
           <nav class="navbar-fixed">
               <div class="navbar-fixed teal darken-3">
@@ -65,7 +68,7 @@
                   <ul class="right hide-on-med-and-down">
                       <li><a href=""><i class="material-icons">search</i></a></li>
                       <li><a href=""><i class="material-icons">&#xE853;</i></a></li>
-                      <li><a href="">Gustavo Silva </a></li>
+                      <li><a href="">Admin </a></li>
                       <li></li>
                   </ul>
               </div>
@@ -75,8 +78,9 @@
       <md-sidenav class="md-sidenav-left md-whiteframe-11dp" md-component-id="left">
           <md-toolbar class="md-whiteframe-24dp" layout="row"
                       style="height: 200px; background-color: #4db6ac ; padding-top: 60px; padding-left: 30px">
+
               <div class="md-toolbar-tools">
-                  <img src="../img/LogoGoias.png" alt="">
+                  <a href="#/home" >  <img src="../img/LogoGoias.png" alt=""></a>
                   <md-button class="md-icon-button " aria-label="Close Side Panel" ng-click="closeSideNavPanel()"
                              style="position: relative">
                       <md-tooltip>Fechar</md-tooltip>
@@ -90,13 +94,14 @@
           <md-content layout-padding="50px">
               <md-list >
                   <md-subheader class="">Pesquisa</md-subheader>
-                  <md-list-item ng-click="" ui-sref="/buscaPessoas">
+
+                  <md-list-item>
                       <md-icon class="md-default-theme" class="material-icons">&#xE0C9;</md-icon>
-                      <p><a href="#buscaPessoas" style="color: #424242"  >Buscar Pessoas</a></p>
+                      <p><a href="#/buscaPessoas" style="color: #424242" >Buscar Pessoas</a></p>
                   </md-list-item>
-                  <md-list-item ng-click="" ui-sref="/buscaEmpresas">
+                  <md-list-item >
                       <md-icon class="md-default-theme" class="material-icons">&#xE8D1;</md-icon>
-                      <p>Buscar Empresas</p>
+                      <p><a href="#/resultadoBusca" style="color: #424242"  >Buscar Empresas</a></p>
                       <md-icon class="md-secondary">2</md-icon>
                   </md-list-item>
                   <md-list-item ng-click="null" ui-sref="/Lista">
@@ -105,9 +110,9 @@
                   </md-list-item>
                   <md-divider></md-divider>
                   <md-subheader class="md-no-sticky">Dashboard</md-subheader>
-                  <md-list-item ng-click="null" ui-sref="/home">
+                  <md-list-item  >
                       <md-icon class="md-default-theme" class="material-icons">&#xE1AF;</md-icon>
-                      <p>Dashboard</p>
+                      <p><a href="#/home" style="color: #424242"  >Dashboard</a></p>
                   </md-list-item>
                   <md-list-item ng-click="null" ui-sref="/help">
                       <md-icon class="md-default-theme" class="material-icons">&#xE0C6;</md-icon>
@@ -118,7 +123,7 @@
           </md-content>
       </md-sidenav>
       <br><br><br><br>
-
+  </div>
       <!--Conteudo-->
 
       <div ng-view=""></div>
@@ -129,24 +134,21 @@
           <div class="container">
               <div class="row">
                   <div class="col l6 s12">
-                      <h5 class="white-text">Footer Content</h5>
-                      <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                      <h5 class="white-text">Em Teste</h5>
+                      <p class="grey-text text-lighten-4">Indra</p>
                   </div>
                   <div class="col l4 offset-l2 s12">
                       <h5 class="white-text">Links</h5>
                       <ul>
-                          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                          <li><a class="grey-text text-lighten-3" href="#!">Ajuda</a></li>
                       </ul>
                   </div>
               </div>
           </div>
           <div class="footer-copyright">
               <div class="container">
-                  © 2014 Copyright Text
-                  <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                  © 2016 Indra
+                  <a class="grey-text text-lighten-4 right" href="#!">@</a>
               </div>
           </div>
       </footer>
@@ -156,25 +158,37 @@
 
 
  <!--In production use:-->
+    <script type="text/javascript" src="bower_components/angular/angular.js">
+    </script><script type="text/javascript" src="bower_components/angular-ui-mask/dist/mask.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
-  <script src="../node_modules/angular-animate/angular-animate.js"></script>
-  <script src="../node_modules/angular-aria/angular-aria.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
   <!--<script src="js/angular-fusioncharts.min.js"></script>-->
-  <script src="../node_modules/angular-material/angular-material.js"></script>
-  <script src="../node_modules/highcharts-ng/dist/highcharts-ng.min.js"></script>
+  <script src="node_modules/angular-material/angular-material.js"></script>
+  <script src="node_modules/highcharts-ng/dist/highcharts-ng.min.js"></script>
 
 <!--Import Login-->
   <script type="text/javascript" src="js/angular-materialize.min.js"></script>
-  <script type="text/javascript" src="js/materialize.min.js"></script>
+
   <script type="text/javascript" src="js/app.js"></script>
   <script type="text/javascript" src="views/login/login.js"></script>
   <script type="text/javascript" src="views/home/home.js"></script>
   <script type="text/javascript" src="views/buscaPessoas/buscaPessoas.js"></script>
   <script type="text/javascript" src="views/resultadoBusca/resultadoBusca.js"></script>
+
+    <!-- your app's js -->
+    <!--<script src="js/controllersEndereco.js"></script>-->
+    <script src="js/services.js"></script>
+    <script src="js/servicesSofia.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="views/buscaPessoas/servicesEndereco.js"></script>
+    <script src="views/buscaPessoas/controllersEndereco.js"></script>
+
+</div>
 
 </body>
 </html>

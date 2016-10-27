@@ -17,6 +17,13 @@ app.controller('AppCtrlPessoa', function($scope, $mdSidenav) {
 // Declared route
     app.config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/buscaPessoas', {
+            resolve:{
+                "check": function ($location, $rootScope) {
+                    if(!$rootScope.loggedIn){
+                        $location.path('');
+                    }
+                }
+            },
             templateUrl: 'buscaPessoas/buscaPessoas.html',
             controller: ''
         });
