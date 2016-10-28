@@ -20,6 +20,7 @@ controladores.controller('EndSofiaCtrl', function($scope, EnderecosSofiaService,
       );
 
 
+
     $scope.listarEndereco = function(idPessoa, nomePessoa) {
         $scope.loading = true;
 

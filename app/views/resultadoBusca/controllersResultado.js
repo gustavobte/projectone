@@ -1,10 +1,20 @@
 
-//-----------ENDERECO SOFIA------------------------
+//-----------PESSOA SOFIA------------------------
 controladores.controller('ResultSofiaCtrl', function($scope, ResultadosSofiaService, ResultadoService) {
 
     var vm = this;
     vm.dadosId= '';
     vm.dadosNome= '';
+
+
+
+   $scope.pessoa = function (pes) {
+
+       console.log(pes)
+       debugger
+    };
+
+
 
     ResultadosSofiaService.listarResultados().then(
 
@@ -13,8 +23,7 @@ controladores.controller('ResultSofiaCtrl', function($scope, ResultadosSofiaServ
 
             var listaDados;
             listaDados = dados;
-            $scope.getPessoa;
-debugger
+
             console.log(listaDados);
         }
     );
