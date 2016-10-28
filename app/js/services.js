@@ -1,7 +1,7 @@
 var servicos = angular.module('myApp.services', []);
 
 // ============= MODEL PESSOA =============
-servicos.factory('PessoaService', function(){
+servicos.factory('ResultadoService', function(){
   var pessoa;
   var getPessoa = function(){
     return pessoa;

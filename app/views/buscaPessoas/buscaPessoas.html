@@ -13,7 +13,7 @@
                 <div class="row">
 
                     <div class="input-field col s4 ">
-                        <input id="cpf" ui-mask="999.999.999-99" ng-cpf placeholder="000.000.000-00" type="text" class="validate" ng-model="idPessoa" ng-disabled="nomePessoa > ''">
+                        <input  id="cpf" ui-mask="000.000.000-00"  placeholder="000.000.000-00" type="text" class="validate" ng-model="idPessoa" ng-disabled="nomePessoa > ''">
                         <label class="active" for="cpf">Cpf</label>
 
                     </div>
@@ -47,8 +47,8 @@
                     </div>
                 </md-toolbar>
                 <div class="row">
-                <div class="col s12">
-                    <table class="highlight" md-table style="padding: 500px" >
+                <div class="col s12" >
+                    <table class="highlight" md-table style="padding: 500px"  >
                         <thead md-head >
                         <tr md-row  style="height: 50px">
                             <th md-column ><span>CPF</span></th>
@@ -59,14 +59,23 @@
                         </thead>
 
 
-                        <tr  style="height: 50px;" ng-repeat="x in vm.dadosId">
+                        <tr  style="height: 50px;" ng-repeat="x in vm.dadosId" ng-show=" loading == false">
                             <td >{{x[1]}}</td>
                             <td >{{x[2]}}</td>
                             <td >{{x[4]}}</td>
-                            <td ><a href=""></a><img src="../img/file.png" alt=""></td>
+                            <td >
+                                <a href="#/resultadoBusca"
+                                   ng-controller="ResultSofiaCtrl"
+                                   ng-click="setPessoa(x[1])"
+                                   class="button button-full button-positive">
+                                    <img src="../img/file.png" alt="">
+                                    Ver dados<a/>
+
+
+                            </td>
                         </tr>
 
-                        <tr  style="height: 50px;" ng-repeat="x in vm.dadosNome">
+                        <tr  style="height: 50px;" ng-repeat="x in vm.dadosNome" ng-show=" loading == false">
                             <td >{{x[1]}}</td>
                             <td >{{x[2]}}</td>
                             <td >{{x[4]}}</td>
@@ -75,23 +84,28 @@
                     </table>
 
                     <br>
-                        <div  class="center-align" style="height: 50px;" ng-show="vm.dadosId.length == undefinid">
+                        <div  class="center-align" style="height: 50px;" ng-show="vm.dadosId.length == undefinid && loading == false || semDados == true ">
                             <div class="chip ">
                                 <img src="http://image.flaticon.com/icons/svg/174/174320.svg" alt="Contact Person">
                                 CPF não Encontrado
                             </div>
                         </div>
-                        <div  class="center-align" style="height: 50px;" ng-show="vm.dadosNome.length == undefinid">
+                        <div  class="center-align" style="height: 50px;" ng-show="vm.dadosNome.length == undefinid && loading == false">
                             <div class="chip ">
                                 <img src="http://image.flaticon.com/icons/svg/187/187478.svg" alt="Contact Person">
                                 Nome não Encontrado
                             </div>
                         </div>
-                    <br>
+                    <div class="progress" ng-show="loading == true">
+                        <div class="indeterminate"></div>
+                    </div>
+
+
                 </div>
             </div>
 
         </div>
+
      </div>
     </div>
 

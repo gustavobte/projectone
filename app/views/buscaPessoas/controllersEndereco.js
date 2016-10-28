@@ -1,6 +1,6 @@
 
 //-----------ENDERECO SOFIA------------------------
-controladores.controller('EndSofiaCtrl', function($scope, EnderecosSofiaService, EnderecoService) {
+controladores.controller('EndSofiaCtrl', function($scope, EnderecosSofiaService, EnderecoService, ResultadoService) {
 
     var vm = this;
     vm.dadosId= '';
@@ -12,32 +12,21 @@ controladores.controller('EndSofiaCtrl', function($scope, EnderecosSofiaService,
     function(dados){$scope.enderecos = dados;
         var quantidade = $scope.quantidade;
 
-        var dprod2;
-        dprod2 = dados;
+        var listaDados;
+        listaDados = dados;
 
-        console.log(dprod2);
-       // eval("var dprod="+ dados + ";");
-        //debugger;
-        //console.log("Teste " + dprod["values"][2][2]);
-
-        var tbl ="<table border='\"1\"'>";
-        tbl += "<tr><td>TPO Pessoa</td><td>CPF</td><td>Nome</td><td>Sexo</td><td>Dt Nascimento</td><td>Mae</td><td>Tel Sefaz</td><td>Tel Ref</td></td></tr>";
-
-        for(var i=0; i< dprod2["values"].length; i++){
-            tbl += "<tr>";
-                for(var j=0; j<dprod2["columns"].length; j++ ){
-                    tbl+= "<td>" + dprod2["values"][i][j] + "</td>";
-                }
-
-            tbl += "</tr>";
-        }
-        tbl += "</table>";
-        document.getElementById('tabela').innerHTML = tbl;
+        console.log(listaDados);
     }
       );
 
 
     $scope.listarEndereco = function(idPessoa, nomePessoa) {
+        $scope.loading = true;
+
+        if(idPessoa == null || idPessoa == undefined || idPessoa == '' ||
+            nomePessoa == null || nomePessoa == undefined || nomePessoa == ''){
+
+        }
 
         if (idPessoa !== null && idPessoa !== undefined && idPessoa !== '') {
 
@@ -46,22 +35,24 @@ controladores.controller('EndSofiaCtrl', function($scope, EnderecosSofiaService,
                 function(dados){
                     vm.dadosId= '';
                     vm.dadosNome= '';
-                    vm.dadosId = dados["values"];
 
+                    vm.dadosId = dados["values"];
+                    $scope.loading = false;
                 },
                 function(){
                     console.log("Erro ao localizar Endereço");
                 });
 
         }else if (nomePessoa !== null && nomePessoa !== undefined && nomePessoa !== ''){
-
+            $scope.loading = true;
                 EnderecosSofiaService.listarEnderecoNome(nomePessoa).then(
 
                     function(dados){
                         vm.dadosNome= '';
                         vm.dadosId= '';
-                        vm.dadosNome =dados["values"];
 
+                        vm.dadosNome =dados["values"];
+                        $scope.loading = false;
                     },
                     function(){
                         console.log("Erro ao localizar Endereço");
