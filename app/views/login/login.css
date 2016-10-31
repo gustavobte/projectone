@@ -54,3 +54,26 @@ img {
     max-width: 100%;
     height: auto;
 }
+
+
+body{background-size:cover;}
+
+.imageCycle1{
+    background:url(../../img/bg.jpg)no-repeat center center fixed;
+
+    background-size:cover;
+    -webkit-background-size: cover;
+    -moz-background-size:cover;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../img/bg.jpg');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../img/bg.jpg', sizingMethod='scale')";
+}
+.imageCycle2{
+    background:url(../../img/bg2.jpg) no-repeat center center fixed;
+    background-size:cover;
+    -webkit-background-size: cover;
+    -moz-background-size:cover;
+    
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader( src='../../img/bg.jpg', sizingMethod='scale')";
+}
+
+

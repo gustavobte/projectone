@@ -7,24 +7,21 @@ controladores.controller('ResultSofiaCtrl', function($scope, ResultadosSofiaServ
     vm.dadosNome= '';
 
 
-
-   $scope.pessoa = function (pes) {
-
-       console.log(pes)
-       debugger
-    };
-
-
-
     ResultadosSofiaService.listarResultados().then(
-
         function(dados){$scope.enderecos = dados;
+            $scope.resultadoLoad = true;
+
             var quantidade = $scope.quantidade;
 
-            var listaDados;
-            listaDados = dados;
+            console.log(dados);
 
-            console.log(listaDados);
+            vm.listaDados = '';
+            vm.listaDados = dados["values"];
+
+            $scope.resultadoLoad = false;
+
+            console.log(vm.listaDados);
+            debugger;
         }
     );
 
@@ -49,4 +46,7 @@ controladores.controller('ResultSofiaCtrl', function($scope, ResultadosSofiaServ
                 });
         }
     }
+
+
+
 });

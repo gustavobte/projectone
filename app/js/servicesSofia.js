@@ -71,10 +71,36 @@ app.factory('SofiaService', function($q, $rootScope){
     return q.promise;
   };
 
+  var atualizar = function(data, query, ontologia){
+    var q = $q.defer();
+    var dados = [];
+    conectado().then(
+        function(){
+          sofia2.update(data, query, ontologia,function(mensajeSSAP){
+            //sofia2.updateWithQueryType(data, query, ontologia,"SQLLIKE" ,function(mensajeSSAP){
+            if(mensajeSSAP != null && mensajeSSAP.body.data != null && mensajeSSAP.body.ok == true){
+              dados = {"status":"Objeto Criada com Sucesso!", "data":mensajeSSAP.body.data};
+              q.resolve(dados);
+            }else{
+              dados = {"status":"Erro ao criar Objeto!"};
+              console.log("Erro ao criar objeto - ServiceSofia.criarQuery() \n");
+              console.log(mensajeSSAP);
+              q.reject(dados);
+            }
+          }, sessionKey);
+        },
+        function(){
+          q.reject(dados);
+        });
+    return q.promise;
+  };
+
+
 
 
   return {
     conectar: conectar,
     listar: listarQuery,
+    atualizar: atualizar,
   }
 });

@@ -14,6 +14,8 @@ app.controller('NavCtrl', function($scope, $mdSidenav) {
 })
 
 
+
+
 // Declared route
     app.config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/home', {
@@ -30,7 +32,10 @@ app.controller('NavCtrl', function($scope, $mdSidenav) {
         });
     }])
 
+
 app.controller('myctrl51', function ($scope) {
+
+
 
     $scope.addPoints = function () {
         var seriesArray = $scope.chartConfig.series
@@ -108,6 +113,7 @@ app.controller('myctrl51', function ($scope) {
 
 });
 app.controller('myctrl2', function ($scope) {
+
 
     $scope.addPoints = function () {
         var seriesArray = $scope.chartConfig.series

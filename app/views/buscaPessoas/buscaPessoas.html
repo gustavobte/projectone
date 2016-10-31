@@ -1,12 +1,21 @@
 <!--Inicio Conteudo BOX Busca-->
 
+<div class="fixed-action-btn horizontal">
+    <a class="btn-floating btn-large teal darken-1 waves-effect waves-light" href="#/home">
+        <i class="material-icons">reply</i>
+        <md-tooltip md-direction="top">Voltar</md-tooltip>
+    </a>
+</div>
+
+
 
     <div class="row ">
         <div class="col s10 offset-s1 ">
             <div class="card sticky-action ">
                 <md-toolbar class="md-table-toolbar ">
                     <div class="md-toolbar-tools teal darken-3">
-                        <span>Buscar Pessoas </span>
+                        <span>Busca Pessoa Fisica</span>
+
                     </div>
                 </md-toolbar>
 
@@ -79,7 +88,17 @@
                             <td >{{x[1]}}</td>
                             <td >{{x[2]}}</td>
                             <td >{{x[4]}}</td>
-                            <td ><a href=""></a><img src="../img/file.png" alt=""></td>
+
+                            <td >
+                                <a
+                                        ng-click="pessoa(x[1])"
+                                        href="#/resultadoBusca"
+                                        class="button button-full button-positive">
+                                    <img src="../img/file.png" alt="">
+                                    Ver dados<a/>
+
+
+                            </td>
                         </tr>
                     </table>
 
@@ -97,7 +116,7 @@
                             </div>
                         </div>
                     <div class="progress" ng-show="loading == true">
-                        <div class="indeterminate"></div>
+                        <div class="indeterminate cyan darken-4"></div>
                     </div>
 
 
@@ -110,8 +129,5 @@
     </div>
 
 
-
-<div id="tabela2"></div>
-<div id="tabela"></div>
 
 <!--Fim Conteudo-->

@@ -21,7 +21,8 @@ app.controller('SwitchDemoCtrl', function($scope) {
     app.config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/resultadoBusca', {
             templateUrl: 'views/resultadoBusca/resultadoBusca.html',
-            controller:  'ResultSofiaCtrl'
+            controller:  'ResultSofiaCtrl',
+            controllerAs: 'vm'
         });
     }])
 

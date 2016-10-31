@@ -7,6 +7,9 @@ controladores.controller('EndSofiaCtrl', function($scope, EnderecosSofiaService,
     vm.dadosNome= '';
 
 
+
+
+
   EnderecosSofiaService.listarEnderecos().then(
 
     function(dados){$scope.enderecos = dados;
@@ -26,8 +29,8 @@ controladores.controller('EndSofiaCtrl', function($scope, EnderecosSofiaService,
 
         if(idPessoa == null || idPessoa == undefined || idPessoa == '' ||
             nomePessoa == null || nomePessoa == undefined || nomePessoa == ''){
-
         }
+
 
         if (idPessoa !== null && idPessoa !== undefined && idPessoa !== '') {
 
@@ -60,6 +63,8 @@ controladores.controller('EndSofiaCtrl', function($scope, EnderecosSofiaService,
                     });
             };
         }
+
+
 });
 
 

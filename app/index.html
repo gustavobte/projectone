@@ -60,27 +60,34 @@
       <div class="navbar-fixed " style="position: absolute; z-index: 5">
           <nav class="navbar-fixed">
               <div class="navbar-fixed teal darken-3">
+
                   <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
                       <md-tooltip>Menu</md-tooltip>
                       <md-icon class="md-primary" style="color:white;" class="material-icons">&#xE5D2;</md-icon>
                   </md-button>
 
+
+
+
+
+
                   <ul class="right hide-on-med-and-down">
-                      <li><a href=""><i class="material-icons">search</i></a></li>
-                      <li><a href=""><i class="material-icons">&#xE853;</i></a></li>
-                      <li><a href="">Admin </a></li>
-                      <li></li>
+
+                      <li><a href="#/buscaPessoas"><i class="material-icons">search</i></a></li>
+                      <li><a href=""><i class="material-icons">info</i></a></li>
+                      <li><a href="#/login"><i class="material-icons">exit_to_app</i></a></li>
+
                   </ul>
               </div>
           </nav>
       </div>
       <!--SideNav-->
-      <md-sidenav class="md-sidenav-left md-whiteframe-11dp" md-component-id="left">
+      <md-sidenav  class="md-sidenav-left md-whiteframe-11dp" md-component-id="left">
           <md-toolbar class="md-whiteframe-24dp" layout="row"
                       style="height: 200px; background-color: #4db6ac ; padding-top: 60px; padding-left: 30px">
 
               <div class="md-toolbar-tools">
-                  <a href="#/home" >  <img src="../img/LogoGoias.png" alt=""></a>
+                  <a ng-click="closeSideNavPanel()" href="#/home"  >  <img src="../img/LogoGoias.png" alt=""></a>
                   <md-button class="md-icon-button " aria-label="Close Side Panel" ng-click="closeSideNavPanel()"
                              style="position: relative">
                       <md-tooltip>Fechar</md-tooltip>
@@ -97,11 +104,11 @@
 
                   <md-list-item>
                       <md-icon class="md-default-theme" class="material-icons">&#xE0C9;</md-icon>
-                      <p><a href="#/buscaPessoas" style="color: #424242" >Buscar Pessoas</a></p>
+                      <p><a ng-click="closeSideNavPanel()" href="#/buscaPessoas" style="color: #424242" >Buscar Pessoas</a></p>
                   </md-list-item>
                   <md-list-item >
                       <md-icon class="md-default-theme" class="material-icons">&#xE8D1;</md-icon>
-                      <p><a href="#/resultadoBusca" style="color: #424242"  >Buscar Empresas</a></p>
+                      <p><a ng-click="closeSideNavPanel()" href="#/resultadoBusca" style="color: #424242"  >Buscar Empresas</a></p>
                       <md-icon class="md-secondary">2</md-icon>
                   </md-list-item>
                   <md-list-item ng-click="null" ui-sref="/Lista">
@@ -112,7 +119,7 @@
                   <md-subheader class="md-no-sticky">Dashboard</md-subheader>
                   <md-list-item  >
                       <md-icon class="md-default-theme" class="material-icons">&#xE1AF;</md-icon>
-                      <p><a href="#/home" style="color: #424242"  >Dashboard</a></p>
+                      <p><a ng-click="closeSideNavPanel()" href="#/home" style="color: #424242"  >Dashboard</a></p>
                   </md-list-item>
                   <md-list-item ng-click="null" ui-sref="/help">
                       <md-icon class="md-default-theme" class="material-icons">&#xE0C6;</md-icon>
@@ -152,10 +159,6 @@
               </div>
           </div>
       </footer>
-
-
-
-
 
  <!--In production use:-->
     <script type="text/javascript" src="bower_components/angular/angular.js">

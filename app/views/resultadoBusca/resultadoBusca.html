@@ -1,5 +1,11 @@
 
 <!--Inicio Conteudo RESULTADO-->
+<div class="fixed-action-btn horizontal">
+    <a class="btn-floating btn-large teal darken-1 waves-light"  href="#/buscaPessoas">
+        <md-tooltip md-direction="top">Voltar</md-tooltip>
+        <i class="material-icons">reply</i>
+    </a>
+</div>
 
 
     <div class="row ">
@@ -7,17 +13,17 @@
             <div class="card sticky-action">
                 <md-toolbar class="md-table-toolbar ">
                     <div class="md-toolbar-tools teal darken-3 ">
-                        <span><b>NOME:</b> GUSTAVO ROSA PAIVA SILVA &#160</span>
-                        /
-                        <span>&#160<b>&#160CPF</b>: 041.355.455-05 </span>
+                        <span ng-show="resultadoLoad == false"><b>NOME:</b> {{vm.listaDados[1][4]}} &#160
+                        /</span>
+                        <span ng-show="resultadoLoad == false">&#160<b>&#160CPF</b>: {{vm.listaDados[1][3]}} </span>
                     </div>
                 </md-toolbar>
                 <div class="row">
                     <div class="col s12">
-                        <table class="highlight" md-table style="padding: 500px" >
+                        <table class="highlight" md-table style="padding: 600px" >
                             <thead md-head >
                             <tr md-row  style="height: 50px">
-                                <th md-column ><span>Ranking</span></th>
+                                <th md-column ><span>Score</span></th>
                                 <th md-column><span>Endereço</span></th>
                                 <th md-column><span>Bairro</span></th>
                                 <th md-column>Origem de Registro</th>
@@ -26,53 +32,13 @@
                             </thead>
 
                             <tbody md-body>
-                            <tr md-row style="height: 50px;">
-                                <td md-cell>1</td>
-                                <td md-cell>Av C 12, 380 - Setor Sudoeste, Goiânia-GO</td>
-                                <td md-cell>Centro</td>
-                                <td md-cell>DETRAN</td>
-                                <td md-cell>
-                                    <div class="switch">
-                                        <label>
-                                            <input type="checkbox">
-                                            <span class="lever"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr md-row style="height: 50px">
-                                <td md-cell>2</td>
-                                <td md-cell>R 227, 451 - Setor Leste Universitário, Goiânia-GO</td>
-                                <td md-cell>Setor Oeste</td>
-                                <td md-cell>SANEAGO</td>
-                                <td md-cell>
-                                    <div class="switch">
-                                        <label>
-                                            <input type="checkbox">
-                                            <span class="lever"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr md-row style="height: 50px">
-                                <td md-cell>3</td>
-                                <td md-cell>Av dos Índios, 472 - Santa Genoveva, Goiânia-GO</td>
-                                <td md-cell>Setor Vila Nova</td>
-                                <td md-cell>UEG</td>
-                                <td md-cell>
-                                    <div class="switch">
-                                        <label>
-                                            <input type="checkbox">
-                                            <span class="lever"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr md-row style="height: 50px">
-                                <td md-cell >4</td>
-                                <td md-cell>Av João Luís de Almeida, 348 - Setor Crimeia Oeste, Goiânia-GO</td>
-                                <td md-cell>Setor Oeste</td>
-                                <td md-cell>DETRAN</td>
+
+
+                            <tr  style="height: 50px;" ng-repeat="x in vm.listaDados | orderBy : '[0]'">
+                                <td >{{x[0]}}</td>
+                                <td >{{x[5]+" "+x[6]+", N° "+x[7]+", Qd "+x[8]+",Lt "+x[9]+", "+x[10]+", CEP:"+x[12]+", Municipio: "+x[13]+"-"+x[14]}}</td>
+                                <td >{{x[11]}}</td>
+                                <td >{{x[1]}}</td>
                                 <td md-cell>
                                     <div class="switch">
                                         <label>
@@ -84,7 +50,9 @@
                             </tr>
                             </tbody>
                         </table>
-
+                        <div class="progress" ng-show="resultadoLoad !== false">
+                            <div class="indeterminate cyan darken-4"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -117,49 +85,10 @@
                             </thead>
 
                             <tbody md-body>
-                            <tr md-row style="height: 50px;">
-                                <td md-cell>1</td>
-                                <td md-cell>62</td>
-                                <td md-cell>99111-4758</td>
-                                <td md-cell>
-                                    <div class="switch">
-                                        <label>
-                                            <input type="checkbox">
-                                            <span class="lever"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr md-row style="height: 50px">
-                                <td md-cell>2</td>
-                                <td md-cell>62</td>
-                                <td md-cell>98541-4158</td>
-                                <td md-cell>
-                                    <div class="switch">
-                                        <label>
-                                            <input type="checkbox">
-                                            <span class="lever"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr md-row style="height: 50px">
-                                <td md-cell>3</td>
-                                <td md-cell>62</td>
-                                <td md-cell>99951-4118</td>
-                                <td md-cell>
-                                    <div class="switch">
-                                        <label>
-                                            <input type="checkbox">
-                                            <span class="lever"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr md-row style="height: 50px">
-                                <td md-cell>4</td>
-                                <td md-cell>62</td>
-                                <td md-cell>98133-4997</td>
+                            <tr  style="height: 50px;" ng-repeat="x in vm.listaDados | orderBy : '[0]'">
+                                <td >{{x[0]}}</td>
+                                <td >{{x[7]}}</td>
+                                <td >{{x[12]}}</td>
                                 <td md-cell>
                                     <div class="switch">
                                         <label>
@@ -171,6 +100,9 @@
                             </tr>
                             </tbody>
                         </table>
+                        <div class="progress" ng-show="resultadoLoad !== false">
+                            <div class="indeterminate"></div>
+                        </div>
 
                     </div>
                 </div>
