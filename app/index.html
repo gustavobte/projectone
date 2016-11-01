@@ -23,6 +23,8 @@
     <!-- Materialize CSS -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+
 
 
   <!--Angular Material Design-->
@@ -30,8 +32,8 @@
 
   <!--SOFIA-->
   <script type="text/javascript" src="js/sofia/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript"> var pathToDwrServlet = 'http://sofia2.com/sib/dwr';</script>
-  <!--<script type="text/javascript"> var pathToDwrServlet = 'http://10.7.149.100:8080/sib/dwr';</script>-->
+  <!--<script type="text/javascript"> var pathToDwrServlet = 'http://sofia2.com/sib/dwr';</script>-->
+  <script type="text/javascript"> var pathToDwrServlet = 'http://10.7.149.100:8080/sib/dwr';</script>
   <script type='text/javascript' src='js/sofia/engine.js'></script>
   <script type='text/javascript' src='js/sofia/GatewayDWR.js'></script>
   <script type='text/javascript' src="js/sofia/sofia2-api-js_v2.13.0.js">;</script>
@@ -54,7 +56,7 @@
 
 
 <div ng-show="!$rootScope.loggedIn">
-
+<div ng-show="logado == true">
   <!-- Button menu-->
   <div ng-controller="NavCtrl">
       <div class="navbar-fixed " style="position: absolute; z-index: 5">
@@ -66,16 +68,17 @@
                       <md-icon class="md-primary" style="color:white;" class="material-icons">&#xE5D2;</md-icon>
                   </md-button>
 
-
-
-
-
-
                   <ul class="right hide-on-med-and-down">
 
-                      <li><a href="#/buscaPessoas"><i class="material-icons">search</i></a></li>
-                      <li><a href=""><i class="material-icons">info</i></a></li>
-                      <li><a href="#/login"><i class="material-icons">exit_to_app</i></a></li>
+                      <li><a href="#/buscaPessoas"><i class="material-icons">search</i></a>
+                          <md-tooltip md-direction="botton">Busca Pessoas</md-tooltip>
+                      </li>
+                      <li><a href=""><i class="material-icons">info</i></a>
+                          <md-tooltip md-direction="botton">Informações</md-tooltip>
+                      </li>
+                      <li><a href="#/login"><i class="material-icons">exit_to_app</i></a>
+                          <md-tooltip md-direction="botton">Sair</md-tooltip>
+                      </li>
 
                   </ul>
               </div>
@@ -108,7 +111,7 @@
                   </md-list-item>
                   <md-list-item >
                       <md-icon class="md-default-theme" class="material-icons">&#xE8D1;</md-icon>
-                      <p><a ng-click="closeSideNavPanel()" href="#/resultadoBusca" style="color: #424242"  >Buscar Empresas</a></p>
+                      <p><a ng-click="closeSideNavPanel()" href="#/buscaPessoasPj" style="color: #424242"  >Buscar Empresas</a></p>
                       <md-icon class="md-secondary">2</md-icon>
                   </md-list-item>
                   <md-list-item ng-click="null" ui-sref="/Lista">
@@ -132,11 +135,11 @@
       <br><br><br><br>
   </div>
       <!--Conteudo-->
-
+</div>
       <div ng-view=""></div>
 
       <!--Rodape-->
-
+    <div ng-show="logado == true">
       <footer class="page-footer teal darken-3">
           <div class="container">
               <div class="row">
@@ -161,8 +164,8 @@
       </footer>
 
  <!--In production use:-->
-    <script type="text/javascript" src="bower_components/angular/angular.js">
-    </script><script type="text/javascript" src="bower_components/angular-ui-mask/dist/mask.js"></script>
+  <script type="text/javascript" src="bower_components/angular/angular.js">
+  </script><script type="text/javascript" src="bower_components/angular-ui-mask/dist/mask.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="components/version/version.js"></script>
@@ -182,9 +185,10 @@
   <script type="text/javascript" src="views/home/home.js"></script>
   <script type="text/javascript" src="views/buscaPessoas/buscaPessoas.js"></script>
   <script type="text/javascript" src="views/resultadoBusca/resultadoBusca.js"></script>
+  <script type="text/javascript" src="js/angular-locale_pt-br.min.js"></script>
 
     <!-- your app's js -->
-    <!--<script src="js/controllersEndereco.js"></script>-->
+    <!--<script src="js/controllersEnderecoPj.js"></script>-->
     <script src="js/services.js"></script>
     <script src="js/servicesSofia.js"></script>
     <script src="js/controllers.js"></script>
@@ -192,8 +196,17 @@
     <script src="views/buscaPessoas/controllersEndereco.js"></script>
     <script src="views/resultadoBusca/controllersResultado.js"></script>
     <script src="views/resultadoBusca/servicesResultado.js"></script>
+    <script src="views/home/controllersHome.js"></script>
+    <script src="views/home/servicesHome.js"></script>
+        <script src="views/resultadoBuscaPj/controllersResultadoPj.js"></script>
+        <script src="views/resultadoBuscaPj/servicesResultadoPj.js"></script>
+        <script src="views/resultadoBuscaPj/resultadoBuscaPj.js"></script>
+        <script src="views/buscaPessoasPj/buscaPessoasPj.js"></script>
+        <script src="views/buscaPessoasPj/servicesEnderecoPj.js"></script>
+        <script src="views/buscaPessoasPj/controllersEnderecoPj.js"></script>
+
 
 </div>
-
+</div>
 </body>
 </html>

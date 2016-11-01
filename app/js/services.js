@@ -7,7 +7,6 @@ servicos.factory('ResultadoService', function(){
     return pessoa;
   };
   var setPessoa = function(pes){
-    debugger
     pessoa = pes;
   };
 
@@ -20,18 +19,18 @@ servicos.factory('ResultadoService', function(){
 
 
 // ============= MODEL ENDERECO =============
-servicos.factory('EnderecoService', function(){
-  var endereco;
-  var getEndereco = function(){
-    return endereco;
+servicos.factory('ResultadoServicePj', function(){
+  var pessoa = '';
+  var getPessoa = function(){
+    return pessoa;
   };
-  var setEndereco = function(end){
-    endereco = end;
+  var setPessoa = function(pes){
+    pessoa = pes;
   };
 
   return {
-    getEndereco : getEndereco,
-    setEndereco : setEndereco
+    setPessoa : setPessoa,
+    getPessoa : getPessoa
   };
 });
 

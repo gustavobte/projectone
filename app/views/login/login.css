@@ -56,24 +56,24 @@ img {
 }
 
 
-body{background-size:cover;}
+/*body{background-size:cover;}*/
 
-.imageCycle1{
-    background:url(../../img/bg.jpg)no-repeat center center fixed;
+/*.imageCycle1{*/
+    /*background:url(../../img/bg.jpg)no-repeat center center fixed;*/
 
-    background-size:cover;
-    -webkit-background-size: cover;
-    -moz-background-size:cover;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../img/bg.jpg');
-    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../img/bg.jpg', sizingMethod='scale')";
-}
-.imageCycle2{
-    background:url(../../img/bg2.jpg) no-repeat center center fixed;
-    background-size:cover;
-    -webkit-background-size: cover;
-    -moz-background-size:cover;
-    
-    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader( src='../../img/bg.jpg', sizingMethod='scale')";
-}
+    /*background-size:cover;*/
+    /*-webkit-background-size: cover;*/
+    /*-moz-background-size:cover;*/
+    /*filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../img/bg.jpg');*/
+    /*-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../img/bg.jpg', sizingMethod='scale')";*/
+/*}*/
+/*.imageCycle2{*/
+    /*background:url(../../img/bg2.jpg) no-repeat center center fixed;*/
+    /*background-size:cover;*/
+    /*-webkit-background-size: cover;*/
+    /*-moz-background-size:cover;*/
+
+    /*-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader( src='../../img/bg.jpg', sizingMethod='scale')";*/
+/*}*/
 
 

@@ -1,9 +1,9 @@
 
 // ============= SERVICE SOFIA =============
 app.factory('SofiaService', function($q, $rootScope){
-
-  var token = "a613b367ba7a419ca014a55255aae9f7";
-  var instancePK = "gustavo:gustavo";
+  $rootScope.logado = true;
+  var token = "abde472c4c674f89a934941da604c9c3";
+  var instancePK = "indragyn:sefaz";
 
   // var token = "abde472c4c674f89a934941da604c9c3";
   // var instancePK = "indragyn:sefaz";
@@ -59,7 +59,6 @@ app.factory('SofiaService', function($q, $rootScope){
         if(mensajeSSAP != null && mensajeSSAP.body.data != null && mensajeSSAP.body.ok == true){
           dados = mensajeSSAP.body.data;
           q.resolve(dados);
-
         }else{
           dados = {"status":"Erro ao Listar Pessoa!"};
           q.reject(dados);

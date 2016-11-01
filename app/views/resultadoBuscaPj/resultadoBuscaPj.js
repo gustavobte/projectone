@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('myApp.resultadoBusca', ['ngRoute','ngMaterial','ui.materialize'])
+var app = angular.module('myApp.resultadoBuscaPj', ['ngRoute','ngMaterial','ui.materialize'])
 
 
 app.controller('SwitchDemoCtrl', function($scope) {
@@ -19,10 +19,10 @@ app.controller('SwitchDemoCtrl', function($scope) {
 
 // Declared route
     app.config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/resultadoBusca', {
+        $routeProvider.when('/resultadoBuscaPj', {
             templateUrl: 'views/resultadoBusca/resultadoBuscaPj.html',
-            controller:  'ResultSofiaCtrl',
-            controllerAs: 'vm',
+            controller:  'ResultPjSofiaCtrl',
+            controllerAs: 'vm'
 
         });
     }])

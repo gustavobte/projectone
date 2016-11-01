@@ -2,7 +2,9 @@
 
 var app = angular.module('myApp.home', ['ngRoute','ngMaterial','ui.materialize','highcharts-ng'])
 
-app.controller('NavCtrl', function($scope, $mdSidenav) {
+app.controller('NavCtrl', function($rootScope, $scope, $mdSidenav) {
+
+    $rootScope.logado = true;
     $scope.showMobileMainHeader = true;
     $scope.openSideNavPanel = function() {
         $mdSidenav('left').open();
@@ -27,15 +29,14 @@ app.controller('NavCtrl', function($scope, $mdSidenav) {
             }
             },
             templateUrl: 'views/home/home.html',
-            controller: ''
+            controller: 'HomeSofiaCtrl',
+            controllerAs: 'vm'
 
         });
     }])
 
 
 app.controller('myctrl51', function ($scope) {
-
-
 
     $scope.addPoints = function () {
         var seriesArray = $scope.chartConfig.series

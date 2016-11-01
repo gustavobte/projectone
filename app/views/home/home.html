@@ -13,35 +13,49 @@
     <!-- Modulos dados Endereços-->
 <div class="row">
     <div class="col s4 m4 15 ">
-        <div class="" >
-                <div class="waves-effect waves-light btn-flat  right-align  " style="height: 130px; background-color: #0277bd">
-                    <span class="md-display-2  " style="color:white;">9.073</span>
+        <div class="col s12 m12 15" >
+                <div class="waves-effect waves-light btn-flat  center-align animated zoomIn " style="height: 130px; background-color: #0277bd" ng-show="x == false">
+                    <span class="md-display-2  " style="color:white;">{{vm.quantidadeProcesssado | number}}</span>
                     <br>
-                    <span class="md-headline" style="color:white;">Endereços Cadastrados</span>
+                    <span class="md-headline" style="color:white;">Endereços Processados</span>
                 </div>
+            <div class="progress"  ng-show="!x == false">
+                <div class="indeterminate"></div>
+            </div>
         </div>
     </div>
+
+
+
     <div class="col s4 m4 15 ">
         <div class="">
-            <div class="waves-effect waves-light btn-flat  right-align  " style="height: 130px; background-color: #006064">
-                <span class="md-display-2  " style="color:white;">14.881</span>
+            <div class="waves-effect waves-light btn-flat  right-align  animated zoomIn" style="height: 130px; background-color: #006064" ng-show="y == false">
+                <span class="md-display-2  " style="color:white;">{{vm.quantidadeEstruturado | number}}</span>
                 <br>
-                <span class="md-headline" style="color:white;"> Endereço n Estruturado</span>
+                <span class="md-headline" style="color:white;"> Endereços Estruturado</span>
+            </div>
+            <div class="progress"  ng-show="!x == false">
+                <div class="indeterminate"></div>
             </div>
         </div>
     </div>
     <div class="col s4 m4 15 ">
         <div class="">
-            <div class="waves-effect waves-light btn-flat  right-align  " style="height: 130px; background-color: #e65100">
-                <span class="md-display-2  " style="color:white;">113.351</span>
+            <div class="waves-effect waves-light btn-flat  right-align animated zoomIn " style="height: 130px; background-color: #e65100" ng-show="z == false">
+                <span class="md-display-2  " style="color:white;">{{vm.quantidadeNaoEstruturado | number}}</span>
                 <br>
-                <span class="md-headline" style="color:white;">Endereços Estruturados</span>
+                <span class="md-headline" style="color:white;">Endereços Não Estruturados</span>
+            </div>
+            <div class="progress"  ng-show="!z == false">
+                <div class="indeterminate"></div>
             </div>
         </div>
     </div>
 
 
 </div>
+
+
 
 <!--Graficos-->
 </div>

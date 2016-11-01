@@ -1,6 +1,6 @@
 
 //-----------ENDERECO SOFIA------------------------
-controladores.controller('EndSofiaCtrl', function($rootScope, $location,$scope, EnderecosSofiaService, EnderecoService, ResultadoService) {
+controladores.controller('EndPjSofiaCtrl', function($rootScope, $location, $scope, EnderecosPjSofiaService, EnderecoService, ResultadoServicePj) {
     if(!$rootScope.loggedIn == false){
 
         var vm = this;
@@ -8,10 +8,10 @@ controladores.controller('EndSofiaCtrl', function($rootScope, $location,$scope, 
         vm.dadosNome= '';
 
         vm.setPessoa = function(ec_id){
-            ResultadoService.setPessoa(ec_id);
+            ResultadoServicePj.setPessoa(ec_id);
         };
 
-        EnderecosSofiaService.listarEnderecos().then(
+        EnderecosPjSofiaService.listarEnderecos().then(
 
             function(dados){$scope.enderecos = dados;
                 var quantidade = $scope.quantidade;
@@ -33,7 +33,7 @@ controladores.controller('EndSofiaCtrl', function($rootScope, $location,$scope, 
 
             if (idPessoa !== null && idPessoa !== undefined && idPessoa !== '') {
 
-                EnderecosSofiaService.listarEndereco(idPessoa).then(
+                EnderecosPjSofiaService.listarEndereco(idPessoa).then(
 
                     function(dados){
                         vm.dadosId= '';
@@ -48,7 +48,7 @@ controladores.controller('EndSofiaCtrl', function($rootScope, $location,$scope, 
 
             }else if (nomePessoa !== null && nomePessoa !== undefined && nomePessoa !== ''){
                 $scope.loading = true;
-                EnderecosSofiaService.listarEnderecoNome(nomePessoa).then(
+                EnderecosPjSofiaService.listarEnderecoNome(nomePessoa).then(
 
                     function(dados){
                         vm.dadosNome= '';

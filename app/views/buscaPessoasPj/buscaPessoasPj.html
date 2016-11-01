@@ -14,7 +14,7 @@
             <div class="card sticky-action ">
                 <md-toolbar class="md-table-toolbar ">
                     <div class="md-toolbar-tools teal darken-3">
-                        <span>Busca Pessoa Fisica</span>
+                        <span>Busca Pessoa Juridica</span>
 
                     </div>
                 </md-toolbar>
@@ -22,8 +22,8 @@
                 <div class="row">
                     <form action="">
                     <div class="input-field col s4 ">
-                        <input  id="cpf" ui-mask="000.000.000-00"  placeholder="000.000.000-00" type="text" class="validate" ng-model="idPessoa" ng-disabled="nomePessoa > ''">
-                        <label class="active" for="cpf">Cpf</label>
+                        <input  id="cpf" ui-mask="99.999.999/9999-99"  placeholder="99.999.999/9999-99" type="text" class="validate" ng-model="idPessoa" ng-disabled="nomePessoa > ''">
+                        <label class="active" for="cpf">Cnpj</label>
 
                     </div>
 
@@ -61,7 +61,7 @@
                     <table class="highlight" md-table style="padding: 500px"  >
                         <thead md-head >
                         <tr md-row  style="height: 50px">
-                            <th md-column ><span>CPF</span></th>
+                            <th md-column ><span>CNPJ</span></th>
                             <th md-column><span>Nome</span></th>
                             <th md-column><span>Data de Nascimento</span></th>
                             <th md-column>#</th>
@@ -107,7 +107,7 @@
                         <div  class="center-align animate shake" style="height: 50px;" ng-show="vm.dadosId.length == undefinid && loading == false || semDados == true ">
                             <div class="chip ">
                                 <img src="http://image.flaticon.com/icons/svg/174/174320.svg" alt="Contact Person">
-                                CPF não Encontrado
+                                CNPJ não Encontrado
                             </div>
                         </div>
                         <div  class="center-align animate shake" style="height: 50px;" ng-show="vm.dadosNome.length == undefinid && loading == false">

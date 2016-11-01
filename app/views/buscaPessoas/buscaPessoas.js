@@ -6,7 +6,7 @@ var app = angular.module('myApp.buscaPessoas', ['ngRoute','ngMaterial','ui.mater
 // Declared route
     app.config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/buscaPessoas', {
-            templateUrl: 'views/buscaPessoas/buscaPessoas.html',
+            templateUrl: 'views/buscaPessoas/buscaPessoasPj.html',
             controller:  'EndSofiaCtrl',
             controllerAs: 'vm'
         });

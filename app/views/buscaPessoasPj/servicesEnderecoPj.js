@@ -1,6 +1,6 @@
 
 // ============= SERVICE ENDERECO =============
-servicos.factory('EnderecosSofiaService', function($q, SofiaService){
+servicos.factory('EnderecosPjSofiaService', function($q, SofiaService){
 
   var tabela = "ec_eck_ontologia";
   var ontologia = "ec_eck_ontologia";
@@ -20,8 +20,8 @@ servicos.factory('EnderecosSofiaService', function($q, SofiaService){
   var listarEnderecoPessoaId = function(idPessoa) {
     var q = $q.defer();
 
-      var query = "SELECT ec_id, ec_numdocumento, ec_nomepessoa, dt_nascimento FROM "+ontologia+" WHERE ec_numdocumento ='000"+idPessoa+"' limit 1"  ;
-      console.log("Query CPF: " + query);
+      var query = "SELECT ec_id, ec_numdocumento, ec_nomepessoa, dt_nascimento FROM "+ontologia+" WHERE ec_tipopessoa ='J' AND ec_numdocumento ='"+idPessoa+"' limit 1"  ;
+      console.log("Query CNPJ: " + query);
      SofiaService.listar(query,ontologia).then(
        function(dados){
            q.resolve(dados);},

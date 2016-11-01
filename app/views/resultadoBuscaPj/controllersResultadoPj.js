@@ -8,7 +8,7 @@ controladores.controller('ResultSofiaCtrl', function($scope, $location, $rootSco
         vm.dadosNome= '';
 
 
-        ResultadosSofiaService.listarResultados().then(
+        ResultadosSofiaService.listarResultadosPj().then(
             function(dados){$scope.enderecos = dados;
                 $scope.resultadoLoad = true;
 
