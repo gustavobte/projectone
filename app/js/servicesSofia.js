@@ -94,12 +94,81 @@ app.factory('SofiaService', function($q, $rootScope){
     return q.promise;
   };
 
+  var criarQuery = function(query, ontologia){
+    var q = $q.defer();
+    var dados = [];
+    conectado().then(
+        function(){
+          sofia2.insert(query, ontologia, function(mensajeSSAP){
+            if(mensajeSSAP != null && mensajeSSAP.body.data != null && mensajeSSAP.body.ok == true){
+              dados = {"status":"Objeto Criada com Sucesso!", "data":mensajeSSAP.body.data};
+              q.resolve(dados);
+            }else{
+              dados = {"status":"Erro ao criar Objeto!"};
+              console.log("Erro ao criar objeto - ServiceSofia.criarQuery() \n");
+              console.log(mensajeSSAP);
+              q.reject(dados);
+            }
+          }, sessionKey);
+        },
+        function(){
+          q.reject(dados);
+        });
+    return q.promise;
+  };
 
+  var remover = function (query, ontologia){
+    var q = $q.defer();
+    var dados = [];
+    conectado().then(
+        function(){
+          sofia2.removeWithQueryType(query, ontologia, "SQLLIKE",
+              function(mensajeSSAP){
+                if(mensajeSSAP != null && mensajeSSAP.body.data != null && mensajeSSAP.body.ok == true){
+                  dados = {"status":"Objeto Removido com Sucesso!", "data":mensajeSSAP.body.data};
+                  q.resolve(dados);
+                }else{
+                  dados = {"status":"Erro ao criar Objeto!"};
+                  console.log("Erro ao remover objeto - ServiceSofia.removerQuery() \n");
+                  console.log(mensajeSSAP);
+                  q.reject(dados);
+                }
+              }, sessionKey);
+        },
+        function(){
+          q.reject(dados);
+        });
+    return q.promise;
+  };
+
+
+  var listarQueryLike = function(query, ontologia){
+
+    var q = $q.defer();
+    var dados = [];
+    conectado().then(function(){
+      sofia2.queryWithQueryType(query,ontologia,"SQLLIKE",null,function(mensajeSSAP){
+        if(mensajeSSAP != null && mensajeSSAP.body.data != null && mensajeSSAP.body.ok == true){
+          dados = mensajeSSAP.body.data;
+          q.resolve(dados);
+        }else{
+          dados = {"status":"Erro ao Listar Pessoa!"};
+          q.reject(dados);
+        }
+      }, sessionKey);
+    }, function(){
+      q.reject(dados);
+    });
+    return q.promise;
+  };
 
 
   return {
     conectar: conectar,
     listar: listarQuery,
     atualizar: atualizar,
+    criar: criarQuery,
+    remover : remover,
+    like : listarQueryLike
   }
 });

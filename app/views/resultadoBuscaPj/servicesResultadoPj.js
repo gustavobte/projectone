@@ -6,9 +6,9 @@ servicos.factory('ResultadosPjSofiaService', function($q, SofiaService, Resultad
   var ontologia = "ec_eck_ontologia";
 
 
-  var listarResultados = function(){
+  var listarResultadosPj = function(){
     var q = $q.defer();
-      var query = "SELECT * FROM "+ontologia+" WHERE tipo_pesso = 'J' AND ec_numdocumento ='"+ResultadoService.getPessoa()+"'"  ;
+      var query = "SELECT * FROM "+ontologia+" WHERE ec_tipopessoa = 'J' AND ec_numdocumento ='"+ResultadoServicePj.getPessoa()+"'"  ;
       console.log("Query Busca: " + query);
     SofiaService.listar(query,ontologia).then(
       function(dados){q.resolve(dados);},
@@ -18,7 +18,7 @@ servicos.factory('ResultadosPjSofiaService', function($q, SofiaService, Resultad
 
 
 
-    var atualizarEndereco = function(endereco){
+    var listarResultadoIdPj = function(endereco){
         var q = $q.defer();
         var query = "{'endereco.id':"+endereco.id+"}";
         console.log(endereco.favorito);
@@ -44,7 +44,7 @@ servicos.factory('ResultadosPjSofiaService', function($q, SofiaService, Resultad
 
   return {
       listarResultadosPj : listarResultadosPj,
-      listarResultadoId : listarResultadoId
+      listarResultadoIdPj : listarResultadoIdPj
     //  listarEnderecoNome : listarEnderecoPessoaNome,
     // criarEndereco : criarEndereco,
     // favoritarEndereco : favoritarEndereco,

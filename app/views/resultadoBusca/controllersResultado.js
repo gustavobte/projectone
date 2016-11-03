@@ -1,11 +1,12 @@
 
 //-----------PESSOA SOFIA------------------------
 controladores.controller('ResultSofiaCtrl', function($scope, $location, $rootScope, ResultadosSofiaService, ResultadoService) {
-    if(!$rootScope.loggedIn == false){
+
 
         var vm = this;
         vm.dadosId= '';
         vm.dadosNome= '';
+        vm.favorito = false;
 
 
         ResultadosSofiaService.listarResultados().then(
@@ -15,7 +16,6 @@ controladores.controller('ResultSofiaCtrl', function($scope, $location, $rootSco
                 var quantidade = $scope.quantidade;
 
                 console.log(dados);
-                debugger;
                 vm.listaDados = '';
                 vm.listaDados = dados["values"];
 
@@ -48,13 +48,33 @@ controladores.controller('ResultSofiaCtrl', function($scope, $location, $rootSco
             }
         }
 
-    }else{
-        console.log("Efetuar Login")
-        Materialize.toast('Por Favor Efetuar Login!', 4000) // 4000 is the duration of the toast
-        $location.path('/login');
+
+    $scope.listarFavorito= function() {
+
+        ResultadosSofiaService.listarFavorito().then(
+
+                function(dados){
+                    console.log(dados);
+                },
+                function(){
+                    console.log("Erro ao localizar favorito");
+                });
+        }
+
+
+
+        $scope.onChange= function(ecId) {
+            console.log(ecId)
+
+            ResultadosSofiaService.addFavorito(ecId).then(
+
+                function(dados){
+                    console.log(dados)
+                },
+                function(dados){
+                    console.log(dados);
+                });
+
     }
-
-
-
 
 });

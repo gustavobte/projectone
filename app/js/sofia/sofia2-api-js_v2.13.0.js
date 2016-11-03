@@ -628,6 +628,7 @@
 	// #################################################################
 
 	function sendMessage(tipoQuery, query, cipherMessage, responseCallback){
+
 		if(typeof pathToDwrServlet !== 'undefined') {
 			sendMessageDWR(tipoQuery, query, cipherMessage, responseCallback);
 		}else if(typeof pathToWebsocketServer !== 'undefined') {

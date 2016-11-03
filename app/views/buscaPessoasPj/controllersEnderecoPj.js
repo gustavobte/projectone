@@ -1,13 +1,13 @@
 
 //-----------ENDERECO SOFIA------------------------
-controladores.controller('EndPjSofiaCtrl', function($rootScope, $location, $scope, EnderecosPjSofiaService, EnderecoService, ResultadoServicePj) {
-    if(!$rootScope.loggedIn == false){
+controladores.controller('EndPjSofiaCtrl', function($rootScope, $location, $scope, EnderecosPjSofiaService,  ResultadoServicePj) {
+
 
         var vm = this;
         vm.dadosId= '';
         vm.dadosNome= '';
 
-        vm.setPessoa = function(ec_id){
+        vm.setPessoaPj = function(ec_id){
             ResultadoServicePj.setPessoa(ec_id);
         };
 
@@ -54,6 +54,7 @@ controladores.controller('EndPjSofiaCtrl', function($rootScope, $location, $scop
                         vm.dadosNome= '';
                         vm.dadosId= '';
                         vm.dadosNome =dados["values"];
+                        debugger
                         $scope.loading = false;
                     },
                     function(){
@@ -64,11 +65,7 @@ controladores.controller('EndPjSofiaCtrl', function($rootScope, $location, $scop
         }
 
 
-    }else{
-        console.log("Efetuar Login");
-        Materialize.toast('Por Favor Efetuar Login!', 4000); // 4000 is the duration of the toast
-        $location.path('/login');
-    }
+
 
 
 

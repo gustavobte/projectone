@@ -20,10 +20,9 @@ app.controller('SwitchDemoCtrl', function($scope) {
 // Declared route
     app.config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/resultadoBusca', {
-            templateUrl: 'views/resultadoBusca/resultadoBuscaPj.html',
+            templateUrl: 'views/resultadoBusca/resultadoBusca.html',
             controller:  'ResultSofiaCtrl',
-            controllerAs: 'vm',
-
+            controllerAs: 'vm'
         });
     }])
 

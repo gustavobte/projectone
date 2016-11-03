@@ -1,7 +1,7 @@
 
 //-----------ENDERECO SOFIA------------------------
-controladores.controller('EndSofiaCtrl', function($rootScope, $location,$scope, EnderecosSofiaService, EnderecoService, ResultadoService) {
-    if(!$rootScope.loggedIn == false){
+controladores.controller('EndSofiaCtrl', function($rootScope, $location,$scope, EnderecosSofiaService, ResultadoService) {
+
 
         var vm = this;
         vm.dadosId= '';
@@ -62,13 +62,6 @@ controladores.controller('EndSofiaCtrl', function($rootScope, $location,$scope, 
                     });
             }
         }
-
-
-    }else{
-        console.log("Efetuar Login");
-        Materialize.toast('Por Favor Efetuar Login!', 4000); // 4000 is the duration of the toast
-        $location.path('/login');
-    }
 
 
 

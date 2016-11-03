@@ -22,7 +22,7 @@
                 <div class="row">
                     <form action="">
                     <div class="input-field col s4 ">
-                        <input  id="cpf" ui-mask="99.999.999/9999-99"  placeholder="99.999.999/9999-99" type="text" class="validate" ng-model="idPessoa" ng-disabled="nomePessoa > ''">
+                        <input  id="cpf" ui-mask="00.000.000/0000-00"  placeholder="99.999.999/9999-99" type="text" class="validate" ng-model="idPessoa" ng-disabled="nomePessoa > ''">
                         <label class="active" for="cpf">Cnpj</label>
 
                     </div>
@@ -34,7 +34,7 @@
                     <div>
 
                         <p class="center-align">
-                            <button  class="btn waves-effect waves-light btn-large teal darken-3 " ng-click="listarEndereco(idPessoa, nomePessoa)">Pesquisar
+                            <button  class="btn waves-effect waves-light btn-large teal darken-3 " ng-click="listarEndereco(idPessoa, nomePessoa)" ng-disabled="!nomePessoa && !idPessoa">Pesquisar
                                 <i class="material-icons right">search</i>
                             </button></p>
                         <br>
@@ -63,20 +63,20 @@
                         <tr md-row  style="height: 50px">
                             <th md-column ><span>CNPJ</span></th>
                             <th md-column><span>Nome</span></th>
-                            <th md-column><span>Data de Nascimento</span></th>
+                            <th md-column><span>Data de Fundação</span></th>
                             <th md-column>#</th>
                         </tr>
                         </thead>
 
 
                         <tr  style="height: 50px;" ng-repeat="x in vm.dadosId" ng-show=" loading == false">
-                            <td >{{x[1].substr(3,3)+"."+x[1].substr(6,3)+"."+x[1].substr(9,3)+"-"+x[1].substr(12,13)}}</td>
+                            <td >{{x[1].substr(1,2)+"."+x[1].substr(3,3)+"."+x[1].substr(6,3)+"/"+x[1].substr(9,4)+"-"+x[1].substr(3,2)}}</td>
                             <td >{{x[2]}}</td>
                             <td >{{x[3]}}</td>
                             <td >
                                 <a
-                                   ng-click="vm.setPessoa(x[1])"
-                                   href="#/resultadoBusca"
+                                   ng-click="vm.setPessoaPj(x[1])"
+                                   href="#/resultadoBuscaPj"
                                    class="button button-full button-positive">
                                     <img src="../img/file.png" alt="">
                                     Ver dados<a/>
@@ -86,14 +86,14 @@
                         </tr>
 
                         <tr  style="height: 50px;" ng-repeat="x in vm.dadosNome" ng-show=" loading == false">
-                            <td >{{x[1].substr(3,3)+"."+x[1].substr(6,3)+"."+x[1].substr(9,3)+"-"+x[1].substr(12,13)}}</td>
+                            <td >{{x[1].substr(1,2)+"."+x[1].substr(3,3)+"."+x[1].substr(6,3)+"/"+x[1].substr(9,4)+"-"+x[1].substr(3,2)}}</td>
                             <td >{{x[2]}}</td>
                             <td >{{x[3]}}</td>
 
                             <td >
                                 <a
-                                        ng-click="vm.setPessoa(x[1])"
-                                        href="#/resultadoBusca"
+                                        ng-click="vm.setPessoaPj(x[1])"
+                                        href="#/resultadoBuscaPj"
                                         class="button button-full button-positive">
                                     <img src="../img/file.png" alt="">
                                     Ver dados<a/>

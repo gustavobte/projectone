@@ -46,7 +46,7 @@
                                 <td md-cell>
                                     <div class="switch">
                                         <label>
-                                            <input type="checkbox">
+                                            <input type="checkbox" value="{{x[0]}}"  ng-click="onChange(x[0])">
                                             <span class="lever"></span>
                                         </label>
                                     </div>
@@ -64,6 +64,10 @@
         </div>
     </div>
 
+<p class="center-align">
+    <button  class="btn waves-effect waves-light btn-large teal darken-3 " ng-click="listarFavorito()" >Listar
+        <i class="material-icons right">search</i>
+    </button></p>
 
 <!--Telefones-->
 
@@ -94,12 +98,14 @@
                                 <td >62</td>
                                 <td >{{x[20]}}</td>
                                 <td md-cell>
+
                                     <div class="switch">
                                         <label>
                                             <input type="checkbox">
                                             <span class="lever"></span>
                                         </label>
                                     </div>
+
                                 </td>
                             </tr>
                             </tbody>

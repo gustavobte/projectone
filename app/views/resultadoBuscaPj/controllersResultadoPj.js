@@ -1,6 +1,6 @@
 
 //-----------PESSOA SOFIA------------------------
-controladores.controller('ResultSofiaCtrl', function($scope, $location, $rootScope, ResultadosSofiaService, ResultadoService) {
+controladores.controller('ResultPjSofiaCtrl', function($scope, $location, $rootScope, ResultadosPjSofiaService, ResultadoService) {
     if(!$rootScope.loggedIn == false){
 
         var vm = this;
@@ -8,20 +8,20 @@ controladores.controller('ResultSofiaCtrl', function($scope, $location, $rootSco
         vm.dadosNome= '';
 
 
-        ResultadosSofiaService.listarResultadosPj().then(
+        ResultadosPjSofiaService.listarResultadosPj().then(
             function(dados){$scope.enderecos = dados;
                 $scope.resultadoLoad = true;
 
                 var quantidade = $scope.quantidade;
 
                 console.log(dados);
-                debugger;
-                vm.listaDados = '';
-                vm.listaDados = dados["values"];
+
+                vm.listaDadosPj = '';
+                vm.listaDadosPj = dados["values"];
 
                 $scope.resultadoLoad = false;
-
-                console.log(vm.listaDados);
+                debugger;
+                console.log(vm.listaDadosPj);
 
             }
         );
@@ -34,7 +34,7 @@ controladores.controller('ResultSofiaCtrl', function($scope, $location, $rootSco
 
             if (idPessoa !== null && idPessoa !== undefined && idPessoa !== '') {
 
-                ResultadosSofiaService.listarResultadoId(idPessoa).then(
+                ResultadosPjSofiaService.listarResultadoIdPj(idPessoa).then(
 
                     function(dados){
                         vm.dadosId= '';

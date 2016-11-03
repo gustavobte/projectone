@@ -36,7 +36,7 @@ app.controller('NavCtrl', function($rootScope, $scope, $mdSidenav) {
     }])
 
 
-app.controller('myctrl51', function ($scope) {
+app.controller('fonteDados', function ($scope) {
 
     $scope.addPoints = function () {
         var seriesArray = $scope.chartConfig.series
@@ -113,7 +113,7 @@ app.controller('myctrl51', function ($scope) {
     }
 
 });
-app.controller('myctrl2', function ($scope) {
+app.controller('variacaoEnd', function ($scope) {
 
 
     $scope.addPoints = function () {
@@ -172,6 +172,83 @@ app.controller('myctrl2', function ($scope) {
             title: {
                 enabled: true,
                 text: 'Data <b>Registro</b>',
+                style: {
+                    fontWeight: 'normal'
+                }
+            }
+        },
+        yAxis: [{
+            title: {
+                text: 'Quantidade de Acertos (%)'
+            }
+        }, {
+
+            opposite: true
+        }],
+
+
+        loading: false
+    }
+
+})
+app.controller('top10Cidades', function ($scope) {
+
+    $scope.addPoints = function () {
+        var seriesArray = $scope.chartConfig.series
+        var rndIdx = Math.floor(Math.random() * seriesArray.length);
+        seriesArray[rndIdx].data = seriesArray[rndIdx].data.concat([1, 10, 20])
+    };
+
+    $scope.addSeries = function () {
+        var rnd = []
+        for (var i = 0; i < 10; i++) {
+            rnd.push(Math.floor(Math.random() * 20) + 1)
+        }
+        $scope.chartConfig.series.push({
+            data: rnd
+        })
+    }
+
+    $scope.removeRandomSeries = function () {
+        var seriesArray = $scope.chartConfig.series
+        var rndIdx = Math.floor(Math.random() * seriesArray.length);
+        seriesArray.splice(rndIdx, 1)
+    }
+
+    $scope.swapChartType = function () {
+        if (this.chartConfig.options.chart.type === 'line') {
+            this.chartConfig.options.chart.type = 'bar'
+        } else {
+            this.chartConfig.options.chart.type = 'line'
+            this.chartConfig.options.chart.zoomType = 'x'
+        }
+    }
+
+    $scope.toggleLoading = function () {
+        this.chartConfig.loading = !this.chartConfig.loading
+    }
+
+    $scope.chartConfig = {
+        options: {
+            chart: {
+                type: 'column'
+            }
+        },
+        series: [{
+            name: [''],
+            data: [95, 54, 39, 85, 70]
+        }],
+        title: {
+            text: 'Top 10 Cidades'
+        },
+        subtitle: {
+            text: 'Cidades com maior idice de acerto'
+        },
+        xAxis: {
+            categories: ['Detran', 'Procon', 'Celg', 'PM-GO','Saneago'],
+            title: {
+                enabled: true,
+                text: 'Origem <b>Dados</b>',
                 style: {
                     fontWeight: 'normal'
                 }

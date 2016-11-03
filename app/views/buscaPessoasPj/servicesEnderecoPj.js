@@ -35,7 +35,7 @@ servicos.factory('EnderecosPjSofiaService', function($q, SofiaService){
 
         var query = "SELECT max(ec_id), max(ec_numdocumento), max(ec_nomepessoa), max(dt_nascimento)" +
             " FROM "+ontologia+" " +
-            " WHERE ec_nomepessoa LIKE '"+nomePessoa.toUpperCase()+"%'" +
+            " WHERE ec_tipopessoa ='J' AND ec_nomepessoa LIKE '"+nomePessoa.toUpperCase()+"%'" +
             " group by ec_numdocumento" ;
         console.log("Query Nome: " + query);
         SofiaService.listar(query,ontologia).then(

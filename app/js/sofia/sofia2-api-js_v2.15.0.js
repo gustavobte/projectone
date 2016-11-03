@@ -315,6 +315,7 @@
 	
 	// QUERY with queryType Operation
 	sofia2.queryWithQueryType = function(query, ontology, queryType, queryParams, queryResponse) {
+		debugger;
 		var querySib='';
 		
 		if(ontology!=null){
@@ -328,7 +329,7 @@
 				+ ontology
 				+ ',"messageType":"QUERY","sessionKey":"'
 				+ sessionKey + '"}';
-			
+			debugger;
 		
 		}else{
 			var querySib = '{"body":{"query":"' 
