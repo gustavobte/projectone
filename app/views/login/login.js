@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('myApp.login', ['ngRoute','ui.materialize'])
+var app = angular.module('myApp.login', ['ngRoute','ngMaterial','ui.materialize'])
 
 // Declared route
     app.config(['$routeProvider', function($routeProvider) {
@@ -8,9 +8,7 @@ var app = angular.module('myApp.login', ['ngRoute','ui.materialize'])
             templateUrl: 'views/login/login.html',
             controller: 'LoginCtrl'
         });
-
-
-    }])
+    }]);
 
     app.controller('LoginCtrl', function($scope,$location, $rootScope) {
         $rootScope.logado = false;

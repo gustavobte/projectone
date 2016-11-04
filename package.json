@@ -39,7 +39,9 @@
   "main": "karma.conf.js",
   "dependencies": {
     "angular": "^1.5.8",
+    "angular-material": "^1.1.1",
     "bower": "^1.7.9",
+    "highcharts-ng": "0.0.13",
     "http-server": "^0.9.0",
     "jasmine-core": "^2.5.1",
     "karma": "^0.13.22",

@@ -51,7 +51,7 @@ app.factory('SofiaService', function($q, $rootScope){
   };
 
   var listarQuery = function(query, ontologia){
-
+    sofia2.sessionKey = sessionKey;
     var q = $q.defer();
     var dados = [];
     conectado().then(function(){
@@ -63,7 +63,7 @@ app.factory('SofiaService', function($q, $rootScope){
           dados = {"status":"Erro ao Listar Pessoa!"};
           q.reject(dados);
         }
-      }, sessionKey);
+      });
     }, function(){
       q.reject(dados);
     });
@@ -146,16 +146,19 @@ app.factory('SofiaService', function($q, $rootScope){
 
     var q = $q.defer();
     var dados = [];
+    sofia2.sessionKey = sessionKey;
+
     conectado().then(function(){
-      sofia2.queryWithQueryType(query,ontologia,"SQLLIKE",null,function(mensajeSSAP){
+      sofia2.queryWithQueryType(query,ontologia,"SQLLIKE", null, function(mensajeSSAP){
+        debugger;
         if(mensajeSSAP != null && mensajeSSAP.body.data != null && mensajeSSAP.body.ok == true){
           dados = mensajeSSAP.body.data;
           q.resolve(dados);
         }else{
-          dados = {"status":"Erro ao Listar Pessoa!"};
+          dados = {"status":"Erro ao Listar favoritos!"};
           q.reject(dados);
         }
-      }, sessionKey);
+      });
     }, function(){
       q.reject(dados);
     });

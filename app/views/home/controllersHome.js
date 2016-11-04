@@ -1,7 +1,7 @@
 
 //-----------ENDERECO SOFIA------------------------
 controladores.controller('HomeSofiaCtrl', function($scope, $rootScope, $location, HomeSofiaService) {
-    if(!$rootScope.loggedIn == false){
+
 
         var vm = this;
         $scope.x = true
@@ -11,9 +11,9 @@ controladores.controller('HomeSofiaCtrl', function($scope, $rootScope, $location
         HomeSofiaService.contarEnderecosProcessados().then(
 
             function(dados){
-
-                vm.quantidadeProcesssado = dados["values"][0][0];
+                vm.quantidadeProcesssado = JSON.parse(dados)["values"][0][0];
                 $scope.x = false
+
             }
         );
 
@@ -21,7 +21,7 @@ controladores.controller('HomeSofiaCtrl', function($scope, $rootScope, $location
 
             function(dados){
 
-                vm.quantidadeEstruturado = dados["values"][0][0];
+                vm.quantidadeEstruturado = JSON.parse(dados)["values"][0][0];
                 $scope.y = false
             }
         );
@@ -30,18 +30,10 @@ controladores.controller('HomeSofiaCtrl', function($scope, $rootScope, $location
 
             function(dados){
 
-                vm.quantidadeNaoEstruturado = dados["values"][0][0];
+                vm.quantidadeNaoEstruturado = JSON.parse(dados)["values"][0][0];
                 $scope.z = false
             }
         );
-
-
-
-    }else{
-        console.log("Efetuar Login");
-        Materialize.toast('Por Favor Efetuar Login!', 4000); // 4000 is the duration of the toast
-        $location.path('/login');
-    }
 
 
 

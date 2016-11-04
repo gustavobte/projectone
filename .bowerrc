@@ -2,7 +2,7 @@
   "strict-ssl": false,
   "registry": "http://bower.herokuapp.com",
   "directory": "app/bower_components",
-  "proxy":"-",
-  "https-proxy":"-"
+  "proxy":"http://fgonzaleza:spectracreon1989L%21%40@proxylatam.indra.es:8080",
+  "https-proxy":"http://fgonzaleza:spectracreon1989L%21%40@proxylatam.indra.es:8080"
 }
 

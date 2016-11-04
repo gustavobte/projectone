@@ -32,6 +32,12 @@ html{
 }
 
 
-
+/* fallback */
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url("animate.woff2") format('woff2');
+}
 
 /* Code Ends */
