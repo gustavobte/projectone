@@ -60,10 +60,12 @@
 <!--Graficos-->
 </div>
     <div class="row">
-
         <div class="col s7 push-s5">
             <div class="card ">
-                <div ng-controller="fonteDados">
+                <div class="progress"  ng-show="!topLoad == false">
+                    <div class="indeterminate"></div>
+                </div>
+                <div ng-controller="HomeSofiaCtrl">
                     <div class="span12">
 
                     </div>
@@ -73,10 +75,15 @@
                 </div>
             </div>
         </div>
-        <div class="col s5 pull-s7">
 
+
+        <div class="col s5 pull-s7">
             <div class="card ">
-                <div ng-controller="variacaoEnd">
+
+                <div class="progress"  ng-show="!bottomLoad == false">
+                    <div class="indeterminate"></div>
+                </div>
+                <div ng-controller="HomeSofiaCtrl">
                     <div class="span12">
 
                     </div>
@@ -94,25 +101,22 @@
 
     <div class="col s7 push-s5">
         <div class="card ">
-            <div ng-controller="top10Cidades">
+            <div class="progress"  ng-show="!q == false">
+                <div class="indeterminate"></div>
+            </div>
+            <div ng-controller="HomeSofiaCtrl">
                 <div class="span12">
 
                 </div>
                 <div class="row">
-                    <highchart id="chart2" config="chartConfig" class="span10"></highchart>
+                    <highchart id="chart3" config="chartConfig" ></highchart>
+
                 </div>
             </div>
         </div>
     </div>
 
-</div>
-    <div class="row">
-        <div class="col s3">
-            <div class="card  ">
 
-            </div>
-         </div>
-    </div>
 
 
 
