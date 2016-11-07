@@ -54,7 +54,6 @@ controladores.controller('EndPjSofiaCtrl', function($rootScope, $location, $scop
                         vm.dadosNome= '';
                         vm.dadosId= '';
                         vm.dadosNome =dados["values"];
-                        debugger
                         $scope.loading = false;
                     },
                     function(){

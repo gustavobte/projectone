@@ -150,7 +150,6 @@ app.factory('SofiaService', function($q, $rootScope){
 
     conectado().then(function(){
       sofia2.queryWithQueryType(query,ontologia,"SQLLIKE", null, function(mensajeSSAP){
-        debugger;
         if(mensajeSSAP != null && mensajeSSAP.body.data != null && mensajeSSAP.body.ok == true){
           dados = mensajeSSAP.body.data;
           q.resolve(dados);

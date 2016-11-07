@@ -1,11 +1,9 @@
-<!--Inicio Conteudo RESULTADO-->
 <div class="fixed-action-btn horizontal">
     <a class="btn-floating btn-large teal darken-1 waves-light" href="#/buscaPessoas">
         <md-tooltip md-direction="top">Voltar</md-tooltip>
         <i class="material-icons">reply</i>
     </a>
 </div>
-
 
 <div class="row ">
     <div class="col s10 offset-s1 ">
@@ -47,7 +45,8 @@
                             <td md-cell>
                                 <div class="switch">
                                     <label>
-                                        <input type="checkbox" value="{{x[0]}}" ng-click="onChange(x[0])">
+                                        <input type="checkbox" ng-checked="vm.idEnderecoFavorito == x[0]"
+                                               value="{{x[0]}}" ng-click="onChangeEndereco(x)">
                                         <span class="lever"></span>
                                     </label>
                                 </div>
@@ -64,14 +63,6 @@
         </div>
     </div>
 </div>
-
-<p class="center-align">
-    <button class="btn waves-effect waves-light btn-large teal darken-3 " ng-click="listarFavorito()">Listar
-        <i class="material-icons right">search</i>
-    </button>
-</p>
-
-<!--Telefones-->
 
 <div class="row ">
     <div class="col s10 offset-s1 ">
@@ -103,7 +94,7 @@
 
                                 <div class="switch">
                                     <label>
-                                        <input type="checkbox">
+                                        <input type="checkbox" ng-checked="favorito" ng-click="onChangeTelefone(x[0])">
                                         <span class="lever"></span>
                                     </label>
                                 </div>

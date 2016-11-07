@@ -4,39 +4,59 @@ controladores.controller('ResultSofiaCtrl', function ($scope, $location, $rootSc
     var vm = this;
     vm.dadosId = '';
     vm.dadosNome = '';
-    vm.favorito = false;
+    $scope.favorito = false;
+    $scope.resultadoLoad = true;
+    vm.idEnderecoFavorito = 0;
 
-    ResultadosSofiaService.listarResultados().then(
-        function (dados) {
-            $scope.enderecos = JSON.parse(dados);
-            $scope.resultadoLoad = true;
-            vm.listaDados = '';
-            vm.listaDados = JSON.parse(dados)["values"];
-            $scope.resultadoLoad = false;
-        }
-    );
-
-    $scope.listarFavorito = function () {
-
-        ResultadosSofiaService.listarFavorito().then(
-            function (dados) {
-                console.log(dados);
+    vm.obtemFavorito = function (numDocumento) {
+        ResultadosSofiaService.buscaFavorito(numDocumento).then(
+            function (response) {
+                if (response[0] != null) {
+                    vm.idEnderecoFavorito = response[0].ec_eck_favoritos.ecFavorito;
+                    console.log("ID Endereço favorito: " + vm.idEnderecoFavorito)
+                }
             },
-            function () {
-                console.log("Erro ao localizar favorito");
-            });
+            function (response) {
+                console.log(response);
+            }
+        );
     };
 
-
-    $scope.onChange = function (ecId) {
-        ResultadosSofiaService.addFavorito(ecId).then(
+    vm.listarResultados = function () {
+        ResultadosSofiaService.listarResultados().then(
             function (dados) {
-                console.log(dados)
+                vm.listaDados = JSON.parse(dados)["values"];
+                if (vm.listaDados[0] != undefined) {
+                    vm.obtemFavorito(vm.listaDados[0][3]);
+                }
+                $scope.resultadoLoad = false;
             },
-            function (dados) {
-                console.log(dados);
-            });
+            function () {
+                console.log("Erro ao listar resultados");
+            }
+        );
+    };
 
-    }
+    $scope.onChangeEndereco = function (ec) {
+        // EC[3] = numDocumento || EC[0] = idEc
+        if (vm.idEnderecoFavorito == ec[0]) {
+            ResultadosSofiaService.atualizarFavorito(ec[3])
+        } else {
+            ResultadosSofiaService.addECFavorito(ec[3], ec[0]).then(
+                function (dados) {
+                    console.log(dados)
+                },
+                function (dados) {
+                    console.log(dados);
+                });
+            vm.listarResultados();
+        }
+    };
+
+    $scope.onChangeTelefone = function () {
+        // TODO: implementar
+    };
+
+    vm.listarResultados();
 
 });
