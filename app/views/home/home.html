@@ -32,7 +32,7 @@
             <div class="waves-effect waves-light btn-flat  right-align  animated zoomIn" style="height: 130px; background-color: #006064" ng-show="y == false">
                 <span class="md-display-2  " style="color:white;">{{vm.quantidadeEstruturado | number}}</span>
                 <br>
-                <span class="md-headline" style="color:white;"> Endereços Estruturado</span>
+                <span class="md-headline" style="color:white;"> Endereços Estruturados</span>
             </div>
             <div class="progress"  ng-show="!x == false">
                 <div class="indeterminate"></div>
@@ -65,14 +65,13 @@
             <div class="progress"  ng-show="!q == false">
                 <div class="indeterminate"></div>
             </div>
-            <div ng-controller="HomeSofiaCtrl">
 
                 <div class="row">
-                    <highchart id="chart3" config="chartFonteDados" ></highchart>
+                    <highchart id="chart3" config="chartFonteDados" class="span10" ></highchart>
 
                 </div>
             </div>
-        </div>
+
     </div>
     <div class="row">
 
@@ -98,12 +97,12 @@
                 <div class="progress"  ng-show="!bottomLoad == false">
                     <div class="indeterminate"></div>
                 </div>
-                <div ng-controller="HomeSofiaCtrl">
+
                     <div class="row">
                         <highchart id="chart2" config="chartBottom" class="span10"></highchart>
                     </div>
                 </div>
-            </div>
+
 
         </div>
     </div>

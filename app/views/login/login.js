@@ -27,7 +27,7 @@ var app = angular.module('myApp.login', ['ngRoute','ngMaterial','ui.materialize'
            // $rootScope.user = $scope.user;
            // $rootScope.password = $scope.password;
 
-            if ($scope.user  == 'admin' && $scope.password == 'admin' || $scope.user  == 'gustavo' && $scope.password == 'gustavo' ){
+            if ($scope.user  == 'admin' && $scope.password == 'admin' || $scope.user  == 'sefaz' && $scope.password == 'sefaz2016' ){
 
                 $rootScope.loggedIn = true;
                 $rootScope.logado = true;
