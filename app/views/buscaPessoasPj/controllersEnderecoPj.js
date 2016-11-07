@@ -39,7 +39,7 @@ controladores.controller('EndPjSofiaCtrl', function($rootScope, $location, $scop
                         vm.dadosId= '';
                         vm.dadosNome= '';
 
-                        vm.dadosId = dados["values"];
+                        vm.dadosId = JSON.parse(dados)["values"];
                         $scope.loading = false;
                     },
                     function(){
@@ -53,7 +53,7 @@ controladores.controller('EndPjSofiaCtrl', function($rootScope, $location, $scop
                     function(dados){
                         vm.dadosNome= '';
                         vm.dadosId= '';
-                        vm.dadosNome =dados["values"];
+                        vm.dadosNome =JSON.parse(dados)["values"];
                         $scope.loading = false;
                     },
                     function(){

@@ -44,7 +44,7 @@ controladores.controller('EndSofiaCtrl', function ($rootScope, $location, $scope
                     $scope.loading = false;
                 },
                 function () {
-                    $scope.loading = true;
+
                     console.log("Erro ao localizar Endereço");
                 });
         }
