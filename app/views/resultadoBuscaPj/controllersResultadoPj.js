@@ -1,7 +1,7 @@
 
 //-----------PESSOA SOFIA------------------------
 controladores.controller('ResultPjSofiaCtrl', function($scope, $location, $rootScope, ResultadosPjSofiaService, ResultadoService) {
-    if(!$rootScope.loggedIn == false){
+
 
         var vm = this;
         vm.dadosId= '';
@@ -39,7 +39,7 @@ controladores.controller('ResultPjSofiaCtrl', function($scope, $location, $rootS
                     function(dados){
                         vm.dadosId= '';
                         console.log(vm.dadosId);
-                        vm.dadosId = dados["values"];
+                        vm.dadosId = JSON.parse(dados)["values"];
                         $scope.loading = false;
                     },
                     function(){
@@ -47,13 +47,6 @@ controladores.controller('ResultPjSofiaCtrl', function($scope, $location, $rootS
                     });
             }
         }
-
-    }else{
-        console.log("Efetuar Login")
-        Materialize.toast('Por Favor Efetuar Login!', 4000) // 4000 is the duration of the toast
-        $location.path('/login');
-    }
-
 
 
 

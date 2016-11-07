@@ -59,19 +59,34 @@
 
 <!--Graficos-->
 </div>
+
+    <div class="col s7 push-s5">
+        <div class="card ">
+            <div class="progress"  ng-show="!q == false">
+                <div class="indeterminate"></div>
+            </div>
+            <div ng-controller="HomeSofiaCtrl">
+
+                <div class="row">
+                    <highchart id="chart3" config="chartFonteDados" ></highchart>
+
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
+
+
+
         <div class="col s7 push-s5">
             <div class="card ">
                 <div class="progress"  ng-show="!topLoad == false">
                     <div class="indeterminate"></div>
                 </div>
-                <div ng-controller="HomeSofiaCtrl">
-                    <div class="span12">
 
-                    </div>
                     <div class="row">
-                        <highchart id="chart1" config="chartConfig" class="span10"></highchart>
-                    </div>
+                        <highchart id="chart1" config="chartTop" class="span10"></highchart>
+
                 </div>
             </div>
         </div>
@@ -84,11 +99,8 @@
                     <div class="indeterminate"></div>
                 </div>
                 <div ng-controller="HomeSofiaCtrl">
-                    <div class="span12">
-
-                    </div>
                     <div class="row">
-                        <highchart id="chart2" config="chartConfig" class="span10"></highchart>
+                        <highchart id="chart2" config="chartBottom" class="span10"></highchart>
                     </div>
                 </div>
             </div>
@@ -99,22 +111,6 @@
     </div>
 
 
-    <div class="col s7 push-s5">
-        <div class="card ">
-            <div class="progress"  ng-show="!q == false">
-                <div class="indeterminate"></div>
-            </div>
-            <div ng-controller="HomeSofiaCtrl">
-                <div class="span12">
-
-                </div>
-                <div class="row">
-                    <highchart id="chart3" config="chartConfig" ></highchart>
-
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 

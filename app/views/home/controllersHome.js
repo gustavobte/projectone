@@ -40,6 +40,7 @@ controladores.controller('HomeSofiaCtrl', function ($scope, $rootScope, $locatio
 
             $scope.mediaFonte();
             $scope.q = false
+
         }
     );
 
@@ -47,8 +48,9 @@ controladores.controller('HomeSofiaCtrl', function ($scope, $rootScope, $locatio
         function (dados) {
 
             vm.topCidades = JSON.parse(dados)["values"];
-            $scope.topLoad = false
+
             $scope.topCidades();
+            $scope.topLoad = false
 
         }
     );
@@ -58,8 +60,8 @@ controladores.controller('HomeSofiaCtrl', function ($scope, $rootScope, $locatio
 
             vm.bottomCidades = JSON.parse(dados)["values"];
 
-            $scope.bottomLoad = false
             $scope.bottomCidades();
+            $scope.bottomLoad = false
 
         }
     );
@@ -70,7 +72,7 @@ controladores.controller('HomeSofiaCtrl', function ($scope, $rootScope, $locatio
 
 
         $scope.addPoints = function () {
-            var seriesArray = $scope.chartConfig.series
+            var seriesArray = $scope.chartFonteDados.series
             var rndIdx = Math.floor(Math.random() * seriesArray.length);
             seriesArray[rndIdx].data = seriesArray[rndIdx].data.concat([1, 10, 20])
         };
@@ -80,31 +82,31 @@ controladores.controller('HomeSofiaCtrl', function ($scope, $rootScope, $locatio
             for (var i = 0; i < 10; i++) {
                 rnd.push(Math.floor(Math.random() * 20) + 1)
             }
-            $scope.chartConfig.series.push({
+            $scope.chartFonteDados.series.push({
                 data: rnd
             })
         }
 
         $scope.removeRandomSeries = function () {
-            var seriesArray = $scope.chartConfig.series
+            var seriesArray = $scope.chartFonteDados.series
             var rndIdx = Math.floor(Math.random() * seriesArray.length);
             seriesArray.splice(rndIdx, 1)
         }
 
         $scope.swapChartType = function () {
-            if (this.chartConfig.options.chart.type === 'line') {
-                this.chartConfig.options.chart.type = 'bar'
+            if (this.chartFonteDados.options.chart.type === 'line') {
+                this.chartFonteDados.options.chart.type = 'bar'
             } else {
-                this.chartConfig.options.chart.type = 'line'
-                this.chartConfig.options.chart.zoomType = 'x'
+                this.chartFonteDados.options.chart.type = 'line'
+                this.chartFonteDados.options.chart.zoomType = 'x'
             }
         }
 
         $scope.toggleLoading = function () {
-            this.chartConfig.loading = !this.chartConfig.loading
+            this.chartFonteDados.loading = !this.chartFonteDados.loading
         }
 
-          $scope.chartConfig = {
+          $scope.chartFonteDados = {
             options: {
                 chart: {
                     type: 'column'
@@ -156,13 +158,12 @@ controladores.controller('HomeSofiaCtrl', function ($scope, $rootScope, $locatio
         }
     }
 
-
 //Top CIDADES
     $scope.topCidades = function () {
 
 
         $scope.addPoints = function () {
-            var seriesArray = $scope.chartConfig.series
+            var seriesArray = $scope.chartTop.series
             var rndIdx = Math.floor(Math.random() * seriesArray.length);
             seriesArray[rndIdx].data = seriesArray[rndIdx].data.concat([1, 10, 20])
         };
@@ -172,35 +173,31 @@ controladores.controller('HomeSofiaCtrl', function ($scope, $rootScope, $locatio
             for (var i = 0; i < 10; i++) {
                 rnd.push(Math.floor(Math.random() * 20) + 1)
             }
-            $scope.chartConfig.series.push({
+            $scope.chartTop.series.push({
                 data: rnd
             })
         }
 
         $scope.removeRandomSeries = function () {
-            var seriesArray = $scope.chartConfig.series
+            var seriesArray = $scope.chartTop.series
             var rndIdx = Math.floor(Math.random() * seriesArray.length);
             seriesArray.splice(rndIdx, 1)
         }
 
         $scope.swapChartType = function () {
-            if (this.chartConfig.options.chart.type === 'line') {
-                this.chartConfig.options.chart.type = 'bar'
+            if (this.chartTop.options.chart.type === 'line') {
+                this.chartTop.options.chart.type = 'bar'
             } else {
-                this.chartConfig.options.chart.type = 'line'
-                this.chartConfig.options.chart.zoomType = 'x'
+                this.chartTop.options.chart.type = 'line'
+                this.chartTop.options.chart.zoomType = 'x'
             }
         }
 
         $scope.toggleLoading = function () {
-            this.chartConfig.loading = !this.chartConfig.loading
+            this.chartTop.loading = !this.chartTop.loading
         }
 
-        while (vm.mediaOrigemDados[1][1] == undefined) {
-            console.log(vm.mediaOrigemDados[1][1])
-        }
-
-        $scope.chartConfig = {
+        $scope.chartTop = {
             options: {
                 chart: {
                     type: 'column'
@@ -263,7 +260,7 @@ controladores.controller('HomeSofiaCtrl', function ($scope, $rootScope, $locatio
 
 
         $scope.addPoints = function () {
-            var seriesArray = $scope.chartConfig.series
+            var seriesArray = $scope.chartBottom.series
             var rndIdx = Math.floor(Math.random() * seriesArray.length);
             seriesArray[rndIdx].data = seriesArray[rndIdx].data.concat([1, 10, 50])
         };
@@ -273,35 +270,33 @@ controladores.controller('HomeSofiaCtrl', function ($scope, $rootScope, $locatio
             for (var i = 0; i < 10; i++) {
                 rnd.push(Math.floor(Math.random() * 20) + 1)
             }
-            $scope.chartConfig.series.push({
+            $scope.chartBottom.series.push({
                 data: rnd
             })
         }
 
         $scope.removeRandomSeries = function () {
-            var seriesArray = $scope.chartConfig.series
+            var seriesArray = $scope.chartBottom.series
             var rndIdx = Math.floor(Math.random() * seriesArray.length);
             seriesArray.splice(rndIdx, 1)
         }
 
         $scope.swapChartType = function () {
-            if (this.chartConfig.options.chart.type === 'line') {
-                this.chartConfig.options.chart.type = 'bar'
+            if (this.chartBottom.options.chart.type === 'line') {
+                this.chartBottom.options.chart.type = 'bar'
             } else {
-                this.chartConfig.options.chart.type = 'line'
-                this.chartConfig.options.chart.zoomType = 'x'
+                this.chartBottom.options.chart.type = 'line'
+                this.chartBottom.options.chart.zoomType = 'x'
             }
         }
 
         $scope.toggleLoading = function () {
-            this.chartConfig.loading = !this.chartConfig.loading
+            this.chartBottom.loading = !this.chartBottom.loading
         }
 
-        while (vm.mediaOrigemDados[1][1] == undefined) {
-            console.log(vm.mediaOrigemDados[1][1])
-        }
 
-        $scope.chartConfig = {
+
+        $scope.chartBottom = {
             options: {
                 chart: {
                     type: 'column'
@@ -358,8 +353,6 @@ controladores.controller('HomeSofiaCtrl', function ($scope, $rootScope, $locatio
             loading: false
         }
     }
-
-
 
 });
 

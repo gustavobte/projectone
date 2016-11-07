@@ -84,7 +84,6 @@
                         <table class="highlight" md-table style="padding: 500px" >
                             <thead md-head >
                             <tr md-row  style="height: 50px">
-                                <th md-column ><span>Score</span></th>
                                 <th md-column><span>DDD</span></th>
                                 <th md-column><span>Numero</span></th>
                                 <th md-column>Favorito</th>
@@ -93,9 +92,8 @@
 
                             <tbody md-body>
                             <tr  style="height: 50px;" ng-repeat="x in vm.listaDadosPj | orderBy : '[0]'">
-                                <td ><b>{{x[16] | number:2}}</b></td>
-                                <td >62</td>
-                                <td >{{x[20]}}</td>
+                                <td>{{x[20].substring(0,2)}}</td>
+                                <td>{{x[20].substring(2,11)}}</td>
                                 <td md-cell>
                                     <div class="switch">
                                         <label>
