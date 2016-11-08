@@ -1,4 +1,4 @@
-//-----------PESSOA SOFIA------------------------
+//-----------PESSOA SOFIA--vm.dadosNome = JSON.parse(dados)["values"];----------------------
 controladores.controller('ResultSofiaCtrl', function ($scope, $location, $rootScope, ResultadosSofiaService, ResultadoService) {
 
     var vm = this;
@@ -13,7 +13,6 @@ controladores.controller('ResultSofiaCtrl', function ($scope, $location, $rootSc
             function (response) {
                 if (response[0] != null) {
                     vm.idEnderecoFavorito = response[0].ec_eck_favoritos.ecFavorito;
-                    console.log("ID Endereço favorito: " + vm.idEnderecoFavorito)
                 }
             },
             function (response) {
@@ -31,8 +30,8 @@ controladores.controller('ResultSofiaCtrl', function ($scope, $location, $rootSc
                 }
                 $scope.resultadoLoad = false;
             },
-            function () {
-                console.log("Erro ao listar resultados");
+            function (response) {
+                console.log(response);
             }
         );
     };
@@ -40,7 +39,13 @@ controladores.controller('ResultSofiaCtrl', function ($scope, $location, $rootSc
     $scope.onChangeEndereco = function (ec) {
         // EC[3] = numDocumento || EC[0] = idEc
         if (vm.idEnderecoFavorito == ec[0]) {
-            ResultadosSofiaService.atualizarFavorito(ec[3])
+            ResultadosSofiaService.removeTodosFavoritos(ec[3]).then(
+                function (dados) {
+                    console.log(dados)
+                },
+                function (dados) {
+                    console.log(dados);
+                });
         } else {
             ResultadosSofiaService.addECFavorito(ec[3], ec[0]).then(
                 function (dados) {
@@ -49,7 +54,7 @@ controladores.controller('ResultSofiaCtrl', function ($scope, $location, $rootSc
                 function (dados) {
                     console.log(dados);
                 });
-            vm.listarResultados();
+
         }
     };
 

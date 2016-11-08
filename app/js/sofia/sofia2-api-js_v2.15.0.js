@@ -764,6 +764,7 @@
 	sofia2.parsearMensajeSSAP = function(mensaje) {
 		//var mensaje = mensaje.replace(/'/g, "\\\"");
 		try {
+			debugger;
 			return $.parseJSON(mensaje);
 		} catch (e) {
 			return null;

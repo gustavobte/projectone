@@ -7,14 +7,12 @@
     </a>
 </div>
 
-
 <div class="row ">
     <div class="col s10 offset-s1 ">
         <div class="card sticky-action ">
             <md-toolbar class="md-table-toolbar ">
                 <div class="md-toolbar-tools teal darken-3">
                     <span>Busca Pessoa Fisica</span>
-
                 </div>
             </md-toolbar>
 
@@ -33,7 +31,6 @@
                         <label class="active" for="Nome">Nome</label>
                     </div>
                     <div>
-
                         <p class="center-align">
                             <button class="btn waves-effect waves-light btn-large teal darken-3 "
                                     ng-click="listarEndereco(idPessoa, nomePessoa)"
@@ -43,7 +40,6 @@
                         </p>
                         <br>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -80,14 +76,10 @@
                                 <td>{{x[2]}}</td>
                                 <td>{{x[3]}}</td>
                                 <td>
-                                    <a
-                                            ng-click="vm.setPessoa(x[1])"
-                                            href="#/resultadoBusca"
-                                            class="button button-full button-positive">
+                                    <a ng-click="vm.setPessoa(x[1])" href="#/resultadoBusca"
+                                       class="button button-full button-positive">
                                         <img src="img/file.png" alt="">
                                         Ver dados</a>
-
-
                                 </td>
                             </tr>
 
@@ -99,38 +91,25 @@
                                 <td>{{x[3]}}</td>
 
                                 <td>
-                                    <a
-                                            ng-click="vm.setPessoa(x[1])"
-                                            href="#/resultadoBusca"
-                                            class="button button-full button-positive">
-                                        <img src="img/file.png" alt="">
-                                        Ver dados</a>
-
-
+                                    <a ng-click="vm.setPessoa(x[1])" href="#/resultadoBusca"
+                                       class="button button-full button-positive">
+                                        <img src="img/file.png" alt="">Ver dados</a>
                                 </td>
                             </tr>
                         </table>
 
                         <br>
                         <div class="center-align animate shake" style="height: 50px;"
-                             ng-show="vm.dadosId.length == undefinid && loading == false || semDados == true ">
+                             ng-show="(vm.dadosId.length == 0 && vm.dadosNome.length == 0) && loading == false">
                             <div class="chip ">
                                 <img src="img/cpf.svg" alt="Contact Person">
-                                CPF não Encontrado
+                                Dados nao encontrados
                             </div>
                         </div>
-                        <div class="center-align animate shake" style="height: 50px;"
-                             ng-show="vm.dadosNome.length == undefinid || loading == false">
-                            <div class="chip">
-                                <img src="img/cnpj.svg" alt="Contact Person">
-                                Nome não Encontrado
-                            </div>
-                        </div>
+
                         <div class="progress" ng-show="loading == true">
                             <div class="indeterminate cyan darken-4"></div>
                         </div>
-
-
                     </div>
                 </div>
 
@@ -138,6 +117,3 @@
         </div>
     </div>
 </div>
-
-
-<!--Fim Conteudo-->
