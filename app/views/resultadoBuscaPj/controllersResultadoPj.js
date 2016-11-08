@@ -20,7 +20,6 @@ controladores.controller('ResultPjSofiaCtrl', function($scope, $location, $rootS
                 vm.listaDadosPj = dados["values"];
 
                 $scope.resultadoLoad = false;
-                debugger;
                 console.log(vm.listaDadosPj);
 
             }

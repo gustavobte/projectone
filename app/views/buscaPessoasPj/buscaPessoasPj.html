@@ -8,37 +8,41 @@
 </div>
 
 
+<div class="row ">
+    <div class="col s10 offset-s1 ">
+        <div class="card sticky-action ">
+            <md-toolbar class="md-table-toolbar ">
+                <div class="md-toolbar-tools teal darken-3">
+                    <span>Busca Pessoa Juridica</span>
 
-    <div class="row ">
-        <div class="col s10 offset-s1 ">
-            <div class="card sticky-action ">
-                <md-toolbar class="md-table-toolbar ">
-                    <div class="md-toolbar-tools teal darken-3">
-                        <span>Busca Pessoa Juridica</span>
+                </div>
+            </md-toolbar>
 
-                    </div>
-                </md-toolbar>
-
-                <div class="row">
-                    <form action="">
+            <div class="row">
+                <form action="">
                     <div class="input-field col s4 ">
-                        <input  id="cpf" ui-mask="99.999.999/9999-99"   placeholder="00.000.000/0000-00" type="text" class="validate" ng-model="idPessoa" ng-disabled="nomePessoa > ''">
+                        <input id="cpf" ui-mask="99.999.999/9999-99" placeholder="00.000.000/0000-00" type="text"
+                               class="validate" ng-model="idPessoa" ng-disabled="nomePessoa > ''">
                         <label class="active" for="cpf">Cnpj</label>
 
                     </div>
 
                     <div class="input-field col s8 ">
-                        <input id="nome" type="text" class="validate" ng-model="nomePessoa" ng-disabled="idPessoa > '' ">
+                        <input id="nome" type="text" class="validate" ng-model="nomePessoa"
+                               ng-disabled="idPessoa > '' ">
                         <label class="active" for="Nome">Nome</label>
                     </div>
                     <div>
 
                         <p class="center-align">
-                            <button  class="btn waves-effect waves-light btn-large teal darken-3 " ng-click="listarEndereco(idPessoa, nomePessoa)" ng-disabled="!nomePessoa && !idPessoa">Pesquisar
+                            <button class="btn waves-effect waves-light btn-large teal darken-3 "
+                                    ng-click="listarEndereco(idPessoa, nomePessoa)"
+                                    ng-disabled="!nomePessoa && !idPessoa">Pesquisar
                                 <i class="material-icons right">search</i>
-                            </button></p>
+                            </button>
+                        </p>
                         <br>
-                        </div>
+                    </div>
 
                 </form>
             </div>
@@ -57,78 +61,83 @@
                     </div>
                 </md-toolbar>
                 <div class="row">
-                <div class="col s12" >
-                    <table class="highlight" md-table style="padding: 500px"  >
-                        <thead md-head >
-                        <tr md-row  style="height: 50px">
-                            <th md-column ><span>CNPJ</span></th>
-                            <th md-column><span>Nome</span></th>
-                            <th md-column><span>Data de Fundação</span></th>
-                            <th md-column>#</th>
-                        </tr>
-                        </thead>
+                    <div class="col s12">
+                        <table class="highlight" md-table style="padding: 500px">
+                            <thead md-head>
+                            <tr md-row style="height: 50px">
+                                <th md-column><span>CNPJ</span></th>
+                                <th md-column><span>Nome</span></th>
+                                <th md-column><span>Data de Fundação</span></th>
+                                <th md-column>#</th>
+                            </tr>
+                            </thead>
 
 
-                        <tr  style="height: 50px;" ng-repeat="x in vm.dadosId" ng-show=" loading == false">
-                            <td >{{x[1].substr(1,2)+"."+x[1].substr(3,3)+"."+x[1].substr(6,3)+"/"+x[1].substr(9,4)+"-"+x[1].substr(3,2)}}</td>
-                            <td >{{x[2]}}</td>
-                            <td >{{x[3]}}</td>
-                            <td >
-                                <a
-                                   ng-click="vm.setPessoaPj(x[1])"
-                                   href="#/resultadoBuscaPj"
-                                   class="button button-full button-positive">
-                                    <img src="../img/file.png" alt="">
-                                    Ver dados<a/>
+                            <tr style="height: 50px;" ng-repeat="x in vm.dadosId" ng-show=" loading == false">
+                                <td>
+                                    {{x[1].substr(1,2)+"."+x[1].substr(3,3)+"."+x[1].substr(6,3)+"/"+x[1].substr(9,4)+"-"+x[1].substr(3,2)}}
+                                </td>
+                                <td>{{x[2]}}</td>
+                                <td>{{x[3]}}</td>
+                                <td>
+                                    <a
+                                            ng-click="vm.setPessoaPj(x[1])"
+                                            href="#/resultadoBuscaPj"
+                                            class="button button-full button-positive">
+                                        <img src="img/file.png" alt="">
+                                        Ver dados</a>
 
 
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
 
-                        <tr  style="height: 50px;" ng-repeat="x in vm.dadosNome" ng-show=" loading == false">
-                            <td >{{x[1].substr(1,2)+"."+x[1].substr(3,3)+"."+x[1].substr(6,3)+"/"+x[1].substr(9,4)+"-"+x[1].substr(3,2)}}</td>
-                            <td >{{x[2]}}</td>
-                            <td >{{x[3]}}</td>
+                            <tr style="height: 50px;" ng-repeat="x in vm.dadosNome" ng-show=" loading == false">
+                                <td>
+                                    {{x[1].substr(1,2)+"."+x[1].substr(3,3)+"."+x[1].substr(6,3)+"/"+x[1].substr(9,4)+"-"+x[1].substr(3,2)}}
+                                </td>
+                                <td>{{x[2]}}</td>
+                                <td>{{x[3]}}</td>
 
-                            <td >
-                                <a
-                                        ng-click="vm.setPessoaPj(x[1])"
-                                        href="#/resultadoBuscaPj"
-                                        class="button button-full button-positive">
-                                    <img src="../img/file.png" alt="">
-                                    Ver dados<a/>
+                                <td>
+                                    <a
+                                            ng-click="vm.setPessoaPj(x[1])"
+                                            href="#/resultadoBuscaPj"
+                                            class="button button-full button-positive">
+                                        <img src="img/file.png" alt="">
+                                        Ver dados</a>
 
 
-                            </td>
-                        </tr>
-                    </table>
+                                </td>
+                            </tr>
+                        </table>
 
-                    <br>
-                        <div  class="center-align animate shake" style="height: 50px;" ng-show="vm.dadosId.length == undefinid && loading == false || semDados == true ">
+                        <br>
+                        <div class="center-align animate shake" style="height: 50px;"
+                             ng-show="vm.dadosId.length == undefinid && loading == false || semDados == true ">
                             <div class="chip ">
-                                <img src="http://image.flaticon.com/icons/svg/174/174320.svg" alt="Contact Person">
+                                <img src="img/174320.svg" alt="Contact Person">
                                 CNPJ não Encontrado
                             </div>
                         </div>
-                        <div  class="center-align animate shake" style="height: 50px;" ng-show="vm.dadosNome.length == undefinid && loading == false">
+                        <div class="center-align animate shake" style="height: 50px;"
+                             ng-show="vm.dadosNome.length == undefinid && loading == false">
                             <div class="chip">
-                                <img src="http://image.flaticon.com/icons/svg/187/187478.svg" alt="Contact Person">
+                                <img src="img/187478.svg" alt="Contact Person">
                                 Nome não Encontrado
                             </div>
                         </div>
-                    <div class="progress" ng-show="loading == true">
-                        <div class="indeterminate cyan darken-4"></div>
+                        <div class="progress" ng-show="loading == true">
+                            <div class="indeterminate cyan darken-4"></div>
+                        </div>
+
+
                     </div>
-
-
                 </div>
+
             </div>
-
         </div>
-
-     </div>
     </div>
-
+</div>
 
 
 <!--Fim Conteudo-->

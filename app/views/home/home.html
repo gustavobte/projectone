@@ -1,113 +1,103 @@
-
-    <!--Select Municipios-->
+<!--Select Municipios-->
 <!--<div class="row">-->
-    <!--<div class="col s3 offset-s9">-->
-        <!--<select class="browser-default">-->
-            <!--<option value="Todos">Todos</option>-->
-            <!--<option value="1">Goiania</option>-->
-            <!--<option value="2">Trindade</option>-->
-            <!--<option value="3">Aparecida de Goiania</option>-->
-        <!--</select>-->
-    <!--</div>-->
+<!--<div class="col s3 offset-s9">-->
+<!--<select class="browser-default">-->
+<!--<option value="Todos">Todos</option>-->
+<!--<option value="1">Goiania</option>-->
+<!--<option value="2">Trindade</option>-->
+<!--<option value="3">Aparecida de Goiania</option>-->
+<!--</select>-->
 <!--</div>-->
-    <!-- Modulos dados Endereços-->
+<!--</div>-->
+
+<!-- Modulos dados Endereços-->
 <div class="row">
     <div class="col s4 m4 15 ">
-        <div class="col s12 m12 15" >
-                <div class="waves-effect waves-light btn-flat  center-align animated zoomIn " style="height: 130px; background-color: #0277bd" ng-show="x == false">
-                    <span class="md-display-2  " style="color:white;">{{vm.quantidadeProcesssado | number}}</span>
-                    <br>
-                    <span class="md-headline" style="color:white;">Endereços Processados</span>
-                </div>
-            <div class="progress"  ng-show="!x == false">
+        <div class="col s12 m12 15">
+            <div class="waves-effect waves-light btn-flat  center-align animated zoomIn"
+                 style="height: 130px; background-color: #0277bd" ng-show="x == false">
+                <span class="md-display-2  " style="color:white;">{{vm.quantidadeProcesssado | number}}</span>
+                <br>
+                <span class="md-headline" style="color:white;">Endereços Processados</span>
+            </div>
+            <div class="progress" ng-show="!x == false">
                 <div class="indeterminate"></div>
             </div>
         </div>
     </div>
 
 
-
     <div class="col s4 m4 15 ">
         <div class="">
-            <div class="waves-effect waves-light btn-flat  right-align  animated zoomIn" style="height: 130px; background-color: #006064" ng-show="y == false">
+            <div class="waves-effect waves-light btn-flat  right-align  animated zoomIn"
+                 style="height: 130px; background-color: #006064" ng-show="y == false">
                 <span class="md-display-2  " style="color:white;">{{vm.quantidadeEstruturado | number}}</span>
                 <br>
                 <span class="md-headline" style="color:white;"> Endereços Estruturados</span>
             </div>
-            <div class="progress"  ng-show="!x == false">
+            <div class="progress" ng-show="!x == false">
                 <div class="indeterminate"></div>
             </div>
         </div>
     </div>
     <div class="col s4 m4 15 ">
         <div class="">
-            <div class="waves-effect waves-light btn-flat  right-align animated zoomIn " style="height: 130px; background-color: #e65100" ng-show="z == false">
+            <div class="waves-effect waves-light btn-flat  right-align animated zoomIn "
+                 style="height: 130px; background-color: #e65100" ng-show="z == false">
                 <span class="md-display-2  " style="color:white;">{{vm.quantidadeNaoEstruturado | number}}</span>
                 <br>
                 <span class="md-headline" style="color:white;">Endereços Não Estruturados</span>
             </div>
-            <div class="progress"  ng-show="!z == false">
+            <div class="progress" ng-show="!z == false">
                 <div class="indeterminate"></div>
             </div>
         </div>
     </div>
-
-
 </div>
 
-
-
 <!--Graficos-->
+</div>
+<div class="row">
+<div class="col s12 push-s0">
+    <div class="card ">
+        <div class="progress" ng-show="!q == false">
+            <div class="indeterminate"></div>
+        </div>
+
+        <div class="row">
+            <highchart id="chart3" config="chartFonteDados" class="span10"></highchart>
+        </div>
+    </div>
 </div>
 
     <div class="col s7 push-s5">
         <div class="card ">
-            <div class="progress"  ng-show="!q == false">
+            <div class="progress" ng-show="!topLoad == false">
                 <div class="indeterminate"></div>
             </div>
 
-                <div class="row">
-                    <highchart id="chart3" config="chartFonteDados" class="span10" ></highchart>
+            <div class="row">
+                <highchart id="chart1" config="chartTop" class="span10"></highchart>
 
-                </div>
-            </div>
-
-    </div>
-    <div class="row">
-
-
-
-        <div class="col s7 push-s5">
-            <div class="card ">
-                <div class="progress"  ng-show="!topLoad == false">
-                    <div class="indeterminate"></div>
-                </div>
-
-                    <div class="row">
-                        <highchart id="chart1" config="chartTop" class="span10"></highchart>
-
-                </div>
             </div>
         </div>
+    </div>
 
+    <div class="col s5 pull-s7">
+        <div class="card ">
 
-        <div class="col s5 pull-s7">
-            <div class="card ">
+            <div class="progress" ng-show="!bottomLoad == false">
+                <div class="indeterminate"></div>
+            </div>
 
-                <div class="progress"  ng-show="!bottomLoad == false">
-                    <div class="indeterminate"></div>
-                </div>
-
-                    <div class="row">
-                        <highchart id="chart2" config="chartBottom" class="span10"></highchart>
-                    </div>
-                </div>
-
-
+            <div class="row">
+                <highchart id="chart2" config="chartBottom" class="span10"></highchart>
+            </div>
         </div>
     </div>
-    <div>
-    </div>
+</div>
+<div>
+</div>
 
 
 

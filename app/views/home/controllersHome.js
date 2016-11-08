@@ -3,11 +3,11 @@ controladores.controller('HomeSofiaCtrl', function ($scope, $rootScope, $locatio
 
 
     var vm = this;
-    $scope.x = true
-    $scope.y = true
-    $scope.z = true
-    $scope.q = true
-    $scope.topLoad = true
+    $scope.x = true;
+    $scope.y = true;
+    $scope.z = true;
+    $scope.q = true;
+    $scope.topLoad = true;
 
     HomeSofiaService.contarEnderecosProcessados().then(
         function (dados) {
@@ -72,48 +72,48 @@ controladores.controller('HomeSofiaCtrl', function ($scope, $rootScope, $locatio
 
 
         $scope.addPoints = function () {
-            var seriesArray = $scope.chartFonteDados.series
+            var seriesArray = $scope.chartFonteDados.series;
             var rndIdx = Math.floor(Math.random() * seriesArray.length);
             seriesArray[rndIdx].data = seriesArray[rndIdx].data.concat([1, 10, 20])
         };
 
         $scope.addSeries = function () {
-            var rnd = []
+            var rnd = [];
             for (var i = 0; i < 10; i++) {
                 rnd.push(Math.floor(Math.random() * 20) + 1)
             }
             $scope.chartFonteDados.series.push({
                 data: rnd
             })
-        }
+        };
 
         $scope.removeRandomSeries = function () {
-            var seriesArray = $scope.chartFonteDados.series
+            var seriesArray = $scope.chartFonteDados.series;
             var rndIdx = Math.floor(Math.random() * seriesArray.length);
-            seriesArray.splice(rndIdx, 1)
-        }
+            seriesArray.splice(rndIdx, 1);
+        };
 
         $scope.swapChartType = function () {
             if (this.chartFonteDados.options.chart.type === 'line') {
                 this.chartFonteDados.options.chart.type = 'bar'
             } else {
-                this.chartFonteDados.options.chart.type = 'line'
+                this.chartFonteDados.options.chart.type = 'line';
                 this.chartFonteDados.options.chart.zoomType = 'x'
             }
-        }
+        };
 
         $scope.toggleLoading = function () {
             this.chartFonteDados.loading = !this.chartFonteDados.loading
-        }
+        };
 
-          $scope.chartFonteDados = {
+        $scope.chartFonteDados = {
             options: {
                 chart: {
                     type: 'column'
                 }
             },
             series: [{
-                name: [''],
+                name: ['Origem de dados'],
                 data: [vm.mediaOrigemDados[0][1],
                     vm.mediaOrigemDados[1][1],
                     vm.mediaOrigemDados[2][1],
@@ -130,19 +130,12 @@ controladores.controller('HomeSofiaCtrl', function ($scope, $rootScope, $locatio
             },
             xAxis: {
                 categories: [vm.mediaOrigemDados[0][0],
-                            vm.mediaOrigemDados[1][0],
-                            vm.mediaOrigemDados[2][0],
-                            vm.mediaOrigemDados[3][0],
-                            vm.mediaOrigemDados[4][0],
-                            vm.mediaOrigemDados[5][0],
-                            vm.mediaOrigemDados[6][0]],
-                title: {
-                    enabled: true,
-                    text: 'Origem <b>Dados</b>',
-                    style: {
-                        fontWeight: 'normal'
-                    }
-                }
+                    vm.mediaOrigemDados[1][0],
+                    vm.mediaOrigemDados[2][0],
+                    vm.mediaOrigemDados[3][0],
+                    vm.mediaOrigemDados[4][0],
+                    vm.mediaOrigemDados[5][0],
+                    vm.mediaOrigemDados[6][0]]
             },
             yAxis: [{
                 title: {
@@ -156,46 +149,46 @@ controladores.controller('HomeSofiaCtrl', function ($scope, $rootScope, $locatio
 
             loading: false
         }
-    }
+    };
 
 //Top CIDADES
     $scope.topCidades = function () {
 
 
         $scope.addPoints = function () {
-            var seriesArray = $scope.chartTop.series
+            var seriesArray = $scope.chartTop.series;
             var rndIdx = Math.floor(Math.random() * seriesArray.length);
             seriesArray[rndIdx].data = seriesArray[rndIdx].data.concat([1, 10, 20])
         };
 
         $scope.addSeries = function () {
-            var rnd = []
+            var rnd = [];
             for (var i = 0; i < 10; i++) {
-                rnd.push(Math.floor(Math.random() * 20) + 1)
+                rnd.push(Math.floor(Math.random() * 20) + 1);
             }
             $scope.chartTop.series.push({
                 data: rnd
             })
-        }
+        };
 
         $scope.removeRandomSeries = function () {
-            var seriesArray = $scope.chartTop.series
+            var seriesArray = $scope.chartTop.series;
             var rndIdx = Math.floor(Math.random() * seriesArray.length);
-            seriesArray.splice(rndIdx, 1)
-        }
+            seriesArray.splice(rndIdx, 1);
+        };
 
         $scope.swapChartType = function () {
             if (this.chartTop.options.chart.type === 'line') {
-                this.chartTop.options.chart.type = 'bar'
+                this.chartTop.options.chart.type = 'bar';
             } else {
-                this.chartTop.options.chart.type = 'line'
-                this.chartTop.options.chart.zoomType = 'x'
+                this.chartTop.options.chart.type = 'line';
+                this.chartTop.options.chart.zoomType = 'x';
             }
-        }
+        };
 
         $scope.toggleLoading = function () {
             this.chartTop.loading = !this.chartTop.loading
-        }
+        };
 
         $scope.chartTop = {
             options: {
@@ -204,7 +197,7 @@ controladores.controller('HomeSofiaCtrl', function ($scope, $rootScope, $locatio
                 }
             },
             series: [{
-                name: [''],
+                name: ['Cidades'],
                 data: [vm.topCidades[0][1],
                     vm.topCidades[1][1],
                     vm.topCidades[2][1],
@@ -232,14 +225,7 @@ controladores.controller('HomeSofiaCtrl', function ($scope, $rootScope, $locatio
                     vm.topCidades[6][0],
                     vm.topCidades[7][0],
                     vm.topCidades[8][0],
-                    vm.topCidades[9][0]],
-                title: {
-                    enabled: true,
-                    text: '<b>Cidades</b>',
-                    style: {
-                        fontWeight: 'normal'
-                    }
-                }
+                    vm.topCidades[9][0]]
             },
             yAxis: [{
                 title: {
@@ -253,47 +239,46 @@ controladores.controller('HomeSofiaCtrl', function ($scope, $rootScope, $locatio
 
             loading: false
         }
-    }
+    };
 
 //Bottom CIDADES
     $scope.bottomCidades = function () {
 
 
         $scope.addPoints = function () {
-            var seriesArray = $scope.chartBottom.series
+            var seriesArray = $scope.chartBottom.series;
             var rndIdx = Math.floor(Math.random() * seriesArray.length);
             seriesArray[rndIdx].data = seriesArray[rndIdx].data.concat([1, 10, 50])
         };
 
         $scope.addSeries = function () {
-            var rnd = []
+            var rnd = [];
             for (var i = 0; i < 10; i++) {
                 rnd.push(Math.floor(Math.random() * 20) + 1)
             }
             $scope.chartBottom.series.push({
                 data: rnd
             })
-        }
+        };
 
         $scope.removeRandomSeries = function () {
-            var seriesArray = $scope.chartBottom.series
+            var seriesArray = $scope.chartBottom.series;
             var rndIdx = Math.floor(Math.random() * seriesArray.length);
             seriesArray.splice(rndIdx, 1)
-        }
+        };
 
         $scope.swapChartType = function () {
             if (this.chartBottom.options.chart.type === 'line') {
-                this.chartBottom.options.chart.type = 'bar'
+                this.chartBottom.options.chart.type = 'bar';
             } else {
-                this.chartBottom.options.chart.type = 'line'
-                this.chartBottom.options.chart.zoomType = 'x'
+                this.chartBottom.options.chart.type = 'line';
+                this.chartBottom.options.chart.zoomType = 'x';
             }
-        }
+        };
 
         $scope.toggleLoading = function () {
-            this.chartBottom.loading = !this.chartBottom.loading
-        }
-
+            this.chartBottom.loading = !this.chartBottom.loading;
+        };
 
 
         $scope.chartBottom = {
@@ -303,7 +288,7 @@ controladores.controller('HomeSofiaCtrl', function ($scope, $rootScope, $locatio
                 }
             },
             series: [{
-                name: [''],
+                name: ['Cidades'],
                 data: [vm.bottomCidades[0][1],
                     vm.bottomCidades[1][1],
                     vm.bottomCidades[2][1],
@@ -331,14 +316,7 @@ controladores.controller('HomeSofiaCtrl', function ($scope, $rootScope, $locatio
                     vm.bottomCidades[6][0],
                     vm.bottomCidades[7][0],
                     vm.bottomCidades[8][0],
-                    vm.bottomCidades[9][0]],
-                title: {
-                    enabled: true,
-                    text: '<b>Cidades</b>',
-                    style: {
-                        fontWeight: 'normal'
-                    }
-                }
+                    vm.bottomCidades[9][0]]
             },
             yAxis: [{
                 title: {

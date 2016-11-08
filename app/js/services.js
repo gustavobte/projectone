@@ -16,8 +16,6 @@ servicos.factory('ResultadoService', function(){
   };
 });
 
-
-
 // ============= MODEL ENDERECO =============
 servicos.factory('ResultadoServicePj', function(){
   var pessoa = '';
