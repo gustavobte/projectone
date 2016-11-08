@@ -21,23 +21,8 @@ servicos.factory('ResultadosSofiaService', function ($q, SofiaService, Resultado
     var addECFavorito = function (numDocumento, ecFavorito) {
         var q = $q.defer();
 
-        var query = "{'ec_eck_favoritos':{'numDocumento':'" + numDocumento + "', 'ecFavorito':" + ecFavorito + "}}";
+        var query = "{'ec_eck_favoritos':{'numDocumento':'" + numDocumento + "', 'ecFavorito':" + ecFavorito + ", 'telFavorito':''}}";
         SofiaService.criar(query, ontologiaFavorito).then(
-            function (dados) {
-                q.resolve(dados);
-            },
-            function (dados) {
-                q.reject(dados);
-            });
-        return q.promise;
-
-    };
-
-    var listarFavorito = function () {
-        var q = $q.defer();
-
-        var query = "SELECT * FROM " + ontologiaFavorito;
-        SofiaService.like(query, ontologia).then(
             function (dados) {
                 q.resolve(dados);
             },
@@ -63,15 +48,12 @@ servicos.factory('ResultadosSofiaService', function ($q, SofiaService, Resultado
 
     };
 
-    var atualizarFavorito = function (numDocumento) {
-        console.log("Atualizando")
+    var atualizarFavorito = function (numDocumento, idEc) {
         var q = $q.defer();
-        // var query = "update ec_eck_favoritos set ec_eck_favoritos.numDocumento = '1' where ec_eck_favoritos.numDocumento = '00003411720140'";
-
-        var data = "{'ec_eck_favoritos.ecFavorito':100}";
-        var query = "{'ec_eck_favoritos':{'ecFavorito':3729619}}";
-
-        SofiaService.atualizar(data, query, ontologia).then(
+        var query = "{update ec_eck_favoritos " +
+            " set ec_eck_favoritos.ecFavorito = " + idEc +
+            " where ec_eck_favoritos.numDocumento = '" + numDocumento + "'}";
+        SofiaService.atualizar(null, query, ontologiaFavorito).then(
             function (dados) {
                 q.resolve(dados);
             },
@@ -81,13 +63,10 @@ servicos.factory('ResultadosSofiaService', function ($q, SofiaService, Resultado
         return q.promise;
     };
 
-    var removeTodosFavoritos = function (numDocumento) {
-        console.log("Removendo . . .")
+    var verificarExistePessoaCadastrada = function (numDocumento) {
         var q = $q.defer();
-
-        var query = "{'ec_eck_favoritos':{'ecFavorito':1157352}}";
-
-        SofiaService.remover(query, ontologiaFavorito).then(
+        var query = "SELECT ec_eck_favoritos.numDocumento from ec_eck_favoritos where ec_eck_favoritos.numDocumento = '" + numDocumento + "'";
+        SofiaService.like(query, ontologiaFavorito).then(
             function (dados) {
                 q.resolve(dados);
             },
@@ -97,13 +76,43 @@ servicos.factory('ResultadosSofiaService', function ($q, SofiaService, Resultado
         return q.promise;
     };
 
+    var atualizarTelFavorito = function (numDocumento, telFavorito) {
+        var q = $q.defer();
+        var query = "{update ec_eck_favoritos " +
+            " set ec_eck_favoritos.telFavorito = '" + telFavorito + "'"+
+            " where ec_eck_favoritos.numDocumento = '" + numDocumento + "'}";
+        SofiaService.atualizar(null, query, ontologiaFavorito).then(
+            function (dados) {
+                q.resolve(dados);
+            },
+            function (dados) {
+                q.reject(dados);
+            });
+        return q.promise;
+    };
+
+    var addTelFavorito = function (numDocumento, telFavorito) {
+        var q = $q.defer();
+
+        var query = "{'ec_eck_favoritos':{'numDocumento':'" + numDocumento + "', 'telFavorito':'" + telFavorito + "', 'ecFavorito':0}}";
+        SofiaService.criar(query, ontologiaFavorito).then(
+            function (dados) {
+                q.resolve(dados);
+            },
+            function (dados) {
+                q.reject(dados);
+            });
+        return q.promise;
+
+    };
 
     return {
         listarResultados: listarResultados,
         addECFavorito: addECFavorito,
-        listarFavorito: listarFavorito,
+        addTelFavorito: addTelFavorito,
         buscaFavorito: buscaFavorito,
         atualizarFavorito: atualizarFavorito,
-        removeTodosFavoritos: removeTodosFavoritos
+        atualizarTelFavorito: atualizarTelFavorito,
+        verificarExistePessoaCadastrada:verificarExistePessoaCadastrada
     }
 });

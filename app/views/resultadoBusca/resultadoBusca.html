@@ -24,7 +24,7 @@
                     <table class="highlight" md-table style="padding: 600px">
                         <thead md-head>
                         <tr md-row style="height: 50px">
-                            <th md-column><span>Score</span></th>
+                            <th md-column><span>Pontuação</span></th>
                             <th md-column><span>Endereço</span></th>
                             <th md-column><span>Bairro</span></th>
                             <th md-column>Origem de Registro</th>
@@ -45,8 +45,8 @@
                             <td md-cell>
                                 <div class="switch">
                                     <label>
-                                        <input type="checkbox" ng-checked="vm.idEnderecoFavorito == x[0]"
-                                               value="{{x[0]}}" ng-click="onChangeEndereco(x)">
+                                        <input type="checkbox" ng-checked="vm.idEnderecoFavorito == x[0]" ng-disabled="vm.idEnderecoFavorito != x[0] && vm.idEnderecoFavorito != 0"
+                                               value="{{x[0]}}" ng-click="vm.onChangeEndereco(x)">
                                         <span class="lever"></span>
                                     </label>
                                 </div>
@@ -86,13 +86,14 @@
 
                         <tbody md-body>
                         <tr style="height: 50px;" ng-repeat="x in vm.telefones | orderBy : '[0]'">
-                            <td>{{x[20].substring(0,2)}}</td>
-                            <td>{{x[20].substring(2,11)}}</td>
+                            <td>{{x.substring(0,2)}}</td>
+                            <td>{{x.substring(2,11)}}</td>
                             <td md-cell>
 
                                 <div class="switch">
                                     <label>
-                                        <input type="checkbox" ng-checked="favorito" ng-click="onChangeTelefone(x[0])">
+                                        <input type="checkbox" ng-checked="vm.telFavorito == x"
+                                               ng-click="vm.onChangeTelefone(x)">
                                         <span class="lever"></span>
                                     </label>
                                 </div>
