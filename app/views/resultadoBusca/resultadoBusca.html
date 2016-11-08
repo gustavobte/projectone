@@ -64,7 +64,7 @@
     </div>
 </div>
 
-<div class="row ">
+<div class="row " ng-show="vm.listaDados[0][20] != ''">
     <div class="col s10 offset-s1 ">
         <div class="card sticky-action">
             <md-toolbar class="md-table-toolbar ">
@@ -85,7 +85,7 @@
                         </thead>
 
                         <tbody md-body>
-                        <tr style="height: 50px;" ng-repeat="x in vm.listaDados | orderBy : '[0]'">
+                        <tr style="height: 50px;" ng-repeat="x in vm.telefones | orderBy : '[0]'">
                             <td>{{x[20].substring(0,2)}}</td>
                             <td>{{x[20].substring(2,11)}}</td>
                             <td md-cell>

@@ -66,11 +66,10 @@ servicos.factory('ResultadosSofiaService', function ($q, SofiaService, Resultado
     var atualizarFavorito = function (numDocumento) {
         console.log("Atualizando")
         var q = $q.defer();
-
         // var query = "update ec_eck_favoritos set ec_eck_favoritos.numDocumento = '1' where ec_eck_favoritos.numDocumento = '00003411720140'";
 
-        var data= "{'ec_eck_favoritos.ecFavorito':100}";
-        var query = "{'ec_eck_favoritos':{'ecFavorito':1157352}}";
+        var data = "{'ec_eck_favoritos.ecFavorito':100}";
+        var query = "{'ec_eck_favoritos':{'ecFavorito':3729619}}";
 
         SofiaService.atualizar(data, query, ontologia).then(
             function (dados) {

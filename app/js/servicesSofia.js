@@ -55,6 +55,7 @@ app.factory('SofiaService', function ($q, $rootScope) {
         conectado().then(function () {
             sofia2.queryWithQueryType(query, ontologia, "BDH", null, function (mensajeSSAP) {
                 if (mensajeSSAP != null && mensajeSSAP.body.data != null && mensajeSSAP.body.ok == true) {
+                    debugger;
                     dados = mensajeSSAP.body.data;
                     q.resolve(dados);
                 } else {
@@ -74,7 +75,6 @@ app.factory('SofiaService', function ($q, $rootScope) {
         conectado().then(
             function () {
                 sofia2.update(data, query, ontologia, function (mensajeSSAP) {
-                    debugger
                     // sofia2.updateWithQueryType(data, query, ontologia,"SQLLIKE" ,function(mensajeSSAP){
                     if (mensajeSSAP != null && mensajeSSAP.body.data != null && mensajeSSAP.body.ok == true) {
                         dados = {"status": "Objeto Criada com Sucesso!", "data": mensajeSSAP.body.data};
@@ -123,7 +123,6 @@ app.factory('SofiaService', function ($q, $rootScope) {
                             dados = {"status": "Objeto Removido com Sucesso!", "data": mensajeSSAP.body.data};
                             q.resolve(dados);
                         } else {
-                            debugger;
                             dados = {"status": "Erro ao criar Objeto!"};
                             q.reject(dados);
                         }

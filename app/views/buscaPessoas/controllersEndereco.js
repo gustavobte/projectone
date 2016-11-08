@@ -22,6 +22,7 @@ controladores.controller('EndSofiaCtrl', function ($rootScope, $location, $scope
 
             EnderecosSofiaService.listarEndereco(idPessoa).then(
                 function (dados) {
+                    debugger;
                     vm.dadosId = '';
                     vm.dadosNome = '';
                     if (dados != "") {
@@ -38,6 +39,7 @@ controladores.controller('EndSofiaCtrl', function ($rootScope, $location, $scope
             $scope.loading = true;
             EnderecosSofiaService.listarEnderecoNome(nomePessoa).then(
                 function (dados) {
+
                     vm.dadosNome = '';
                     vm.dadosId = '';
                     if (dados != "") {
@@ -45,8 +47,8 @@ controladores.controller('EndSofiaCtrl', function ($rootScope, $location, $scope
                     }
                     $scope.loading = false;
                 },
-                function () {
-                    console.log("Erro ao localizar Endereço");
+                function (response) {
+                    console.log(response);
                 });
         }
     }

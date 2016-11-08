@@ -21,11 +21,23 @@ controladores.controller('ResultSofiaCtrl', function ($scope, $location, $rootSc
         );
     };
 
+    vm.obtemTelefones = function(listaEcs){
+        var listaTelefones = [];
+
+        for(var i = 0; i < listaEcs.length; i++){
+            if(listaTelefones.indexOf(listaEcs[i][20]) == -1){
+                listaTelefones.push(listaEcs[i][20])
+            }
+        }
+        return listaTelefones;
+    };
+
     vm.listarResultados = function () {
         ResultadosSofiaService.listarResultados().then(
             function (dados) {
-                vm.listaDados = JSON.parse(dados)["values"];
-                if (vm.listaDados[0] != undefined) {
+                if (dados != '') {
+                    vm.listaDados = JSON.parse(dados)["values"];
+                    vm.telefones = vm.obtemTelefones(vm.listaDados);
                     vm.obtemFavorito(vm.listaDados[0][3]);
                 }
                 $scope.resultadoLoad = false;
@@ -39,7 +51,7 @@ controladores.controller('ResultSofiaCtrl', function ($scope, $location, $rootSc
     $scope.onChangeEndereco = function (ec) {
         // EC[3] = numDocumento || EC[0] = idEc
         if (vm.idEnderecoFavorito == ec[0]) {
-            ResultadosSofiaService.removeTodosFavoritos(ec[3]).then(
+            ResultadosSofiaService.atualizarFavorito(ec[3]).then(
                 function (dados) {
                     console.log(dados)
                 },
