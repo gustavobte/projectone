@@ -75,7 +75,7 @@
 
                             <tr style="height: 50px;" ng-repeat="x in vm.dadosId" ng-show=" loading == false">
                                 <td>
-                                    {{x[1].substr(1,2)+"."+x[1].substr(3,3)+"."+x[1].substr(6,3)+"/"+x[1].substr(9,4)+"-"+x[1].substr(3,2)}}
+                                    {{x[1].substr(0,2)+"."+x[1].substr(2,3)+"."+x[1].substr(5,3)+"/"+x[1].substr(8,4)+"-"+x[1].substr(12,2)}}
                                 </td>
                                 <td>{{x[2]}}</td>
                                 <td>{{x[3]}}</td>
@@ -93,7 +93,7 @@
 
                             <tr style="height: 50px;" ng-repeat="x in vm.dadosNome" ng-show=" loading == false">
                                 <td>
-                                    {{x[1].substr(1,2)+"."+x[1].substr(3,3)+"."+x[1].substr(6,3)+"/"+x[1].substr(9,4)+"-"+x[1].substr(3,2)}}
+                                    {{x[1].substr(0,2)+"."+x[1].substr(2,3)+"."+x[1].substr(5,3)+"/"+x[1].substr(8,4)+"-"+x[1].substr(12,2)}}
                                 </td>
                                 <td>{{x[2]}}</td>
                                 <td>{{x[3]}}</td>
@@ -113,19 +113,13 @@
 
                         <br>
                         <div class="center-align animate shake" style="height: 50px;"
-                             ng-show="vm.dadosId.length == undefinid && loading == false || semDados == true ">
+                             ng-show="(vm.dadosId.length == 0 && vm.dadosNome.length == 0) && loading == false">
                             <div class="chip ">
-                                <img src="img/174320.svg" alt="Contact Person">
-                                CNPJ não Encontrado
+                                <img src="img/cpf.svg" alt="Contact Person">
+                                Dados nao encontrados
                             </div>
                         </div>
-                        <div class="center-align animate shake" style="height: 50px;"
-                             ng-show="vm.dadosNome.length == undefinid || loading == false">
-                            <div class="chip">
-                                <img src="img/187478.svg" alt="Contact Person">
-                                Nome não Encontrado
-                            </div>
-                        </div>
+
                         <div class="progress" ng-show="loading == true">
                             <div class="indeterminate cyan darken-4"></div>
                         </div>

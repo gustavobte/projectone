@@ -13,9 +13,6 @@ controladores.controller('EndPjSofiaCtrl', function ($rootScope, $location, $sco
     EnderecosPjSofiaService.listarEnderecos().then(
         function (dados) {
             $scope.enderecos = dados;
-            var listaDados;
-            listaDados = dados;
-            console.log(listaDados);
         }
     );
 
@@ -26,15 +23,14 @@ controladores.controller('EndPjSofiaCtrl', function ($rootScope, $location, $sco
             nomePessoa == null || nomePessoa == undefined || nomePessoa == '') {
         }
 
-
         if (idPessoa !== null && idPessoa !== undefined && idPessoa !== '') {
-
             EnderecosPjSofiaService.listarEndereco(idPessoa).then(
                 function (dados) {
                     vm.dadosId = '';
                     vm.dadosNome = '';
-
-                    vm.dadosId = JSON.parse(dados)["values"];
+                    if (dados != "") {
+                        vm.dadosId = JSON.parse(dados)["values"];
+                    }
                     $scope.loading = false;
                 },
                 function () {
@@ -47,7 +43,9 @@ controladores.controller('EndPjSofiaCtrl', function ($rootScope, $location, $sco
                 function (dados) {
                     vm.dadosNome = '';
                     vm.dadosId = '';
-                    vm.dadosNome = JSON.parse(dados)["values"];
+                    if (dados != "") {
+                        vm.dadosNome = JSON.parse(dados)["values"];
+                    }
                     $scope.loading = false;
                 },
                 function () {

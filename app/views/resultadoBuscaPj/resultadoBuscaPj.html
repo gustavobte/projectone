@@ -1,118 +1,129 @@
-
 <!--Inicio Conteudo RESULTADO-->
 <div class="fixed-action-btn horizontal">
-    <a class="btn-floating btn-large teal darken-1 waves-light"  href="#/buscaPessoasPj">
+    <a class="btn-floating btn-large teal darken-1 waves-light" href="#/buscaPessoasPj">
         <md-tooltip md-direction="top">Voltar</md-tooltip>
         <i class="material-icons">reply</i>
     </a>
 </div>
 
 
-    <div class="row ">
-        <div class="col s10 offset-s1 ">
-            <div class="card sticky-action">
-                <md-toolbar class="md-table-toolbar ">
-                    <div class="md-toolbar-tools teal darken-3 ">
+<div class="row ">
+    <div class="col s10 offset-s1 ">
+        <div class="card sticky-action">
+            <md-toolbar class="md-table-toolbar ">
+                <div class="md-toolbar-tools teal darken-3 ">
 
-                        <td ></td>
+                    <td></td>
 
 
-                        <span ng-show="resultadoLoad == false"><b>NOME:</b> {{vm.listaDadosPj[0][4]}} &#160
+                    <span ng-show="resultadoLoad == false"><b>NOME:</b> {{vm.dadosId[0][4]}} &#160
                         /</span>
-                        <span ng-show="resultadoLoad == false">&#160<b>&#160CNPJ</b>: {{vm.listaDadosPj[0][3].substr(1,2)+"."+vm.listaDadosPj[0][3].substr(3,3)+"."+vm.listaDadosPj[0][3].substr(6,3)+"/"+vm.listaDadosPj[0][3].substr(9,4)+"-"+vm.listaDadosPj[0][3].substr(3,2)}} </span>
+                    <span ng-show="resultadoLoad == false">&#160<b>&#160CNPJ</b>:
+
+                        <br/>
+                        {{vm.dadosId[0][3].substr(0,2)
+                        + "." + vm.dadosId[0][3].substr(2,3)
+                        + "." + vm.dadosId[0][3].substr(5,3)
+                        + "/" + vm.dadosId[0][3].substr(8,4)
+                        + "." + vm.dadosId[0][3].substr(12,2)}}
+                    </span>
 
 
+                </div>
+            </md-toolbar>
+            <div class="row">
+                <div class="col s12">
+                    <table class="highlight" md-table style="padding: 600px">
+                        <thead md-head>
+                        <tr md-row style="height: 50px">
+                            <th md-column><span>Pontuação</span></th>
+                            <th md-column><span>Endereço</span></th>
+                            <th md-column><span>Bairro</span></th>
+                            <th md-column>Origem de Registro</th>
+                            <th md-column>Favorito</th>
+                        </tr>
+                        </thead>
 
-                    </div>
-                </md-toolbar>
-                <div class="row">
-                    <div class="col s12">
-                        <table class="highlight" md-table style="padding: 600px" >
-                            <thead md-head >
-                            <tr md-row  style="height: 50px">
-                                <th md-column ><span>Score</span></th>
-                                <th md-column><span>Endereço</span></th>
-                                <th md-column><span>Bairro</span></th>
-                                <th md-column>Origem de Registro</th>
-                                <th md-column>Favorito</th>
-                            </tr>
-                            </thead>
-
-                            <tbody md-body>
+                        <tbody md-body>
 
 
-                            <tr  style="height: 50px;" ng-repeat="x in vm.listaDadosPj | orderBy : '-[16]'">
-                                <td ><b>{{x[16] | number:2}}</b></td>
-                                <td >{{x[5]+" "+x[6]+", N° "+x[7]+", Qd "+x[8]+",Lt "+x[9]+", "+x[10]+", CEP:"+x[12]+", Municipio: "+x[13]+"-"+x[14]}}</td>
-                                <td >{{x[11]}}</td>
-                                <td >{{x[1]}}</td>
-                                <td md-cell>
-                                    <div class="switch">
-                                        <label>
-                                            <input type="checkbox">
-                                            <span class="lever"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class="progress" ng-show="resultadoLoad !== false">
-                            <div class="indeterminate cyan darken-4"></div>
-                        </div>
+                        <tr style="height: 50px;" ng-repeat="x in vm.dadosId | orderBy : '-[16]'">
+                            <td><b>{{x[16] | number:2}}</b></td>
+                            <td>{{x[5]+" "+x[6]+", N° "+x[7]+", Qd "+x[8]+",Lt "+x[9]+", "+x[10]+", CEP:"+x[12]+",
+                                Municipio: "+x[13]+"-"+x[14]}}
+                            </td>
+                            <td>{{x[11]}}</td>
+                            <td>{{x[1]}}</td>
+                            <td md-cell>
+                                <div class="switch">
+                                    <label>
+                                        <input type="checkbox" ng-checked="vm.idEnderecoFavorito == x[0]"
+                                               ng-disabled="vm.idEnderecoFavorito != x[0] && vm.idEnderecoFavorito != 0"
+                                               value="{{x[0]}}" ng-click="vm.onChangeEndereco(x)">
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="progress" ng-show="resultadoLoad !== false">
+                        <div class="indeterminate cyan darken-4"></div>
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
+</div>
 
 
 <!--Telefones-->
 
-    <div class="row ">
-        <div class="col s10 offset-s1 ">
-            <div class="card sticky-action">
-                <md-toolbar class="md-table-toolbar ">
-                    <div class="md-toolbar-tools teal darken-3 ">
-                        <span><b>Telefones</b> </span>
+<div class="row ">
+    <div class="col s10 offset-s1 ">
+        <div class="card sticky-action">
+            <md-toolbar class="md-table-toolbar ">
+                <div class="md-toolbar-tools teal darken-3 ">
+                    <span><b>Telefones</b> </span>
 
-                    </div>
-                </md-toolbar>
-                <div class="row">
-                    <div class="col s12">
-                        <table class="highlight" md-table style="padding: 500px" >
-                            <thead md-head >
-                            <tr md-row  style="height: 50px">
-                                <th md-column><span>DDD</span></th>
-                                <th md-column><span>Numero</span></th>
-                                <th md-column>Favorito</th>
-                            </tr>
-                            </thead>
-
-                            <tbody md-body>
-                            <tr  style="height: 50px;" ng-repeat="x in vm.listaDadosPj | orderBy : '[0]'">
-                                <td>{{x[20].substring(0,2)}}</td>
-                                <td>{{x[20].substring(2,11)}}</td>
-                                <td md-cell>
-                                    <div class="switch">
-                                        <label>
-                                            <input type="checkbox">
-                                            <span class="lever"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class="progress" ng-show="resultadoLoad !== false">
-                            <div class="indeterminate"></div>
-                        </div>
-
-                    </div>
                 </div>
+            </md-toolbar>
+            <div class="row">
+                <div class="col s12">
+                    <table class="highlight" md-table style="padding: 500px">
+                        <thead md-head>
+                        <tr md-row style="height: 50px">
+                            <th md-column><span>DDD</span></th>
+                            <th md-column><span>Numero</span></th>
+                            <th md-column>Favorito</th>
+                        </tr>
+                        </thead>
 
+                        <tbody md-body>
+                        <tr style="height: 50px;" ng-repeat="x in vm.telefones | orderBy : '[0]'">
+                            <td>{{x.substring(0,2)}}</td>
+                            <td>{{x.substring(2,11)}}</td>
+                            <td md-cell>
+                                <div class="switch">
+                                    <label>
+                                        <input type="checkbox" ng-checked="vm.telFavorito == x"
+                                               ng-click="vm.onChangeTelefone(x)">
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="progress" ng-show="resultadoLoad !== false">
+                        <div class="indeterminate"></div>
+                    </div>
+
+                </div>
             </div>
+
         </div>
     </div>
+</div>
 <!--Fim Conteudo-->

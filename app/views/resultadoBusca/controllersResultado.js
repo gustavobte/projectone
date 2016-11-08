@@ -1,5 +1,5 @@
 //-----------PESSOA SOFIA--vm.dadosNome = JSON.parse(dados)["values"];----------------------
-controladores.controller('ResultSofiaCtrl', function ($scope, $location, $rootScope, ResultadosSofiaService, ResultadoService) {
+controladores.controller('ResultSofiaCtrl', function ($scope, $location, $rootScope, ResultadosSofiaService) {
 
     var vm = this;
     vm.dadosId = '';

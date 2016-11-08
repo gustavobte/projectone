@@ -35,7 +35,6 @@ controladores.controller('EndSofiaCtrl', function ($rootScope, $location, $scope
             $scope.loading = true;
             EnderecosSofiaService.listarEnderecoNome(nomePessoa).then(
                 function (dados) {
-
                     vm.dadosNome = '';
                     vm.dadosId = '';
                     if (dados != "") {
