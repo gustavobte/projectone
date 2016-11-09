@@ -49,7 +49,7 @@ servicos.factory('HomeSofiaService', function ($q, SofiaService) {
     };
     var mediaOrigem = function () {
         var q = $q.defer();
-        var query = "SELECT * FROM " + ontologiaMedia + " ";
+        var query = "SELECT * FROM " + ontologiaMedia + " ORDER BY media DESC";
         SofiaService.listar(query, ontologia).then(
             function (dados) {
                 q.resolve(dados);
