@@ -1,8 +1,8 @@
 // ============= SERVICE SOFIA =============
 app.factory('SofiaService', function ($q, $rootScope) {
     $rootScope.logado = true;
-    var token = "abde472c4c674f89a934941da604c9c3";
-    var instancePK = "indragyn:sefaz";
+    var token = "53ac30fcf8dc4d63b1e5b3eeaf37c153";
+    var instancePK = "ec_eck:ec_eck";
 
     // var token = "abde472c4c674f89a934941da604c9c3";
     // var instancePK = "indragyn:sefaz";
