@@ -7,7 +7,7 @@ var app = angular.module('myApp.buscaLote', ['ngRoute','ngMaterial','ui.material
     app.config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/buscaLote', {
             templateUrl: 'views/buscaLote/buscaLote.html',
-            controller:  'buscaLoteCtrl',
+            controller:  'BuscaLoteCtrl',
             controllerAs: 'vm'
         });
     }])

@@ -18,17 +18,21 @@
 
             <div class="row">
                 <form action="">
-                    <div class="input-field col s4 ">
-                        <input id="cpf" ui-mask="999.999.999-99" placeholder="000.000.000-00" type="text"
-                               class="validate" ng-model="idPessoa" ng-disabled="nomePessoa > ''">
-                        <label class="active" for="cpf">Cpf</label>
+                    <div class="input-field col s12 ">
+                        <!--<input id="cpf" ui-mask="999.999.999-99" placeholder="000.000.000-00" type="text"-->
+                               <!--class="validate" ng-model="idPessoa" ng-disabled="nomePessoa > ''">-->
 
-                    </div>
 
-                    <div class="input-field col s8 ">
-                        <input id="nome" type="text" class="validate" ng-model="nomePessoa"
-                               ng-disabled="idPessoa > '' ">
-                        <label class="active" for="Nome">Nome</label>
+                        <form ng-controller="BuscaLoteCtrl" >
+                            <input ui-mask="999.999.999-99" placeholder="000.000.000-00" type="text" ng-model='table.cpf' >
+                            <input ng-repeat="field in table.fields track by $index" type='text' ng-model='table.fields[$index]'  ui-mask="999.999.999-99" placeholder="000.000.000-00">
+                            <div>
+                                <button type='submit'>Submit</button>
+                                <button ng-click="addFormField()">Add</button>
+                            </div>
+                            <pre>{{ table }}</pre>
+                        </form>
+
                     </div>
                     <div>
                         <p class="center-align">

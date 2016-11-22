@@ -1,7 +1,20 @@
 //-----------ENDERECO SOFIA------------------------
-controladores.controller('buscaLoteCtrl', function ($rootScope, $location, $scope, EnderecosSofiaService, ResultadoService) {
-
+controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $scope, EnderecosSofiaService, ResultadoService) {
     var vm = this;
+
+    $scope.table = { fields: [] };
+
+    $scope.addFormField = function() {
+        $scope.table.fields.push('');
+    }
+
+    $scope.submitTable = function() {
+        console.log($scope.table);
+    }
+
+    vm.setPessoa = function (ec_id) {
+        ResultadoService.setPessoa(ec_id);
+    };
 
     $scope.listarEndereco = function (idPessoa) {
         $scope.loading = true;
