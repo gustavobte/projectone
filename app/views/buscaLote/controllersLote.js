@@ -8,10 +8,11 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
         cpf: []
     };
 
+    vm.cardsPraExportacao = []
+
     $scope.addFormField = function() {
         if (vm.cpf != "") {
             vm.dados.cpf.push("'" + '000' + vm.cpf + "'");
-
             vm.cpf = '';
         }
     }
@@ -31,13 +32,13 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
             function(dados) {
                 if (dados != "") {
                     vm.dadosId = JSON.parse(dados)["values"];
-                    console.log(JSON.parse(dados))
                 }
                 console.log(vm.dadosId)
                 $scope.loading = false;
                 vm.dados = {
                     cpf: []
                 };
+                vm.cardsPraExportacao = []
             },
             function() {
                 $scope.loading = false;
@@ -45,6 +46,20 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
                 vm.dados = {
                     cpf: []
                 };
+                vm.cardsPraExportacao = []
             });
     }
+
+
+    vm.onChangeCard = function(pessoa) {
+        var index = vm.cardsPraExportacao.indexOf(pessoa)
+        if (index == -1) {
+            console.log("acrescentando pessoa na lista para exportação");
+            vm.cardsPraExportacao.push(pessoa)
+        } else {
+            console.log("removendo pessoa na lista para exportação");
+            vm.cardsPraExportacao.splice(index, 1)
+        }
+    };
+
 });
