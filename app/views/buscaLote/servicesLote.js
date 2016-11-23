@@ -1,21 +1,19 @@
 // ============= SERVICE ENDERECO =============
-servicos.factory('EnderecosSofiaService', function ($q, SofiaService) {
+servicos.factory('EnderecosSofiaService', function($q, SofiaService) {
 
     var ontologia = "ec_eck_ontologia_sofia2";
 
-    var listarEcByListaCPF = function () {
-      console.log("listarEcByListaCPF")
-
+    var listarEcByListaCPF = function(cpfs) {
         var q = $q.defer();
 
-        var query = "SELECT * FROM " + ontologia + " limit 1";
+        var query = "SELECT * FROM " + ontologia + " WHERE ec_eck_ontologia_sofia2.ec_numdocumento IN (" + cpfs + ")";
         console.log(query)
 
         SofiaService.like(query, ontologia).then(
-            function (dados) {
+            function(dados) {
                 q.resolve(dados);
             },
-            function (dados) {
+            function(dados) {
                 q.reject(dados);
             });
         return q.promise;
