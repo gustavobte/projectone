@@ -36,7 +36,7 @@
                             <button class="btn waves-effect waves-light btn-large teal darken-3 " ng-click="listarEcByListaCPF()">Pesquisar
                                 <i class="material-icons right">search</i>
                             </button>
-                            <button type="button" ng-csv="vm.dadosId" csv-header="['Coluna1', 'Coluna2', 'Coluna3']" filename="test.xls">Exportar</button>
+
                         </p>
                         <br>
                     </div>
@@ -50,7 +50,21 @@
 
 <div class="row">
 
-    <div class="card col s12 m6 l3 " ng-repeat="x in vm.dadosId">
+    <div class="center-align" ng-show="loading == true">
+        <div class="preloader-wrapper active">
+            <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card col s12 m6 l3 " ng-repeat="x in vm.dadosId" ng-show="loading == false">
             <div class="card-content ">
                 <div class="right-align">
                     <input type="checkbox" id="{{x[0]}}"  />
@@ -66,12 +80,10 @@
                 </p>
             </div>
     </div>
-
-
-
-
-
 </div>
+
+
+
 
 
     <div class="fixed-action-btn toolbar">
@@ -79,11 +91,18 @@
             <i class="large material-icons">file_download</i>
             <md-tooltip md-direction="top">Exportar</md-tooltip>
         </a>
-        <ul><i class="material-icons">file_download</i>
-            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">insert_chart</i></a></li>
-            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">save</i></a></li>
-            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">publish</i></a></li>
-            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">attach_file</i></a></li>
+        <ul ><i class="material-icons">file_download</i>
+            <li type="button" ng-csv="vm.dadosId" csv-header="['Coluna1', 'Coluna2', 'Coluna3']" filename="test.csv" class="waves-effect waves-light ">
+                <md-tooltip md-direction="top">Exportar CSV</md-tooltip>
+                <a ><i class="material-icons">insert_chart</i></a>
+            </li>
+            <li type="button" ng-csv="vm.dadosId" csv-header="['Coluna1', 'Coluna2', 'Coluna3']" filename="test.pdf" class="waves-effect waves-light teal darken-2">
+                <md-tooltip md-direction="top">Exportar PDF</md-tooltip>
+                <a ><i class="material-icons">picture_as_pdf</i></a>
+            </li>
+
+
+
         </ul>
     </div>
 
