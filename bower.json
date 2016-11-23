@@ -17,6 +17,8 @@
     "angular-materialize": "^0.2.1",
     "materialize": "^0.97.8",
     "highcharts": "^5.0.2",
-    "animate.css": "^3.5.2"
+    "animate.css": "^3.5.2",
+    "angular-sanitize": "^1.5.8",
+    "ng-csv": "^0.3.6"
   }
 }
