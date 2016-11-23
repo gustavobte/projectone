@@ -1,15 +1,7 @@
-<!--Inicio Conteudo BOX Busca-->
-
-<!--<div class="fixed-action-btn horizontal">-->
-    <!--<a class="btn-floating btn-large teal darken-1 waves-effect waves-light" href="#/home">-->
-        <!--<i class="material-icons">reply</i>-->
-        <!--<md-tooltip md-direction="top">Voltar</md-tooltip>-->
-    <!--</a>-->
-<!--</div>-->
-
 <div class="row ">
     <div class="col s10 offset-s1 ">
         <div class="card sticky-action ">
+
             <md-toolbar class="md-table-toolbar ">
                 <div class="md-toolbar-tools teal darken-3">
                     <span>Buscar Lote CPF</span>
@@ -25,18 +17,15 @@
                             <button class="btn waves-effect waves-light btn teal darken-3 " ng-click="addFormField()">Add
                                 <i class="material-icons right">add_circle</i>
                             </button>
-
                             <pre>{{vm.dados.cpf}}</pre>
-
                         </form>
-
                     </div>
                     <div>
                         <p class="center-align">
                             <button class="btn waves-effect waves-light btn-large teal darken-3 " ng-click="listarEcByListaCPF()">Pesquisar
                                 <i class="material-icons right">search</i>
                             </button>
-                            <button type="button" ng-csv="vm.dadosId" csv-header="['Coluna1', 'Coluna2', 'Coluna3']" filename="test.xls">Exportar</button>
+                            <button type="button" ng-csv="vm.cardsPraExportacao" csv-header="['Coluna1', 'Coluna2', 'Coluna3']" filename="test.xls">Exportar</button>
                         </p>
                         <br>
                     </div>
@@ -44,48 +33,36 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
 
-    <!--Conteudo Busca Resultado-->
-
+<!--Conteudo Busca Resultado-->
 <div class="row">
 
     <div class="card col s12 m6 l3 " ng-repeat="x in vm.dadosId">
-            <div class="card-content ">
-                <div class="right-align">
-                    <input type="checkbox" id="{{x[0]}}"  />
-                    <label for="{{x[0]}}"></label>
-                </div>
-                <span class="card-title activator grey-text text-darken-4">{{x[3].substr(3,3)+"."+x[3].substr(6,3)+"."+x[3].substr(9,3)+"-"+x[3].substr(12,13)}}</span>
-                <p>
-                    {{x[4]}} <br>
-                    {{x[5]}} {{x[6]}}, {{x[10]}} <br>
-                    {{x[11]}}<br>
-                    {{x[13]}}-{{x[14]}}<br>
-                    {{x[12]}}
-                </p>
+        <div class="card-content ">
+            <div class="right-align">
+                <input type="checkbox" id="{{x[0]}}" ng-click="vm.onChangeCard(x)" />
+                <label for="{{x[0]}}"></label>
             </div>
+            <span class="card-title activator grey-text text-darken-4">{{x[3].substr(3,3)+"."+x[3].substr(6,3)+"."+x[3].substr(9,3)+"-"+x[3].substr(12,13)}}</span>
+            <p>
+                {{x[4]}} <br> {{x[5]}} {{x[6]}}, {{x[10]}} <br> {{x[11]}}
+                <br> {{x[13]}}-{{x[14]}}
+                <br> {{x[12]}}
+            </p>
+        </div>
     </div>
-
-
-
-
-
 </div>
 
-
-    <div class="fixed-action-btn toolbar">
-        <a class="btn-floating btn-large teal darken-1">
-            <i class="large material-icons">file_download</i>
-            <md-tooltip md-direction="top">Exportar</md-tooltip>
-        </a>
-        <ul><i class="material-icons">file_download</i>
-            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">insert_chart</i></a></li>
-            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">save</i></a></li>
-            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">publish</i></a></li>
-            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">attach_file</i></a></li>
-        </ul>
-    </div>
-
-
-
+<div class="fixed-action-btn toolbar">
+    <a class="btn-floating btn-large teal darken-1">
+        <i class="large material-icons">file_download</i>
+        <md-tooltip md-direction="top">Exportar</md-tooltip>
+    </a>
+    <ul><i class="material-icons">file_download</i>
+        <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">insert_chart</i></a></li>
+        <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">save</i></a></li>
+        <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">publish</i></a></li>
+        <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">attach_file</i></a></li>
+    </ul>
+</div>
