@@ -1,38 +1,46 @@
 //-----------ENDERECO SOFIA------------------------
-controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $scope, EnderecosSofiaService, ResultadoService) {
+controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope, EnderecosSofiaService, ResultadoService) {
     var vm = this;
 
-    $scope.table = { fields: [] };
+    vm.cpf = '';
+
+    vm.dados = {
+        cpf: []
+    };
+
 
     $scope.addFormField = function() {
-        $scope.table.fields.push('');
+        if (vm.cpf != "") {
+            vm.dados.cpf.push(vm.cpf);
+            vm.cpf = '';
+        }
     }
 
     $scope.submitTable = function() {
         console.log($scope.table);
     }
 
-    vm.setPessoa = function (ec_id) {
+    vm.setPessoa = function(ec_id) {
         ResultadoService.setPessoa(ec_id);
     };
 
-    $scope.listarEndereco = function (idPessoa) {
+    $scope.listarEcByListaCPF = function() {
         $scope.loading = true;
 
-        if (idPessoa !== null && idPessoa !== undefined && idPessoa !== '') {
-            EnderecosSofiaService.listarEcByListaCPF().then(
-                function (dados) {
-                  console.log(dados)
-                    vm.dadosId = '';
-                    vm.dadosNome = '';
-                    if (dados != "") {
-                        vm.dadosId = JSON.parse(dados)["values"];
-                    }
-                    $scope.loading = false;
-                },
-                function () {
-                    console.log("Erro ao localizar pessoa");
-                });
-        }
+        // if (idPessoa !== null && idPessoa !== undefined && idPessoa !== '') {
+        EnderecosSofiaService.listarEcByListaCPF(vm.dados.cpf).then(
+            function(dados) {
+                console.log(dados)
+                vm.dadosId = '';
+                vm.dadosNome = '';
+                if (dados != "") {
+                    vm.dadosId = JSON.parse(dados)["values"];
+                }
+                $scope.loading = false;
+            },
+            function() {
+                console.log("Erro ao localizar pessoa");
+            });
+        // }
     }
 });
