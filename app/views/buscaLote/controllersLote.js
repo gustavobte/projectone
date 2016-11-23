@@ -8,10 +8,10 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
         cpf: []
     };
 
-
     $scope.addFormField = function() {
         if (vm.cpf != "") {
-            vm.dados.cpf.push(vm.cpf);
+            vm.dados.cpf.push("'"+'000'+vm.cpf+"'");
+
             vm.cpf = '';
         }
     }
@@ -28,19 +28,20 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
         $scope.loading = true;
 
         // if (idPessoa !== null && idPessoa !== undefined && idPessoa !== '') {
-        EnderecosSofiaService.listarEcByListaCPF(vm.dados.cpf).then(
-            function(dados) {
-                console.log(dados)
-                vm.dadosId = '';
-                vm.dadosNome = '';
-                if (dados != "") {
-                    vm.dadosId = JSON.parse(dados)["values"];
-                }
-                $scope.loading = false;
-            },
-            function() {
-                console.log("Erro ao localizar pessoa");
-            });
+
+            EnderecosSofiaService.listarEcByListaCPF(vm.dados.cpf).then(
+                function(dados) {
+                    vm.dadosId = '';
+                    vm.dadosNome = '';
+                    if (dados != "") {
+                        vm.dadosId = JSON.parse(dados)["values"];
+                        console.log(dados);
+                    }
+                    $scope.loading = false;
+                },
+                function() {
+                    console.log("Erro ao localizar pessoa");
+                });
         // }
     }
 });

@@ -1,8 +1,8 @@
 // ============= SERVICE SOFIA =============
 app.factory('SofiaService', function ($q, $rootScope) {
     $rootScope.logado = true;
-    var token = "53ac30fcf8dc4d63b1e5b3eeaf37c153";
-    var instancePK = "ec_eck:ec_eck";
+    var token = "abde472c4c674f89a934941da604c9c3";
+    var instancePK = "indragyn:sefaz";
 
     // var token = "abde472c4c674f89a934941da604c9c3";
     // var instancePK = "indragyn:sefaz";
@@ -140,6 +140,7 @@ app.factory('SofiaService', function ($q, $rootScope) {
         var dados = [];
         sofia2.sessionKey = sessionKey;
 
+        console.log("listarQueryLike")
         conectado().then(function () {
             sofia2.queryWithQueryType(query, ontologia, "SQLLIKE", null, function (mensajeSSAP) {
                 if (mensajeSSAP != null && mensajeSSAP.body.data != null && mensajeSSAP.body.ok == true) {
