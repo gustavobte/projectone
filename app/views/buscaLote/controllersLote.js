@@ -31,6 +31,8 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
             function(dados) {
                 if (dados != "") {
                     vm.dadosId = JSON.parse(dados)["values"];
+                    console.log(JSON.parse(dados))
+                    debugger
                 }
                 console.log(vm.dadosId)
                 $scope.loading = false;

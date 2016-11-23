@@ -50,86 +50,29 @@
 
 <div class="row">
 
-    <div class="col s12 m6 l3">
-        <div class="card ">
+    <div class="card col s12 m6 l3 " ng-repeat="x in vm.dadosId">
             <div class="card-content ">
                 <div class="right-align">
-                    <input type="checkbox" id="test6"  />
-                    <label for="test6"></label>
+                    <input type="checkbox" id="{{x[0]}}"  />
+                    <label for="{{x[0]}}"></label>
                 </div>
-                <span class="card-title activator grey-text text-darken-4">  034.117.201-40</span>
-
+                <span class="card-title activator grey-text text-darken-4">{{x[3].substr(3,3)+"."+x[3].substr(6,3)+"."+x[3].substr(9,3)+"-"+x[3].substr(12,13)}}</span>
                 <p>
-                    GUSTAVO ROSA PAIVA SILVA <br>
-                    AV DAS CARAIBAS QD 43 LT 19 <br>
-                    JD IMPERIAL II<br>
-                    TRINDADE-GO<br>
-                    75380-000
-                </p>
-
-            </div>
-        </div>
-        </div>
-
-    <div class="col s12 m6 l3">
-
-        <div class="card">
-            <div class="card-content">
-                <div class="right-align">
-                    <input type="checkbox" id="test67"  />
-                    <label for="test67"></label>
-                </div>
-                <span class="card-title activator grey-text text-darken-4">  034.117.201-40</span>
-                <p>
-                    GUSTAVO ROSA PAIVA SILVA <br>
-                    AV DAS CARAIBAS QD 43 LT 19 <br>
-                    JD IMPERIAL II<br>
-                    TRINDADE-GO<br>
-                    75380-000
+                    {{x[4]}} <br>
+                    {{x[5]}} {{x[6]}}, {{x[10]}} <br>
+                    {{x[11]}}<br>
+                    {{x[13]}}-{{x[14]}}<br>
+                    {{x[12]}}
                 </p>
             </div>
-        </div>
-
     </div>
 
 
-    <div class="col s12 m6 l3">
-        <div class="card">
-            <div class="card-content">
-                <div class="right-align">
-                    <input type="checkbox" id="test60"  />
-                    <label for="test60"></label>
-                </div>
-                <span class="card-title activator grey-text text-darken-4">  034.117.201-40</span>
-                <p>
-                    GUSTAVO ROSA PAIVA SILVA <br>
-                    AV DAS CARAIBAS QD 43 LT 19 <br>
-                    JD IMPERIAL II<br>
-                    TRINDADE-GO<br>
-                    75380-000
-                </p>
-            </div>
-        </div>
-    </div>
 
-    <div class="col s12 m6 l3">
-        <div class="card">
-            <div class="card-content">
-                <div class="right-align">
-                    <input type="checkbox" id="test69"  />
-                    <label for="test69"></label>
-                </div>
-                <span class="card-title activator grey-text text-darken-4">  034.117.201-40</span>
-                <p>
-                    GUSTAVO ROSA PAIVA SILVA <br>
-                    AV DAS CARAIBAS QD 43 LT 19 <br>
-                    JD IMPERIAL II<br>
-                    TRINDADE-GO<br>
-                    75380-000
-                </p>
-            </div>
-        </div>
-    </div>
+
+
+</div>
+
 
     <div class="fixed-action-btn toolbar">
         <a class="btn-floating btn-large teal darken-1">
@@ -145,4 +88,4 @@
     </div>
 
 
-</div>
+
