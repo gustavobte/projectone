@@ -32,13 +32,18 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
                 if (dados != "") {
                     vm.dadosId = JSON.parse(dados)["values"];
                 }
+                console.log(vm.dadosId)
                 $scope.loading = false;
-                vm.dados.cpf = '';
+                vm.dados = {
+                    cpf: []
+                };
             },
             function() {
                 $scope.loading = false;
                 console.log("Erro ao localizar pessoa");
-                vm.dados.cpf = '';
+                vm.dados = {
+                    cpf: []
+                };
             });
     }
 });

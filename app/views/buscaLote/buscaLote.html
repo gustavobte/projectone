@@ -36,6 +36,7 @@
                             <button class="btn waves-effect waves-light btn-large teal darken-3 " ng-click="listarEcByListaCPF()">Pesquisar
                                 <i class="material-icons right">search</i>
                             </button>
+                            <button type="button" ng-csv="vm.dadosId" csv-header="['Coluna1', 'Coluna2', 'Coluna3']" filename="test.xls">Exportar</button>
                         </p>
                         <br>
                     </div>
@@ -145,5 +146,3 @@
 
 
 </div>
-
-
