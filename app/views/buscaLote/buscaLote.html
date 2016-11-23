@@ -1,11 +1,11 @@
 <!--Inicio Conteudo BOX Busca-->
 
-<div class="fixed-action-btn horizontal">
-    <a class="btn-floating btn-large teal darken-1 waves-effect waves-light" href="#/home">
-        <i class="material-icons">reply</i>
-        <md-tooltip md-direction="top">Voltar</md-tooltip>
-    </a>
-</div>
+<!--<div class="fixed-action-btn horizontal">-->
+    <!--<a class="btn-floating btn-large teal darken-1 waves-effect waves-light" href="#/home">-->
+        <!--<i class="material-icons">reply</i>-->
+        <!--<md-tooltip md-direction="top">Voltar</md-tooltip>-->
+    <!--</a>-->
+<!--</div>-->
 
 <div class="row ">
     <div class="col s10 offset-s1 ">
@@ -21,9 +21,13 @@
                     <div class="input-field col s12 ">
                         <form ng-controller="BuscaLoteCtrl">
                             <input type='text' ui-mask="999.999.999-99" placeholder="000.000.000-00" ng-model="vm.cpf">
-                            <button ng-click="addFormField()">Add</button>
 
-                            <pre>{{ vm.dados }}</pre>
+                            <button class="btn waves-effect waves-light btn teal darken-3 " ng-click="addFormField()">Add
+                                <i class="material-icons right">add_circle</i>
+                            </button>
+
+                            <pre>{{vm.dados.cpf}}</pre>
+
                         </form>
 
                     </div>
@@ -39,69 +43,107 @@
             </div>
         </div>
     </div>
+    </div>
 
     <!--Conteudo Busca Resultado-->
-    <div class="row ">
-        <div class="col s10 offset-s1 ">
-            <div class="card sticky-action ">
-                <md-toolbar class="md-table-toolbar ">
-                    <div class="md-toolbar-tools teal darken-3">
-                        <span>Resultado Pesquisa </span>
-                    </div>
-                </md-toolbar>
-                <div class="row">
-                    <div class="col s12">
-                        <table class="highlight" md-table style="padding: 500px">
-                            <thead md-head>
-                                <tr md-row style="height: 50px">
-                                    <th md-column><span>CPF</span></th>
-                                    <th md-column><span>Nome</span></th>
-                                    <th md-column><span>Data de Nascimento</span></th>
-                                    <th md-column>#</th>
-                                </tr>
-                            </thead>
 
+<div class="row">
 
-                            <tr style="height: 50px;" ng-repeat="x in vm.dadosId" ng-show=" loading == false">
-                                <td>
-                                    {{x[1].substr(3,3)+"."+x[1].substr(6,3)+"."+x[1].substr(9,3)+"-"+x[1].substr(12,13)}}
-                                </td>
-                                <td>{{x[2]}}</td>
-                                <td>{{x[3]}}</td>
-                                <td>
-                                    <a ng-click="vm.setPessoa(x[1])" href="#/resultadoBusca" class="button button-full button-positive">
-                                        <img src="img/file.png" alt=""> Ver dados</a>
-                                </td>
-                            </tr>
-
-                            <tr style="height: 50px;" ng-repeat="x in vm.dadosNome" ng-show=" loading == false">
-                                <td>
-                                    {{x[1].substr(3,3)+"."+x[1].substr(6,3)+"."+x[1].substr(9,3)+"-"+x[1].substr(12,13)}}
-                                </td>
-                                <td>{{x[2]}}</td>
-                                <td>{{x[3]}}</td>
-
-                                <td>
-                                    <a ng-click="vm.setPessoa(x[1])" href="#/resultadoBusca" class="button button-full button-positive">
-                                        <img src="img/file.png" alt="">Ver dados</a>
-                                </td>
-                            </tr>
-                        </table>
-
-                        <br>
-                        <div class="center-align animate shake" style="height: 50px;" ng-show="(vm.dadosId.length == 0 && vm.dadosNome.length == 0) && loading == false">
-                            <div class="chip ">
-                                <img src="img/cpf.svg" alt="Contact Person"> Dados nao encontrados
-                            </div>
-                        </div>
-
-                        <div class="progress" ng-show="loading == true">
-                            <div class="indeterminate cyan darken-4"></div>
-                        </div>
-                    </div>
+    <div class="col s12 m6 l3">
+        <div class="card ">
+            <div class="card-content ">
+                <div class="right-align">
+                    <input type="checkbox" id="test6"  />
+                    <label for="test6"></label>
                 </div>
+                <span class="card-title activator grey-text text-darken-4">  034.117.201-40</span>
+
+                <p>
+                    GUSTAVO ROSA PAIVA SILVA <br>
+                    AV DAS CARAIBAS QD 43 LT 19 <br>
+                    JD IMPERIAL II<br>
+                    TRINDADE-GO<br>
+                    75380-000
+                </p>
 
             </div>
         </div>
+        </div>
+
+    <div class="col s12 m6 l3">
+
+        <div class="card">
+            <div class="card-content">
+                <div class="right-align">
+                    <input type="checkbox" id="test67"  />
+                    <label for="test67"></label>
+                </div>
+                <span class="card-title activator grey-text text-darken-4">  034.117.201-40</span>
+                <p>
+                    GUSTAVO ROSA PAIVA SILVA <br>
+                    AV DAS CARAIBAS QD 43 LT 19 <br>
+                    JD IMPERIAL II<br>
+                    TRINDADE-GO<br>
+                    75380-000
+                </p>
+            </div>
+        </div>
+
     </div>
+
+
+    <div class="col s12 m6 l3">
+        <div class="card">
+            <div class="card-content">
+                <div class="right-align">
+                    <input type="checkbox" id="test60"  />
+                    <label for="test60"></label>
+                </div>
+                <span class="card-title activator grey-text text-darken-4">  034.117.201-40</span>
+                <p>
+                    GUSTAVO ROSA PAIVA SILVA <br>
+                    AV DAS CARAIBAS QD 43 LT 19 <br>
+                    JD IMPERIAL II<br>
+                    TRINDADE-GO<br>
+                    75380-000
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s12 m6 l3">
+        <div class="card">
+            <div class="card-content">
+                <div class="right-align">
+                    <input type="checkbox" id="test69"  />
+                    <label for="test69"></label>
+                </div>
+                <span class="card-title activator grey-text text-darken-4">  034.117.201-40</span>
+                <p>
+                    GUSTAVO ROSA PAIVA SILVA <br>
+                    AV DAS CARAIBAS QD 43 LT 19 <br>
+                    JD IMPERIAL II<br>
+                    TRINDADE-GO<br>
+                    75380-000
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed-action-btn toolbar">
+        <a class="btn-floating btn-large teal darken-1">
+            <i class="large material-icons">file_download</i>
+            <md-tooltip md-direction="top">Exportar</md-tooltip>
+        </a>
+        <ul><i class="material-icons">file_download</i>
+            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">insert_chart</i></a></li>
+            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">save</i></a></li>
+            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">publish</i></a></li>
+            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">attach_file</i></a></li>
+        </ul>
+    </div>
+
+
 </div>
+
+

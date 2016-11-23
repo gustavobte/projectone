@@ -11,6 +11,7 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
     $scope.addFormField = function() {
         if (vm.cpf != "") {
             vm.dados.cpf.push("'" + '000' + vm.cpf + "'");
+
             vm.cpf = '';
         }
     }
