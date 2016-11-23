@@ -10,7 +10,7 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
 
     $scope.addFormField = function() {
         if (vm.cpf != "") {
-            vm.dados.cpf.push(vm.cpf);
+            vm.dados.cpf.push("'"+'000'+vm.cpf+"'");
             vm.cpf = '';
         }
     }
@@ -29,7 +29,6 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
         // if (idPessoa !== null && idPessoa !== undefined && idPessoa !== '') {
             EnderecosSofiaService.listarEcByListaCPF(vm.dados.cpf).then(
                 function(dados) {
-                    console.log(dados)
                     vm.dadosId = '';
                     vm.dadosNome = '';
                     if (dados != "") {
