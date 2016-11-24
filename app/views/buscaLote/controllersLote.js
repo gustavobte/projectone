@@ -11,13 +11,6 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
     vm.delimiter = ',';
     vm.cardsPraExportacao = []
 
-    $scope.addFormField = function() {
-        if (vm.cpf != "") {
-            vm.dados.cpf.push("'" + '000' + vm.cpf + "'");
-            vm.cpf = '';
-        }
-    }
-
     $scope.submitTable = function() {
         console.log($scope.table);
     }
@@ -29,20 +22,22 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
     $scope.listarEcByListaCPF = function() {
         $scope.loading = true;
 
-        vm.dados = {cpf: []};
+        vm.dados = {
+            cpf: []
+        };
 
         var cpf = vm.cpf.replace(/ /g, '').split(vm.delimiter)
 
         for (var i = 0; i < cpf.length; i++) {
-            vm.dados.cpf.push("'000" + cpf[i] + "'");
-
+            var zeros = cpf[i].length == 11 ? '000' : ''
+            vm.dados.cpf.push("'" + zeros + cpf[i] + "'");
         }
 
         EnderecosSofiaService.listarEcByListaCPF(vm.dados.cpf).then(
             function(dados) {
                 if (dados != "") {
                     vm.dados = vm.formataPessoa(JSON.parse(dados)["values"]);
-                }else{
+                } else {
                     vm.dados = "";
                 }
                 $scope.loading = false
@@ -83,6 +78,26 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
 
         if (index == -1) {
             console.log("acrescentando pessoa na lista para exportação");
+            
+            if (pessoa.nome == "") {
+                delete pessoa.nome
+            }
+            if (pessoa.logradouro == "") {
+                delete pessoa.logradouro
+            }
+            if (pessoa.quadraLote == "") {
+                delete pessoa.quadraLote
+            }
+            if (pessoa.bairro == "") {
+                delete pessoa.bairro
+            }
+            if (pessoa.estado == "") {
+                delete pessoa.estado
+            }
+            if (pessoa.cep == "") {
+                delete pessoa.cep
+            }
+
             vm.cardsPraExportacao.push(pessoa);
         } else {
             console.log("removendo pessoa na lista para exportação");

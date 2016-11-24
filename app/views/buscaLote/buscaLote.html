@@ -3,7 +3,7 @@
         <div class="card sticky-action ">
             <md-toolbar class="md-table-toolbar ">
                 <div class="md-toolbar-tools teal darken-3">
-                    <span>Buscar Lote CPF</span>
+                    <span>Buscar Lote CPF/CNPJ</span>
                 </div>
             </md-toolbar>
             <div class="row">
@@ -12,16 +12,16 @@
                         <form ng-controller="BuscaLoteCtrl">
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <textarea id="textarea1" type='text' class="materialize-textarea" ng-model="vm.cpf"/>
+                                    <textarea id="textarea1" type='text' class="materialize-textarea" ng-model="vm.cpf" />
                                     <label for="textarea1">Cpf/Cnpj</label>
 
                                     <div class="input-field col s2">
                                         <select id="delimiter" type='text' ng-model="vm.delimiter">
                                             <option value=",">Virgula ( , )</option>
                                             <option value=".">Ponto ( . )</option>
-                                            <option value="|">Pipe( | )</option>
+                                            <option value="|">Pipe ( | )</option>
                                         </select>
-                                        <label for="delimiter" >Delimitador</label>
+                                        <label for="delimiter">Delimitador</label>
                                     </div>
 
                                 </div>
@@ -42,12 +42,13 @@
                                     <label for="{{pessoa}}"></label>
                                 </span>
 
-                                <a class="collection-item">{{pessoa.nome}},
-                                    {{pessoa.logradouro}},
-                                    {{pessoa.quadraLote}},
-                                    {{pessoa.bairro}},
-                                    {{pessoa.estado}},
-                                    {{pessoa.cep}}
+                                <a class="collection-item">
+                                    <span ng-show="pessoa.nome != '' && pessoa.nome != null">{{pessoa.nome}},</span>
+                                    <span ng-show="pessoa.logradouro != '' && pessoa.logradouro != null">{{pessoa.logradouro}},</span>
+                                    <span ng-show="pessoa.quadraLote != '' && pessoa.quadraLote != null">{{pessoa.quadraLote}},</span>
+                                    <span ng-show="pessoa.bairro != '' && pessoa.bairro != null">{{pessoa.bairro}},</span>
+                                    <span ng-show="pessoa.estado != '' && pessoa.estado != null">{{pessoa.estado}},</span>
+                                    <span ng-show="pessoa.cep != '' && pessoa.cep != null">{{pessoa.cep}}</span>
                                 </a>
                             </div>
 
@@ -94,10 +95,8 @@
     </ul>
 </div>
 
-<div class="center-align animate shake" style="height: 50px;"
-     ng-show="(vm.dados == 0 ) && loading == false">
+<div class="center-align animate shake" style="height: 50px;" ng-show="(vm.dados == 0 ) && loading == false">
     <div class="chip ">
-        <img src="img/cpf.svg" alt="Contact Person">
-        Dados nao encontrados
+        <img src="img/cpf.svg" alt="Contact Person"> Dados nao encontrados
     </div>
 </div>
