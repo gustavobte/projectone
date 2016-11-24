@@ -1,5 +1,5 @@
 //-----------ENDERECO SOFIA------------------------
-controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $scope, EnderecosSofiaService, ResultadoService) {
+controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $scope, LoteSofiaService, ResultadoService) {
 
     $(document).ready(function () {
         $('select').material_select();
@@ -34,7 +34,7 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $scop
             vm.dados.cpf.push("'" + zeros + cpf[i] + "'");
         }
 
-        EnderecosSofiaService.listarEcByListaCPF(vm.dados.cpf).then(
+        LoteSofiaService.listarEcByListaCPF(vm.dados.cpf).then(
             function (dados) {
                 if (dados != "") {
                     vm.dados = vm.formataPessoa(JSON.parse(dados)["values"]);

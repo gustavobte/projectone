@@ -5,7 +5,7 @@ servicos.factory('ResultadosSofiaService', function ($q, SofiaService, Resultado
     var ontologiaFavorito = "ec_eck_favoritos";
 
 
-    var listarResultados = function () {
+    var listarEndereco = function () {
         var q = $q.defer();
         var query = "SELECT * FROM " + ontologia + " WHERE ec_tipopessoa = 'F' AND ec_numdocumento ='" + ResultadoService.getPessoa() + "'";
         SofiaService.listar(query, ontologia).then(

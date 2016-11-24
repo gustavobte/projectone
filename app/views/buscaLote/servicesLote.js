@@ -1,5 +1,5 @@
 // ============= SERVICE ENDERECO =============
-servicos.factory('EnderecosSofiaService', function($q, SofiaService) {
+servicos.factory('LoteSofiaService', function($q, SofiaService) {
     var ontologia = "ec_eck_max_mfinal_by_numdocumento";
 
     var listarEcByListaCPF = function(cpfs) {
