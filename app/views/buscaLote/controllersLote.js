@@ -1,48 +1,45 @@
 //-----------ENDERECO SOFIA------------------------
-controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $scope, EnderecosSofiaService, ResultadoService) {
+controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope, EnderecosSofiaService, ResultadoService) {
     var vm = this;
 
     vm.cpf = '';
-
-    vm.dados = {
-        cpf: []
-    };
-
+    vm.delimiter = ',';
     vm.cardsPraExportacao = []
 
-
-    $scope.addFormField = function () {
+    $scope.addFormField = function() {
         if (vm.cpf != "") {
             vm.dados.cpf.push("'" + '000' + vm.cpf + "'");
             vm.cpf = '';
         }
     }
 
-    $scope.submitTable = function () {
+    $scope.submitTable = function() {
         console.log($scope.table);
     }
 
-    vm.setPessoa = function (ec_id) {
+    vm.setPessoa = function(ec_id) {
         ResultadoService.setPessoa(ec_id);
     };
 
-    $scope.listarEcByListaCPF = function () {
+    $scope.listarEcByListaCPF = function() {
         $scope.loading = true;
 
-        var cpf = vm.cpf.replace(/ /g,'').split(",")
-        for (var i = 0; i < vm.cpf.length; i++) {
+        vm.dados = {cpf: []};
+
+        var cpf = vm.cpf.replace(/ /g, '').split(vm.delimiter)
+        for (var i = 0; i < cpf.length; i++) {
             vm.dados.cpf.push("'000" + cpf[i] + "'");
         }
 
         EnderecosSofiaService.listarEcByListaCPF(vm.dados.cpf).then(
-            function (dados) {
+            function(dados) {
                 if (dados != "") {
-                    vm.dados = JSON.parse(dados)["values"];
+                    vm.dados = vm.formataPessoa(JSON.parse(dados)["values"]);
                 }
                 $scope.loading = false
                 vm.cardsPraExportacao = []
             },
-            function () {
+            function() {
                 $scope.loading = false;
                 console.log("Erro ao localizar pessoa");
                 vm.dados = {
@@ -52,23 +49,30 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $scop
             });
     }
 
+    vm.formataPessoa = function(dados) {
+        var listaPessoas = [];
+        for (var i = 0; i < dados.length; i++) {
+            var pessoa = {
+                "nome": dados[i][4],
+                "logradouro": dados[i][5] + " " + dados[i][6],
+                "quadraLote": dados[i][10],
+                "bairro": dados[i][11],
+                "estado": dados[i][13] + "-" + dados[i][14],
+                "cep": dados[i][12]
+            };
+            listaPessoas.push(pessoa);
+        }
 
-    vm.onChangeCard = function (pessoa) {
+        return listaPessoas;
+    }
 
-        vm.enderecoCSV = {
-            "nome": pessoa[0],
-            "logradouro": pessoa[1]+" "+pessoa[2],
-            "quadraLote": pessoa[3],
-            "bairro": pessoa[4],
-            "estado": pessoa[5]+"-"+pessoa[6],
-            "cep": pessoa[7]
-        };
+    vm.onChangeBox = function(pessoa) {
 
-        var index = vm.cardsPraExportacao.indexOf(vm.enderecoCSV);
+        var index = vm.cardsPraExportacao.indexOf(pessoa);
 
         if (index == -1) {
             console.log("acrescentando pessoa na lista para exportação");
-            vm.cardsPraExportacao.push(vm.enderecoCSV)
+            vm.cardsPraExportacao.push(pessoa);
         } else {
             console.log("removendo pessoa na lista para exportação");
             vm.cardsPraExportacao.splice(index, 1)
