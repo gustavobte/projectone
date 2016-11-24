@@ -1,5 +1,10 @@
 //-----------ENDERECO SOFIA------------------------
 controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope, EnderecosSofiaService, ResultadoService) {
+
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+
     var vm = this;
 
     vm.cpf = '';
@@ -27,14 +32,18 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
         vm.dados = {cpf: []};
 
         var cpf = vm.cpf.replace(/ /g, '').split(vm.delimiter)
+
         for (var i = 0; i < cpf.length; i++) {
             vm.dados.cpf.push("'000" + cpf[i] + "'");
+
         }
 
         EnderecosSofiaService.listarEcByListaCPF(vm.dados.cpf).then(
             function(dados) {
                 if (dados != "") {
                     vm.dados = vm.formataPessoa(JSON.parse(dados)["values"]);
+                }else{
+                    vm.dados = "";
                 }
                 $scope.loading = false
                 vm.cardsPraExportacao = []
@@ -42,6 +51,7 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
             function() {
                 $scope.loading = false;
                 console.log("Erro ao localizar pessoa");
+
                 vm.dados = {
                     cpf: []
                 };
@@ -60,6 +70,7 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
                 "estado": dados[i][13] + "-" + dados[i][14],
                 "cep": dados[i][12]
             };
+
             listaPessoas.push(pessoa);
         }
 

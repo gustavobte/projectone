@@ -14,22 +14,43 @@
                                 <div class="input-field col s12">
                                     <textarea id="textarea1" type='text' class="materialize-textarea" ng-model="vm.cpf"/>
                                     <label for="textarea1">Cpf/Cnpj</label>
-                                </div>
-                                <p class="center-align">
 
+                                    <div class="input-field col s2">
+                                        <select id="delimiter" type='text' ng-model="vm.delimiter">
+                                            <option value=",">Virgula ( , )</option>
+                                            <option value=".">Ponto ( . )</option>
+                                            <option value="|">Pipe( | )</option>
+                                        </select>
+                                        <label for="delimiter" >Delimitador</label>
+                                    </div>
+
+                                </div>
+
+                                <p class="center-align">
                                     <button class="btn waves-effect waves-light btn-large teal darken-3 " ng-click="listarEcByListaCPF()">Pesquisar
                                         <i class="material-icons right">search</i>
                                     </button>
                                 </p>
-                                <input id="delimiter" type='text' ng-model="vm.delimiter"/>
-                                <label for="delimiter">Delimitador</label>
+
                             </div>
-                            <ul ng-repeat="pessoa in vm.dados track by $index" ng-bind-html-unsafe="cpf.text">
-                                <li>
+
+
+                            <div class="collection" ng-repeat="pessoa in vm.dados track by $index" ng-bind-html-unsafe="cpf.text" ng-show="loading == false">
+
+                                <span class="badge">
                                     <input type="checkbox" id="{{pessoa}}" ng-click="vm.onChangeBox(pessoa)" />
-                                    <label for="{{pessoa}}"></label> {{pessoa.nome}}, {{pessoa.logradouro}}, {{pessoa.quadraLote}}, {{pessoa.bairro}}, {{pessoa.estado}}, {{pessoa.cep}}
-                                </li>
-                            </ul>
+                                    <label for="{{pessoa}}"></label>
+                                </span>
+
+                                <a class="collection-item">{{pessoa.nome}},
+                                    {{pessoa.logradouro}},
+                                    {{pessoa.quadraLote}},
+                                    {{pessoa.bairro}},
+                                    {{pessoa.estado}},
+                                    {{pessoa.cep}}
+                                </a>
+                            </div>
+
                         </form>
                     </div>
                 </form>
@@ -71,4 +92,12 @@
             <a><i class="material-icons">picture_as_pdf</i></a>
         </li>
     </ul>
+</div>
+
+<div class="center-align animate shake" style="height: 50px;"
+     ng-show="(vm.dados == 0 ) && loading == false">
+    <div class="chip ">
+        <img src="img/cpf.svg" alt="Contact Person">
+        Dados nao encontrados
+    </div>
 </div>
