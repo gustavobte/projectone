@@ -1,21 +1,29 @@
 <div class="row ">
     <div class="col s10 offset-s1 ">
         <div class="card sticky-action ">
-
             <md-toolbar class="md-table-toolbar ">
                 <div class="md-toolbar-tools teal darken-3">
                     <span>Buscar Lote CPF</span>
                 </div>
             </md-toolbar>
-
             <div class="row">
                 <form action="">
                     <div class="input-field col s12 ">
                         <form ng-controller="BuscaLoteCtrl">
-                            <div class="input-field col s12">
-                                <textarea id="textarea1" class="materialize-textarea" ng-model="vm.cpf"></textarea>
-                                <label for="textarea1">Textarea</label>
-                            </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <textarea
+                                                    id="textarea1"
+                                                    type='text'
+                                                    class="materialize-textarea"
+                                                    ng-model="vm.cpf"
+                                                    ui-mask="999.999.999-99"
+                                                    placeholder="000.000.000-00">
+
+                                            </textarea>
+                                            <label for="textarea1">Cpf/Cnpj</label>
+                                        </div>
+                                    </div>
                             <button class="btn waves-effect waves-light btn teal darken-3 " ng-click="vm.addCPF()">Add
                                 <i class="material-icons right">add_circle</i>
                             </button>
@@ -43,7 +51,6 @@
 
 <!--Conteudo Busca Resultado-->
 <div class="row">
-
     <div class="center-align" ng-show="loading == true">
         <div class="preloader-wrapper active">
             <div class="spinner-layer spinner-green-only">
@@ -59,31 +66,14 @@
             </div>
         </div>
     </div>
-
-    <div class="card col s12 m6 l3 " ng-repeat="x in vm.dadosId" ng-show="loading == false">
-        <div class="card-content ">
-            <div class="right-align">
-                <input type="checkbox" id="{{x[0]}}" ng-click="vm.onChangeCard(x)" />
-                <label for="{{x[0]}}"></label>
-            </div>
-            <span class="card-title activator grey-text text-darken-4">{{x[3].substr(3,3)+"."+x[3].substr(6,3)+"."+x[3].substr(9,3)+"-"+x[3].substr(12,13)}}</span>
-            <p>
-                {{x[4]}} <br> {{x[5]}} {{x[6]}}, {{x[10]}} <br> {{x[11]}}
-                <br> {{x[13]}}-{{x[14]}}
-                <br> {{x[12]}}
-            </p>
-        </div>
-    </div>
 </div>
-</div>
-
 <div class="fixed-action-btn toolbar">
     <a class="btn-floating btn-large teal darken-1">
         <i class="large material-icons">file_download</i>
         <md-tooltip md-direction="top">Exportar</md-tooltip>
     </a>
     <ul><i class="material-icons">file_download</i>
-        <li type="button" ng-csv="vm.cardsPraExportacao" csv-header="['Coluna1', 'Coluna2', 'Coluna3']" filename="test.csv" class="waves-effect waves-light ">
+        <li type="button" ng-csv="vm.cardsPraExportacao" csv-header="['Destinatarios']" filename="test.csv" class="waves-effect waves-light ">
             <md-tooltip md-direction="top">Exportar CSV</md-tooltip>
             <a><i class="material-icons">insert_chart</i></a>
         </li>
