@@ -72,33 +72,41 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
         return listaPessoas;
     }
 
+    vm.selecionarTodos = function(){
+      for (var i = 0; i < vm.dados.length; i++) {
+          vm.onChangeBox(vm.dados[i])
+      }
+    }
+
+    vm.removePropVazias = function(pessoa){
+      if (pessoa.nome == "") {
+          delete pessoa.nome
+      }
+      if (pessoa.logradouro == "") {
+          delete pessoa.logradouro
+      }
+      if (pessoa.quadraLote == "") {
+          delete pessoa.quadraLote
+      }
+      if (pessoa.bairro == "") {
+          delete pessoa.bairro
+      }
+      if (pessoa.estado == "") {
+          delete pessoa.estado
+      }
+      if (pessoa.cep == "") {
+          delete pessoa.cep
+      }
+      return pessoa;
+    }
+
     vm.onChangeBox = function(pessoa) {
 
         var index = vm.cardsPraExportacao.indexOf(pessoa);
 
         if (index == -1) {
             console.log("acrescentando pessoa na lista para exportação");
-            
-            if (pessoa.nome == "") {
-                delete pessoa.nome
-            }
-            if (pessoa.logradouro == "") {
-                delete pessoa.logradouro
-            }
-            if (pessoa.quadraLote == "") {
-                delete pessoa.quadraLote
-            }
-            if (pessoa.bairro == "") {
-                delete pessoa.bairro
-            }
-            if (pessoa.estado == "") {
-                delete pessoa.estado
-            }
-            if (pessoa.cep == "") {
-                delete pessoa.cep
-            }
-
-            vm.cardsPraExportacao.push(pessoa);
+            vm.cardsPraExportacao.push(vm.removePropVazias(pessoa));
         } else {
             console.log("removendo pessoa na lista para exportação");
             vm.cardsPraExportacao.splice(index, 1)
