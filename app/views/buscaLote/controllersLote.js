@@ -10,13 +10,6 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
 
     vm.cardsPraExportacao = []
 
-    $scope.addFormField = function() {
-        if (vm.cpf != "") {
-            vm.dados.cpf.push("'" + '000' + vm.cpf + "'");
-            vm.cpf = '';
-        }
-    }
-
     $scope.submitTable = function() {
         console.log($scope.table);
     }
@@ -28,16 +21,17 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
     $scope.listarEcByListaCPF = function() {
         $scope.loading = true;
 
+        var cpf = vm.cpf.replace(/ /g,'').split(",")
+        for (var i = 0; i < vm.cpf.length; i++) {
+            vm.dados.cpf.push("'000" + cpf[i] + "'");
+        }
+
         EnderecosSofiaService.listarEcByListaCPF(vm.dados.cpf).then(
             function(dados) {
                 if (dados != "") {
-                    vm.dadosId = JSON.parse(dados)["values"];
+                    vm.dados = JSON.parse(dados)["values"];
                 }
-                console.log(vm.dadosId)
-                $scope.loading = false;
-                vm.dados = {
-                    cpf: []
-                };
+                $scope.loading = false
                 vm.cardsPraExportacao = []
             },
             function() {
