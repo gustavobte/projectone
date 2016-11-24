@@ -12,7 +12,21 @@
                 <form action="">
                     <div class="input-field col s12 ">
                         <form ng-controller="BuscaLoteCtrl">
-                            <input type='text' ui-mask="999.999.999-99" placeholder="000.000.000-00" ng-model="vm.cpf">
+
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <textarea
+                                                    id="textarea1"
+                                                    type='text'
+                                                    class="materialize-textarea"
+                                                    ng-model="vm.cpf"
+                                                    ui-mask="999.999.999-99"
+                                                    placeholder="000.000.000-00">
+
+                                            </textarea>
+                                            <label for="textarea1">Cpf/Cnpj</label>
+                                        </div>
+                                    </div>
 
                             <button class="btn waves-effect waves-light btn teal darken-3 " ng-click="addFormField()">Add
                                 <i class="material-icons right">add_circle</i>
@@ -54,7 +68,7 @@
     <div class="card col s12 m6 l3 " ng-repeat="x in vm.dadosId" ng-show="loading == false">
             <div class="card-content ">
                 <div class="right-align">
-                    <input type="checkbox" id="{{x[0]}}" ng-click="vm.onChangeCard(x)"  />
+                    <input type="checkbox" id="{{x[0]}}" ng-click="vm.onChangeCard([x[4],x[5],x[6],x[10],x[11],x[13],x[14],x[12]])"  />
                     <label for="{{x[0]}}"></label>
                 </div>
                 <span class="card-title activator grey-text text-darken-4">{{x[3].substr(3,3)+"."+x[3].substr(6,3)+"."+x[3].substr(9,3)+"-"+x[3].substr(12,13)}}</span>
@@ -81,7 +95,7 @@
             <md-tooltip md-direction="top">Exportar</md-tooltip>
         </a>
         <ul ><i class="material-icons">file_download</i>
-            <li type="button" ng-csv="vm.cardsPraExportacao" csv-header="['Coluna1', 'Coluna2', 'Coluna3']" filename="test.csv" class="waves-effect waves-light ">
+            <li type="button" ng-csv="vm.cardsPraExportacao" csv-header="['Destinatarios']" filename="test.csv" class="waves-effect waves-light ">
                 <md-tooltip md-direction="top">Exportar CSV</md-tooltip>
                 <a ><i class="material-icons">insert_chart</i></a>
             </li>
@@ -89,9 +103,6 @@
                 <md-tooltip md-direction="top">Exportar PDF</md-tooltip>
                 <a ><i class="material-icons">picture_as_pdf</i></a>
             </li>
-
-
-
         </ul>
     </div>
 

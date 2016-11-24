@@ -1,5 +1,5 @@
 //-----------ENDERECO SOFIA------------------------
-controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope, EnderecosSofiaService, ResultadoService) {
+controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $scope, EnderecosSofiaService, ResultadoService) {
     var vm = this;
 
     vm.cpf = '';
@@ -10,26 +10,26 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
 
     vm.cardsPraExportacao = []
 
-    $scope.addFormField = function() {
+    $scope.addFormField = function () {
         if (vm.cpf != "") {
             vm.dados.cpf.push("'" + '000' + vm.cpf + "'");
             vm.cpf = '';
         }
     }
 
-    $scope.submitTable = function() {
+    $scope.submitTable = function () {
         console.log($scope.table);
     }
 
-    vm.setPessoa = function(ec_id) {
+    vm.setPessoa = function (ec_id) {
         ResultadoService.setPessoa(ec_id);
     };
 
-    $scope.listarEcByListaCPF = function() {
+    $scope.listarEcByListaCPF = function () {
         $scope.loading = true;
 
         EnderecosSofiaService.listarEcByListaCPF(vm.dados.cpf).then(
-            function(dados) {
+            function (dados) {
                 if (dados != "") {
                     vm.dadosId = JSON.parse(dados)["values"];
                 }
@@ -40,7 +40,7 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
                 };
                 vm.cardsPraExportacao = []
             },
-            function() {
+            function () {
                 $scope.loading = false;
                 console.log("Erro ao localizar pessoa");
                 vm.dados = {
@@ -51,11 +51,22 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
     }
 
 
-    vm.onChangeCard = function(pessoa) {
-        var index = vm.cardsPraExportacao.indexOf(pessoa)
+    vm.onChangeCard = function (pessoa) {
+
+        vm.enderecoCSV = {
+            "nome": pessoa[0],
+            "logradouro": pessoa[1]+" "+pessoa[2],
+            "quadraLote": pessoa[3],
+            "bairro": pessoa[4],
+            "estado": pessoa[5]+"-"+pessoa[6],
+            "cep": pessoa[7]
+        };
+
+        var index = vm.cardsPraExportacao.indexOf(vm.enderecoCSV);
+
         if (index == -1) {
             console.log("acrescentando pessoa na lista para exportação");
-            vm.cardsPraExportacao.push(pessoa)
+            vm.cardsPraExportacao.push(vm.enderecoCSV)
         } else {
             console.log("removendo pessoa na lista para exportação");
             vm.cardsPraExportacao.splice(index, 1)

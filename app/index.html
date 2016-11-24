@@ -101,29 +101,30 @@
                     <md-list>
                         <md-subheader class="">Pesquisa</md-subheader>
 
-                        <md-list-item>
+                        <md-list-item ng-click="closeSideNavPanel()" href="#/buscaPessoas">
                             <md-icon class="md-default-theme" class="material-icons">&#xE0C9;</md-icon>
-                            <p><a ng-click="closeSideNavPanel()" href="#/buscaPessoas" style="color: #424242">Buscar
-                                Pessoas</a></p>
+                            <p>Buscar Pessoas</p>
                         </md-list-item>
-                        <md-list-item>
+
+                        <md-list-item ng-click="closeSideNavPanel()" href="#/buscaPessoasPj">
                             <md-icon class="md-default-theme" class="material-icons">&#xE8D1;</md-icon>
-                            <p><a ng-click="closeSideNavPanel()" href="#/buscaPessoasPj" style="color: #424242">Buscar
-                                Empresas</a></p>
-                            <md-icon class="md-secondary">2</md-icon>
+                            <p>Buscar Empresas</p>
                         </md-list-item>
+
                         <md-list-item ng-click="closeSideNavPanel()" href="#/buscaLote">
                             <md-icon class="md-default-theme" class="material-icons">&#xE3DA;</md-icon>
-
-
                             <p>Busca Lote</p>
                         </md-list-item>
+
                         <md-divider></md-divider>
                         <md-subheader class="md-no-sticky">Dashboard</md-subheader>
-                        <md-list-item>
+
+                        <md-list-item ng-click="closeSideNavPanel()" href="#/home">
                             <md-icon class="md-default-theme" class="material-icons">&#xE1AF;</md-icon>
-                            <p><a ng-click="closeSideNavPanel()" href="#/home" style="color: #424242">Dashboard</a></p>
+                            <p>Dashboard</p>
                         </md-list-item>
+
+
                         <md-list-item ng-click="null" ui-sref="/help">
                             <md-icon class="md-default-theme" class="material-icons">&#xE0C6;</md-icon>
                             <p>Ajuda</p>
