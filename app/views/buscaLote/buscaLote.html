@@ -34,16 +34,28 @@
 
                             </div>
 
+                            <div class="right-align" ng-show="loading == false">
+                                <div class="collection" >
+                                    <span class="badge"  >
+                                            <input type="checkbox" id="select" ng-click="vm.selecionarTodos()"  />
+                                            <label for="select"></label>
+                                    </span>
+
+                                    <a class="collection-item"><b>Selecionar Todos</b>
+
+                                    </a>
+                                </div>
+                            </div>
 
                             <div class="collection" ng-repeat="pessoa in vm.dados track by $index" ng-bind-html-unsafe="cpf.text" ng-show="loading == false">
 
                                 <span class="badge">
-                                    <input type="checkbox" id="{{pessoa}}" ng-click="vm.onChangeBox(pessoa)" />
+                                    <input type="checkbox" id="{{pessoa}}" ng-click="vm.onChangeBox(pessoa)" ng-checked="vm.chek == true" />
                                     <label for="{{pessoa}}"></label>
                                 </span>
 
                                 <a class="collection-item">
-                                    <span ng-show="pessoa.nome != '' && pessoa.nome != null">{{pessoa.nome}},</span>
+                                    <b><span ng-show="pessoa.nome != '' && pessoa.nome != null">{{pessoa.nome}},</span></b>
                                     <span ng-show="pessoa.logradouro != '' && pessoa.logradouro != null">{{pessoa.logradouro}},</span>
                                     <span ng-show="pessoa.quadraLote != '' && pessoa.quadraLote != null">{{pessoa.quadraLote}},</span>
                                     <span ng-show="pessoa.bairro != '' && pessoa.bairro != null">{{pessoa.bairro}},</span>

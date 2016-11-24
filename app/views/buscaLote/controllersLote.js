@@ -1,7 +1,7 @@
 //-----------ENDERECO SOFIA------------------------
-controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope, EnderecosSofiaService, ResultadoService) {
+controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $scope, EnderecosSofiaService, ResultadoService) {
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('select').material_select();
     });
 
@@ -9,17 +9,18 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
 
     vm.cpf = '';
     vm.delimiter = ',';
-    vm.cardsPraExportacao = []
+    vm.cardsPraExportacao = [];
+    vm.chek = false;
 
-    $scope.submitTable = function() {
+    $scope.submitTable = function () {
         console.log($scope.table);
     }
 
-    vm.setPessoa = function(ec_id) {
+    vm.setPessoa = function (ec_id) {
         ResultadoService.setPessoa(ec_id);
     };
 
-    $scope.listarEcByListaCPF = function() {
+    $scope.listarEcByListaCPF = function () {
         $scope.loading = true;
 
         vm.dados = {
@@ -34,7 +35,7 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
         }
 
         EnderecosSofiaService.listarEcByListaCPF(vm.dados.cpf).then(
-            function(dados) {
+            function (dados) {
                 if (dados != "") {
                     vm.dados = vm.formataPessoa(JSON.parse(dados)["values"]);
                 } else {
@@ -43,7 +44,7 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
                 $scope.loading = false
                 vm.cardsPraExportacao = []
             },
-            function() {
+            function () {
                 $scope.loading = false;
                 console.log("Erro ao localizar pessoa");
 
@@ -54,7 +55,7 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
             });
     }
 
-    vm.formataPessoa = function(dados) {
+    vm.formataPessoa = function (dados) {
         var listaPessoas = [];
         for (var i = 0; i < dados.length; i++) {
             var pessoa = {
@@ -72,35 +73,36 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $scope
         return listaPessoas;
     }
 
-    vm.selecionarTodos = function(){
-      for (var i = 0; i < vm.dados.length; i++) {
-          vm.onChangeBox(vm.dados[i])
-      }
+    vm.selecionarTodos = function () {
+        vm.chek = !vm.chek;
+        for (var i = 0; i < vm.dados.length; i++) {
+            vm.onChangeBox(vm.dados[i])
+        }
     }
 
-    vm.removePropVazias = function(pessoa){
-      if (pessoa.nome == "") {
-          delete pessoa.nome
-      }
-      if (pessoa.logradouro == "") {
-          delete pessoa.logradouro
-      }
-      if (pessoa.quadraLote == "") {
-          delete pessoa.quadraLote
-      }
-      if (pessoa.bairro == "") {
-          delete pessoa.bairro
-      }
-      if (pessoa.estado == "") {
-          delete pessoa.estado
-      }
-      if (pessoa.cep == "") {
-          delete pessoa.cep
-      }
-      return pessoa;
+    vm.removePropVazias = function (pessoa) {
+        if (pessoa.nome == "") {
+            delete pessoa.nome
+        }
+        if (pessoa.logradouro == "") {
+            delete pessoa.logradouro
+        }
+        if (pessoa.quadraLote == "") {
+            delete pessoa.quadraLote
+        }
+        if (pessoa.bairro == "") {
+            delete pessoa.bairro
+        }
+        if (pessoa.estado == "") {
+            delete pessoa.estado
+        }
+        if (pessoa.cep == "") {
+            delete pessoa.cep
+        }
+        return pessoa;
     }
 
-    vm.onChangeBox = function(pessoa) {
+    vm.onChangeBox = function (pessoa) {
 
         var index = vm.cardsPraExportacao.indexOf(pessoa);
 
