@@ -27,7 +27,7 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filte
             cpf: []
         };
 
-        var cpf = vm.cpf.replace(/[^\d+\,]/g, '').split(vm.delimiter)
+        var cpf = vm.cpf.replace(/[^\d+\,\|\.]/g, '').split(vm.delimiter)
 
         for (var i = 0; i < cpf.length; i++) {
             var zeros = cpf[i].length == 11 ? '000' : ''
@@ -35,7 +35,9 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filte
         }
 
         LoteSofiaService.listarEcByListaCPF(vm.dados.cpf).then(
+
             function(dados) {
+                debugger
                 if (dados != "") {
                     vm.dados = vm.formataPessoa(JSON.parse(dados)["values"]);
                 } else {
