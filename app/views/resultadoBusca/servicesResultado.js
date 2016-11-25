@@ -107,7 +107,7 @@ servicos.factory('ResultadosSofiaService', function ($q, SofiaService, Resultado
     };
 
     return {
-        listarResultados: listarResultados,
+        listarResultados: listarEndereco,
         addECFavorito: addECFavorito,
         addTelFavorito: addTelFavorito,
         buscaFavorito: buscaFavorito,

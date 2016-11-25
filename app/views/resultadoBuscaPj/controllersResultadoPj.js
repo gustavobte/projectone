@@ -29,7 +29,6 @@ controladores.controller('ResultPjSofiaCtrl', function ($scope, $location, $root
                 listaTelefones.push(listaEcs[i][20])
             }
         }
-        debugger;
         return listaTelefones;
     };
 
