@@ -11,16 +11,3 @@ var app = angular.module('myApp.buscaLote', ['ngRoute','ngMaterial','ui.material
             controllerAs: 'vm'
         });
     }])
-
-
-
-
-
-
-
-
-
-
-
-
-
