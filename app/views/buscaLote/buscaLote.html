@@ -41,13 +41,13 @@
                                             <label for="select"></label>
                                     </span>
 
-                                    <a class="collection-item"><b>Selecionar Todos</b>
+                                    <a class="collection-item"><b>Selecionar Todos</b> (<span ng-show="!vm.chek == true">0</span><span ng-show="vm.chek == true">{{vm.dados.length}}</span>)
 
                                     </a>
                                 </div>
                             </div>
 
-                            <div class="collection" ng-repeat="pessoa in vm.dados | unique: 'pessoa.nome'" ng-show="loading == false">
+                            <div class="collection" ng-repeat="pessoa in vm.dados | unique:'nome'   " ng-show="loading == false">
 
                                 <span class="badge">
                                     <input type="checkbox" id="{{pessoa}}" ng-click="vm.onChangeBox(pessoa)" ng-checked="vm.chek == true" />
