@@ -47,7 +47,7 @@
                                 </div>
                             </div>
 
-                            <div class="collection" ng-repeat="pessoa in vm.dados | unique:'nome'   " ng-show="loading == false">
+                            <div class="collection" ng-repeat="pessoa in vm.dados" ng-show="loading == false">
 
                                 <span class="badge">
                                     <input type="checkbox" id="{{pessoa}}" ng-click="vm.onChangeBox(pessoa)" ng-checked="vm.chek == true" />

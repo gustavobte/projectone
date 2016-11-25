@@ -6,7 +6,9 @@
 <!--[if IE 8]>
 <html lang="pt-br" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html lang="pt-br" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<html lang="pt-br" ng-app="myApp" class="no-js">
+<!--<![endif]-->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,9 +34,13 @@
 
     <!--SOFIA-->
     <script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript"> var pathToWebsocketServer = "ws://10.7.149.100:8080/sib/api_websocket";</script>
+    <script type="text/javascript">
+        var pathToWebsocketServer = "ws://10.7.149.100:8080/sib/api_websocket";
+    </script>
     <!-- <script type="text/javascript"> var pathToWebsocketServer = "ws://sofia2.com/sib/api_websocket";</script> -->
-    <script type='text/javascript' src="js/sofia/sofia2-api-js_v2.15.0.js">;</script>
+    <script type='text/javascript' src="js/sofia/sofia2-api-js_v2.15.0.js">
+        ;
+    </script>
 
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-animate/angular-animate.js"></script>
@@ -46,158 +52,158 @@
     <script src="/bower_components/angular-ui/build/angular-ui.min.js"></script>
 </head>
 <!--<body>-->
+
 <body ng-app="myApp" onload="">
 
-<div ng-show="!$rootScope.loggedIn">
-    <div ng-show="logado == true">
-        <!-- Button menu-->
-        <div ng-controller="NavCtrl">
-            <div class="navbar-fixed " style="position: absolute; z-index: 5">
-                <nav class="navbar-fixed">
-                    <div class="navbar-fixed teal darken-3">
+    <div ng-show="!$rootScope.loggedIn">
+        <div ng-show="logado == true">
+            <!-- Button menu-->
+            <div ng-controller="NavCtrl">
+                <div class="navbar-fixed " style="position: absolute; z-index: 5">
+                    <nav class="navbar-fixed">
+                        <div class="navbar-fixed teal darken-3">
 
-                        <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
-                            <md-tooltip>Menu</md-tooltip>
-                            <md-icon class="md-primary" style="color:white;" class="material-icons">&#xE5D2;</md-icon>
-                        </md-button>
+                            <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
+                                <md-tooltip>Menu</md-tooltip>
+                                <md-icon class="md-primary" style="color:white;" class="material-icons">&#xE5D2;</md-icon>
+                            </md-button>
 
-                        <ul class="right hide-on-med-and-down">
+                            <ul class="right hide-on-med-and-down">
 
-                            <li><a ng-href="#/home"><i class="material-icons">home</i></a>
-                                <md-tooltip md-direction="botton">Home</md-tooltip>
-                            </li>
-                            <li><a href=""><i class="material-icons">info</i></a>
-                                <md-tooltip md-direction="botton">Informações</md-tooltip>
-                            </li>
-                            <li><a href="#/login"><i class="material-icons">exit_to_app</i></a>
-                                <md-tooltip md-direction="botton">Sair</md-tooltip>
-                            </li>
+                                <li><a ng-href="#/home"><i class="material-icons">home</i></a>
+                                    <md-tooltip md-direction="botton">Home</md-tooltip>
+                                </li>
+                                <li><a href=""><i class="material-icons">info</i></a>
+                                    <md-tooltip md-direction="botton">Informações</md-tooltip>
+                                </li>
+                                <li><a href="#/login"><i class="material-icons">exit_to_app</i></a>
+                                    <md-tooltip md-direction="botton">Sair</md-tooltip>
+                                </li>
 
-                        </ul>
-                    </div>
-                </nav>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                
+                <!--SideNav-->
+                <md-sidenav class="md-sidenav-left md-whiteframe-11dp" md-component-id="left">
+                    <md-toolbar class="md-whiteframe-24dp" layout="row" style="height: 200px; background-color: #4db6ac ; padding-top: 60px; padding-left: 30px">
+                        <div class="md-toolbar-tools">
+                            <a ng-click="closeSideNavPanel()" href="#/home"> <img src="img/LogoGoias.png" alt=""></a>
+                            <md-button class="md-icon-button " aria-label="Close Side Panel" ng-click="closeSideNavPanel()" style="position: relative">
+                                <md-tooltip>Fechar</md-tooltip>
+                                <md-icon class="md-default-theme" class="material-icons">&#xE5CD;</md-icon>
+                            </md-button>
+                        </div>
+
+                        <!--Menu SideBar-->
+                    </md-toolbar>
+                    <md-content layout-padding="50px">
+                        <md-list>
+                            <md-subheader class="">Pesquisa</md-subheader>
+
+                            <md-list-item ng-click="closeSideNavPanel()" href="#/buscaPessoas">
+                                <md-icon class="md-default-theme" class="material-icons">&#xE0C9;</md-icon>
+                                <p>Buscar Pessoas</p>
+                            </md-list-item>
+
+                            <md-list-item ng-click="closeSideNavPanel()" href="#/buscaPessoasPj">
+                                <md-icon class="md-default-theme" class="material-icons">&#xE8D1;</md-icon>
+                                <p>Buscar Empresas</p>
+                            </md-list-item>
+
+                            <md-list-item ng-click="closeSideNavPanel()" href="#/buscaLote">
+                                <md-icon class="md-default-theme" class="material-icons">&#xE3DA;</md-icon>
+                                <p>Busca Lote</p>
+                            </md-list-item>
+
+                            <md-divider></md-divider>
+                            <md-subheader class="md-no-sticky">Dashboard</md-subheader>
+
+                            <md-list-item ng-click="closeSideNavPanel()" href="#/home">
+                                <md-icon class="md-default-theme" class="material-icons">&#xE1AF;</md-icon>
+                                <p>Dashboard</p>
+                            </md-list-item>
+
+
+                            <md-list-item ng-click="null" ui-sref="/help">
+                                <md-icon class="md-default-theme" class="material-icons">&#xE0C6;</md-icon>
+                                <p>Ajuda</p>
+                            </md-list-item>
+
+                        </md-list>
+                    </md-content>
+                </md-sidenav>
+                <br><br><br><br>
             </div>
-            <!--SideNav-->
-            <md-sidenav class="md-sidenav-left md-whiteframe-11dp" md-component-id="left">
-                <md-toolbar class="md-whiteframe-24dp" layout="row"
-                            style="height: 200px; background-color: #4db6ac ; padding-top: 60px; padding-left: 30px">
+        </div>
+        <div ng-view=""></div>
 
-                    <div class="md-toolbar-tools">
-                        <a ng-click="closeSideNavPanel()" href="#/home"> <img src="img/LogoGoias.png" alt=""></a>
-                        <md-button class="md-icon-button " aria-label="Close Side Panel" ng-click="closeSideNavPanel()"
-                                   style="position: relative">
-                            <md-tooltip>Fechar</md-tooltip>
-                            <md-icon class="md-default-theme" class="material-icons">&#xE5CD;</md-icon>
-                        </md-button>
+        <div ng-show="logado == true">
+            <footer class="page-footer teal darken-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col l6 s12">
+                            <h5 class="white-text">Em Teste</h5>
+                            <p class="grey-text text-lighten-4">Indra</p>
+                        </div>
+                        <div class="col l4 offset-l2 s12">
+                            <h5 class="white-text">Links</h5>
+                            <ul>
+                                <li><a class="grey-text text-lighten-3" href="#!">Ajuda</a></li>
+                            </ul>
+                        </div>
                     </div>
+                </div>
+                <div class="footer-copyright">
+                    <div class="container">
+                        © 2016 Indra
+                        <a class="grey-text text-lighten-4 right" href="#!">@</a>
+                    </div>
+                </div>
+            </footer>
 
-                    <!--Menu SideBar-->
-                </md-toolbar>
+            <script src="/bower_components/angular-ui-mask/dist/mask.js"></script>
+            <script src="/bower_components/angular-route/angular-route.js"></script>
+            <script src="/bower_components/angular-animate/angular-animate.js"></script>
+            <script src="/bower_components/angular-aria/angular-aria.js"></script>
+            <script src="/bower_components/angular-material/angular-material.js"></script>
+            <script src="/bower_components/highcharts-ng/dist/highcharts-ng.min.js"></script>
+            <script src="/bower_components/angular-locale-pt-br/angular-locale_pt-br.js"></script>
+            <script src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+            <script src="/bower_components/ng-csv/build/ng-csv.min.js"></script>
 
-                <md-content layout-padding="50px">
-                    <md-list>
-                        <md-subheader class="">Pesquisa</md-subheader>
+            <script src="js/app.js"></script>
+            <script src="views/login/login.js"></script>
+            <script src="views/home/home.js"></script>
+            <script src="views/buscaPessoas/buscaPessoas.js"></script>
+            <script src="views/resultadoBusca/resultadoBusca.js"></script>
+            <script src="views/buscaLote/buscaLote.js"></script>
 
-                        <md-list-item ng-click="closeSideNavPanel()" href="#/buscaPessoas">
-                            <md-icon class="md-default-theme" class="material-icons">&#xE0C9;</md-icon>
-                            <p>Buscar Pessoas</p>
-                        </md-list-item>
+            <script src="js/services.js"></script>
+            <script src="js/servicesSofia.js"></script>
+            <script src="js/controllers.js"></script>
+            <script src="js/filters.js"></script>
 
-                        <md-list-item ng-click="closeSideNavPanel()" href="#/buscaPessoasPj">
-                            <md-icon class="md-default-theme" class="material-icons">&#xE8D1;</md-icon>
-                            <p>Buscar Empresas</p>
-                        </md-list-item>
+            <script src="views/buscaPessoas/servicesEndereco.js"></script>
+            <script src="views/buscaPessoas/controllersEndereco.js"></script>
+            <script src="views/resultadoBusca/controllersResultado.js"></script>
+            <script src="views/resultadoBusca/servicesResultado.js"></script>
+            <script src="views/home/controllersHome.js"></script>
+            <script src="views/home/servicesHome.js"></script>
+            <script src="views/resultadoBuscaPj/controllersResultadoPj.js"></script>
+            <script src="views/resultadoBuscaPj/servicesResultadoPj.js"></script>
+            <script src="views/resultadoBuscaPj/resultadoBuscaPj.js"></script>
+            <script src="views/buscaPessoasPj/buscaPessoasPj.js"></script>
+            <script src="views/buscaPessoasPj/servicesEnderecoPj.js"></script>
+            <script src="views/buscaPessoasPj/controllersEnderecoPj.js"></script>
+            <script src="views/buscaLote/controllersLote.js">
+            </script>
+            <script src="views/buscaLote/servicesLote.js">
+            </script>
 
-                        <md-list-item ng-click="closeSideNavPanel()" href="#/buscaLote">
-                            <md-icon class="md-default-theme" class="material-icons">&#xE3DA;</md-icon>
-                            <p>Busca Lote</p>
-                        </md-list-item>
-
-                        <md-divider></md-divider>
-                        <md-subheader class="md-no-sticky">Dashboard</md-subheader>
-
-                        <md-list-item ng-click="closeSideNavPanel()" href="#/home">
-                            <md-icon class="md-default-theme" class="material-icons">&#xE1AF;</md-icon>
-                            <p>Dashboard</p>
-                        </md-list-item>
-
-
-                        <md-list-item ng-click="null" ui-sref="/help">
-                            <md-icon class="md-default-theme" class="material-icons">&#xE0C6;</md-icon>
-                            <p>Ajuda</p>
-                        </md-list-item>
-
-                    </md-list>
-                </md-content>
-            </md-sidenav>
-            <br><br><br><br>
         </div>
     </div>
-    <div ng-view=""></div>
-
-    <div ng-show="logado == true">
-        <footer class="page-footer teal darken-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col l6 s12">
-                        <h5 class="white-text">Em Teste</h5>
-                        <p class="grey-text text-lighten-4">Indra</p>
-                    </div>
-                    <div class="col l4 offset-l2 s12">
-                        <h5 class="white-text">Links</h5>
-                        <ul>
-                            <li><a class="grey-text text-lighten-3" href="#!">Ajuda</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-copyright">
-                <div class="container">
-                    © 2016 Indra
-                    <a class="grey-text text-lighten-4 right" href="#!">@</a>
-                </div>
-            </div>
-        </footer>
-
-        <script src="/bower_components/angular-ui-mask/dist/mask.js"></script>
-        <script src="/bower_components/angular-route/angular-route.js"></script>
-        <script src="/bower_components/angular-animate/angular-animate.js"></script>
-        <script src="/bower_components/angular-aria/angular-aria.js"></script>
-        <script src="/bower_components/angular-material/angular-material.js"></script>
-        <script src="/bower_components/highcharts-ng/dist/highcharts-ng.min.js"></script>
-        <script src="/bower_components/angular-locale-pt-br/angular-locale_pt-br.js"></script>
-        <script src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-        <script src="/bower_components/ng-csv/build/ng-csv.min.js"></script>
-
-        <script src="js/app.js"></script>
-        <script src="views/login/login.js"></script>
-        <script src="views/home/home.js"></script>
-        <script src="views/buscaPessoas/buscaPessoas.js"></script>
-        <script src="views/resultadoBusca/resultadoBusca.js"></script>
-        <script src="views/buscaLote/buscaLote.js"></script>
-
-        <script src="js/services.js"></script>
-        <script src="js/servicesSofia.js"></script>
-        <script src="js/controllers.js"></script>
-        <script src="js/filters.js"></script>
-
-        <script src="views/buscaPessoas/servicesEndereco.js"></script>
-        <script src="views/buscaPessoas/controllersEndereco.js"></script>
-        <script src="views/resultadoBusca/controllersResultado.js"></script>
-        <script src="views/resultadoBusca/servicesResultado.js"></script>
-        <script src="views/home/controllersHome.js"></script>
-        <script src="views/home/servicesHome.js"></script>
-        <script src="views/resultadoBuscaPj/controllersResultadoPj.js"></script>
-        <script src="views/resultadoBuscaPj/servicesResultadoPj.js"></script>
-        <script src="views/resultadoBuscaPj/resultadoBuscaPj.js"></script>
-        <script src="views/buscaPessoasPj/buscaPessoasPj.js"></script>
-        <script src="views/buscaPessoasPj/servicesEnderecoPj.js"></script>
-        <script src="views/buscaPessoasPj/controllersEnderecoPj.js"></script>
-        <script src="views/buscaLote/controllersLote.js"> </script>
-        <script src="views/buscaLote/servicesLote.js"> </script>
-
-
-    </div>
-</div>
 </body>
+
 </html>

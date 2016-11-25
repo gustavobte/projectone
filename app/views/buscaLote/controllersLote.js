@@ -1,7 +1,7 @@
 //-----------ENDERECO SOFIA------------------------
-controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $scope, LoteSofiaService, ResultadoService) {
+controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filter, $scope, LoteSofiaService, ResultadoService) {
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('select').material_select();
     });
 
@@ -12,22 +12,22 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $scop
     vm.cardsPraExportacao = [];
     vm.chek = false;
 
-    $scope.submitTable = function () {
+    $scope.submitTable = function() {
         console.log($scope.table);
     }
 
-    vm.setPessoa = function (ec_id) {
+    vm.setPessoa = function(ec_id) {
         ResultadoService.setPessoa(ec_id);
     };
 
-    $scope.listarEcByListaCPF = function () {
+    $scope.listarEcByListaCPF = function() {
         $scope.loading = true;
 
         vm.dados = {
             cpf: []
         };
 
-        var cpf = vm.cpf.replace(/[^\d+\,]/g,'').split(vm.delimiter)
+        var cpf = vm.cpf.replace(/[^\d+\,]/g, '').split(vm.delimiter)
 
         for (var i = 0; i < cpf.length; i++) {
             var zeros = cpf[i].length == 11 ? '000' : ''
@@ -35,7 +35,7 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $scop
         }
 
         LoteSofiaService.listarEcByListaCPF(vm.dados.cpf).then(
-            function (dados) {
+            function(dados) {
                 if (dados != "") {
                     vm.dados = vm.formataPessoa(JSON.parse(dados)["values"]);
                 } else {
@@ -44,7 +44,7 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $scop
                 $scope.loading = false
                 vm.cardsPraExportacao = []
             },
-            function () {
+            function() {
                 $scope.loading = false;
                 console.log("Erro ao localizar pessoa");
 
@@ -55,7 +55,7 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $scop
             });
     }
 
-    vm.formataPessoa = function (dados) {
+    vm.formataPessoa = function(dados) {
         var listaPessoas = [];
         for (var i = 0; i < dados.length; i++) {
             var pessoa = {
@@ -66,21 +66,26 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $scop
                 "estado": dados[i][13] + "-" + dados[i][14],
                 "cep": dados[i][12]
             };
+            var duplicado = $filter("filter")(listaPessoas, {
+                nome: pessoa.nome
+            });
+            if (duplicado.length == 0) {
+                listaPessoas.push(pessoa);
+            }
 
-            listaPessoas.push(pessoa);
         }
 
         return listaPessoas;
     }
 
-    vm.selecionarTodos = function () {
+    vm.selecionarTodos = function() {
         vm.chek = !vm.chek;
         for (var i = 0; i < vm.dados.length; i++) {
             vm.onChangeBox(vm.dados[i])
         }
     }
 
-    vm.removePropVazias = function (pessoa) {
+    vm.removePropVazias = function(pessoa) {
         if (pessoa.nome == "") {
             delete pessoa.nome
         }
@@ -102,7 +107,7 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $scop
         return pessoa;
     }
 
-    vm.onChangeBox = function (pessoa) {
+    vm.onChangeBox = function(pessoa) {
 
         var index = vm.cardsPraExportacao.indexOf(pessoa);
 
