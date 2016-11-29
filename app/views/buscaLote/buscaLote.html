@@ -10,12 +10,17 @@
                 <form action="">
                     <div class="input-field col s12 ">
                         <form ng-controller="BuscaLoteCtrl">
+
                             <div class="row">
+
                                 <div class="input-field col s12">
                                     <textarea id="textarea1" type='text' class="materialize-textarea" ng-model="vm.cpf" />
                                     <label for="textarea1">Cpf/Cnpj</label>
-
-                                    <div class="input-field col s2">
+                                    <div class="input-field col s8">
+                                    <input class="ng-hide" id="input-file-id" multiple type="file" on-read-file="carregarConteudo($fileContent)"/>
+                                    <label for="input-file-id" class="btn waves-effect waves-light btn-large teal darken-3 ">Carregar CPFs/CNPJs</label>
+                                    </div>
+                                    <div class="input-field col s4">
                                         <select id="delimiter" type='text' ng-model="vm.delimiter">
                                             <option value=",">Virgula ( , )</option>
                                             <option value=".">Ponto ( . )</option>
@@ -60,7 +65,10 @@
                                     <span ng-show="pessoa.quadraLote != '' && pessoa.quadraLote != null">{{pessoa.quadraLote}},</span>
                                     <span ng-show="pessoa.bairro != '' && pessoa.bairro != null">{{pessoa.bairro}},</span>
                                     <span ng-show="pessoa.estado != '' && pessoa.estado != null">{{pessoa.estado}},</span>
-                                    <span ng-show="pessoa.cep != '' && pessoa.cep != null">{{pessoa.cep}}</span>
+                                    <span ng-show="pessoa.cep != '' && pessoa.cep != null">{{pessoa.cep}},</span>
+                                    <span ng-show="pessoa.telefone != '' && pessoa.telefone != null">{{pessoa.telefone}},</span>
+                                    <span ng-show="pessoa.numDocumento != '' && pessoa.numDocumento != null">{{pessoa.numDocumento}}</span>
+
                                 </a>
                             </div>
 
