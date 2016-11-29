@@ -81,15 +81,15 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filte
           }
 
             var pessoa = {
-                "nome": dados[i][4],
-                "logradouro": dados[i][5] + " " + dados[i][6],
-                "quadraLote": dados[i][10],
-                "bairro": dados[i][11],
-                "estado": dados[i][13] + "-" + dados[i][14],
-                "cep": dados[i][12],
-                "telefone": dados[i][20],
-                "numDocumento": numDocumento,
-                "tipoPessoa": dados[i][2]
+                "nome": dados[i][4] ? dados[i][4]: 'sem dados',
+                "logradouro": dados[i][5] || dados[i][6] ? dados[i][5] + " " + dados[i][6] : 'sem dados',
+                "quadraLote": dados[i][10] ? dados[i][10] : 'sem dados',
+                "bairro": dados[i][11] ? dados[i][11] : 'sem dados',
+                "estado": dados[i][13] || dados[i][14] ? dados[i][13] + "-" + dados[i][14]: 'sem dados',
+                "cep": dados[i][12] ? dados[i][12]: 'sem dados',
+                "telefone": dados[i][20] ? dados[i][20]: 'sem dados',
+                "numDocumento": numDocumento ? numDocumento : 'sem dados',
+                "tipoPessoa": dados[i][2] ? dados[i][2] : 'sem dados',
             };
             var duplicado = $filter("filter")(listaPessoas, {
                 nome: pessoa.nome
