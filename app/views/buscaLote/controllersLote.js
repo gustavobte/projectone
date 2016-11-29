@@ -13,10 +13,10 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filte
     vm.chek = false;
     vm.carregado = false;
 
-    $scope.carregarConteudo = function($fileContent){
-       vm.cpf = $fileContent;
-       vm.carregado = "Carregado com sucesso";
-   };
+    $scope.carregarConteudo = function($fileContent) {
+        vm.cpf = $fileContent;
+        vm.carregado = "Carregado com sucesso";
+    };
 
     $scope.submitTable = function() {
         console.log($scope.table);
@@ -27,7 +27,7 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filte
     };
 
     vm.filtraCpfs = function(cpfs) {
-        var cpfFiltrado = new RegExp("[^\\d\\"+vm.delimiter+"]", "g");
+        var cpfFiltrado = new RegExp("[^\\d\\" + vm.delimiter + "]", "g");
         return cpfs.replace(cpfFiltrado, "")
     };
 
@@ -39,7 +39,7 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filte
         };
 
         var cpfs = vm.cpf.replace(/\n/g, vm.delimiter)
-        cpfs= vm.filtraCpfs(cpfs).split(vm.delimiter);
+        cpfs = vm.filtraCpfs(cpfs).split(vm.delimiter);
 
         for (var i = 0; i < cpfs.length; i++) {
             var zeros = cpfs[i].length == 11 ? '000' : ''
@@ -72,24 +72,24 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filte
         var listaPessoas = [];
         for (var i = 0; i < dados.length; i++) {
 
-          var numDocumento;
+            var numDocumento;
 
-          if(dados[i][2]=="J"){
-            numDocumento = dados[i][3]
-          }else{
-            numDocumento = dados[i][3].substring(3,14)
-          }
+            if (dados[i][2] == "J") {
+                numDocumento = dados[i][3]
+            } else {
+                numDocumento = dados[i][3].substring(3, 14)
+            }
 
             var pessoa = {
-                "nome": dados[i][4] ? dados[i][4]: 'sem dados',
-                "logradouro": dados[i][5] || dados[i][6] ? dados[i][5] + " " + dados[i][6] : 'sem dados',
-                "quadraLote": dados[i][10] ? dados[i][10] : 'sem dados',
-                "bairro": dados[i][11] ? dados[i][11] : 'sem dados',
-                "estado": dados[i][13] || dados[i][14] ? dados[i][13] + "-" + dados[i][14]: 'sem dados',
-                "cep": dados[i][12] ? dados[i][12]: 'sem dados',
-                "telefone": dados[i][20] ? dados[i][20]: 'sem dados',
-                "numDocumento": numDocumento ? numDocumento : 'sem dados',
-                "tipoPessoa": dados[i][2] ? dados[i][2] : 'sem dados',
+                "nome": dados[i][4],
+                "logradouro": dados[i][5] + " " + dados[i][6],
+                "quadraLote": dados[i][10],
+                "bairro": dados[i][11],
+                "estado": dados[i][13] + "-" + dados[i][14],
+                "cep": dados[i][12],
+                "telefone": dados[i][20] ? dados[i][20] : "-",
+                "numDocumento": numDocumento,
+                "tipoPessoa": dados[i][2]
             };
             var duplicado = $filter("filter")(listaPessoas, {
                 nome: pessoa.nome
@@ -110,41 +110,19 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filte
         }
     }
 
-    vm.removePropVazias = function(pessoa) {
-        if (pessoa.nome == "") {
-            delete pessoa.nome
-        }
-        if (pessoa.logradouro == "") {
-            delete pessoa.logradouro
-        }
-        if (pessoa.quadraLote == "") {
-            delete pessoa.quadraLote
-        }
-        if (pessoa.bairro == "") {
-            delete pessoa.bairro
-        }
-        if (pessoa.estado == "") {
-            delete pessoa.estado
-        }
-        if (pessoa.cep == "") {
-            delete pessoa.cep
-        }
-        if (pessoa.telefone == "") {
-            delete pessoa.telefone
-        }
-        if (pessoa.numDocumento == "") {
-            delete pessoa.numDocumento
-        }
-        return pessoa;
-    }
-
     vm.onChangeBox = function(pessoa) {
 
-        var index = vm.cardsPraExportacao.indexOf(pessoa);
+        var pessoaExportacao = {
+            "CPF/CNPJ": pessoa.numDocumento,
+            "Endereco": pessoa.logradouro + ", " + pessoa.quadraLote + ", " + pessoa.bairro + ", " + pessoa.estado + ", " + pessoa.cep,
+            "Telefone": pessoa.telefone
+        }
+
+        var index = vm.cardsPraExportacao.indexOf(pessoaExportacao);
 
         if (index == -1) {
             console.log("acrescentando pessoa na lista para exportação");
-            vm.cardsPraExportacao.push(vm.removePropVazias(pessoa));
+            vm.cardsPraExportacao.push(pessoaExportacao);
         } else {
             console.log("removendo pessoa na lista para exportação");
             vm.cardsPraExportacao.splice(index, 1)
