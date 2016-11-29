@@ -112,9 +112,10 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filte
 
     vm.onChangeBox = function(pessoa) {
 
+        var endereco = new String(pessoa.nome + ", " + pessoa.logradouro + ", " + pessoa.quadraLote + ", " + pessoa.bairro + ", " + pessoa.estado + ", " + pessoa.cep);
         var pessoaExportacao = {
             "CPF/CNPJ": pessoa.numDocumento,
-            "Endereco": pessoa.logradouro + ", " + pessoa.quadraLote + ", " + pessoa.bairro + ", " + pessoa.estado + ", " + pessoa.cep,
+            "Endereco": endereco,
             "Telefone": pessoa.telefone
         }
 
