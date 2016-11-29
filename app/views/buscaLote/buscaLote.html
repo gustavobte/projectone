@@ -104,7 +104,7 @@
         <md-tooltip md-direction="top">Exportar</md-tooltip>
     </a>
     <ul><i class="material-icons">file_download</i>
-        <li  type="button" ng-csv="vm.cardsPraExportacao" field-separator="{{vm.delimiter}}" charset="utf-8"  csv-header="['Destinatarios']" filename="DestinatariosSefaz.csv" class="waves-effect waves-light" >
+        <li  type="button" ng-csv="vm.cardsPraExportacao" field-separator="{{vm.delimiter}}" add-bom="true" charset="utf-8"  csv-header="['Destinatarios']" filename="DestinatariosSefaz.csv" class="waves-effect waves-light" >
             <md-tooltip md-direction="top">Exportar CSV</md-tooltip>
             <a><i class="material-icons">insert_chart</i></a>
         </li>
