@@ -73,6 +73,7 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filte
         for (var i = 0; i < dados.length; i++) {
 
             var numDocumento;
+            var telefone;
 
             if (dados[i][2] == "J") {
                 numDocumento = dados[i][3]
@@ -80,19 +81,21 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filte
                 numDocumento = dados[i][3].substring(3, 14)
             }
 
+            telefone = dados[i][20] ? dados[i][20].split(" - ") : "-"
+
             var pessoa = {
-                "nome": dados[i][4],
+                "nome": dados[i][19],
                 "logradouro": dados[i][5] + " " + dados[i][6],
                 "quadraLote": dados[i][10],
                 "bairro": dados[i][11],
                 "estado": dados[i][13] + "-" + dados[i][14],
                 "cep": dados[i][12],
-                "telefone": dados[i][20] ? dados[i][20] : "-",
+                "telefone": telefone,
                 "numDocumento": numDocumento,
                 "tipoPessoa": dados[i][2]
             };
             var duplicado = $filter("filter")(listaPessoas, {
-                nome: pessoa.nome
+                numDocumento: pessoa.numDocumento
             });
             if (duplicado.length == 0) {
                 listaPessoas.push(pessoa);
@@ -116,7 +119,7 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filte
         var pessoaExportacao = {
             "CPF/CNPJ": pessoa.numDocumento,
             "Endereco": endereco,
-            "Telefone": pessoa.telefone
+            "Telefone": pessoa.telefone.toString()
         }
 
         var index = vm.cardsPraExportacao.indexOf(pessoaExportacao);

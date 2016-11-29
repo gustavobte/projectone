@@ -60,15 +60,15 @@
                                 </span>
 
                                 <a class="collection-item">
-                                    <b>{{pessoa.nome}},</b>
+                                    <b>{{pessoa.nome}}</b><span> {{pessoa.numDocumento | formataCPFCNPJ}}</span><br/>
+                                    <b>Endereço: </b>
                                     <span ng-show="pessoa.logradouro != '' && pessoa.logradouro != null">{{pessoa.logradouro}},</span>
                                     <span ng-show="pessoa.quadraLote != '' && pessoa.quadraLote != null">{{pessoa.quadraLote}},</span>
                                     <span ng-show="pessoa.bairro != '' && pessoa.bairro != null">{{pessoa.bairro}},</span>
                                     <span ng-show="pessoa.estado != '' && pessoa.estado != null">{{pessoa.estado}},</span>
-                                    <span ng-show="pessoa.cep != '' && pessoa.cep != null">{{pessoa.cep}},</span>
-                                    <span ng-show="pessoa.telefone != '' && pessoa.telefone != null">{{pessoa.telefone}},</span>
-                                    <span ng-show="pessoa.numDocumento != '' && pessoa.numDocumento != null">{{pessoa.numDocumento}}</span>
-
+                                    <span ng-show="pessoa.cep != '' && pessoa.cep != null">{{pessoa.cep}}</span><br/>
+                                    <b>Telefone: </b>
+                                    <span ng-repeat="telefone in pessoa.telefone" style="padding-right: 20px;">{{telefone | formataTelefone}}</span>
                                 </a>
                             </div>
 
