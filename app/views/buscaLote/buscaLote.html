@@ -14,8 +14,6 @@
                             <div class="row">
 
                                 <div class="input-field col s12">
-                                    <textarea id="textarea1" type='text' class="materialize-textarea" ng-model="vm.cpf" />
-                                    <label for="textarea1">Cpf/Cnpj</label>
                                     <div class="input-field col s8">
                                     <input class="ng-hide" id="input-file-id" multiple type="file" on-read-file="carregarConteudo($fileContent)"/>
                                     <label for="input-file-id" class="btn waves-effect waves-light btn-large teal darken-3 ">Carregar CPFs/CNPJs</label>
@@ -39,38 +37,7 @@
 
                             </div>
 
-                            <div class="right-align" ng-show="loading == false">
-                                <div class="collection" >
-                                    <span class="badge"  >
-                                            <input type="checkbox" id="select" ng-click="vm.selecionarTodos()"  />
-                                            <label for="select"></label>
-                                    </span>
-
-                                    <a class="collection-item"><b>Selecionar Todos</b> (<span ng-show="!vm.chek == true">0</span><span ng-show="vm.chek == true">{{vm.cardsPraExportacao.length}}</span>)
-
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="collection" ng-repeat="pessoa in vm.dados" ng-show="loading == false">
-
-                                <span class="badge">
-                                    <input type="checkbox" id="{{pessoa}}" ng-click="vm.onChangeBox(pessoa)" ng-checked="vm.chek == true" />
-                                    <label for="{{pessoa}}"></label>
-                                </span>
-
-                                <a class="collection-item">
-                                    <b>{{pessoa.nome}}</b><span> {{pessoa.numDocumento | formataCPFCNPJ}}</span><br/>
-                                    <b>Endereço: </b>
-                                    <span ng-show="pessoa.logradouro != '' && pessoa.logradouro != null">{{pessoa.logradouro}},</span>
-                                    <span ng-show="pessoa.quadraLote != '' && pessoa.quadraLote != null">{{pessoa.quadraLote}},</span>
-                                    <span ng-show="pessoa.bairro != '' && pessoa.bairro != null">{{pessoa.bairro}},</span>
-                                    <span ng-show="pessoa.estado != '' && pessoa.estado != null">{{pessoa.estado}},</span>
-                                    <span ng-show="pessoa.cep != '' && pessoa.cep != null">{{pessoa.cep}}</span><br/>
-                                    <b>Telefone: </b>
-                                    <span ng-repeat="telefone in pessoa.telefone" style="padding-right: 20px;">{{telefone | formataTelefone}}</span>
-                                </a>
-                            </div>
+                            {{vm.cardsPraExportacao.length}}
 
                         </form>
                     </div>

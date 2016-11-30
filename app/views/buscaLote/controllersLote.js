@@ -46,26 +46,43 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filte
             vm.dados.cpf.push("'" + zeros + cpfs[i] + "'");
         }
 
-        LoteSofiaService.listarEcByListaCPF(vm.dados.cpf).then(
+        var blocoDezMil = [],
+            size = 5000;
 
-            function(dados) {
-                if (dados != "") {
-                    vm.dados = vm.formataPessoa(JSON.parse(dados)["values"]);
-                } else {
-                    vm.dados = "";
-                }
-                $scope.loading = false
-                vm.cardsPraExportacao = []
-            },
-            function() {
-                $scope.loading = false;
-                console.log("Erro ao localizar pessoa");
+        vm.resultado = [];
 
-                vm.dados = {
-                    cpf: []
-                };
-                vm.cardsPraExportacao = []
-            });
+        while (vm.dados.cpf.length > 0)
+            blocoDezMil.push(vm.dados.cpf.splice(0, size));
+
+        for (i = 0; i < blocoDezMil.length; i++) {
+            $scope.loading = true;
+            LoteSofiaService.listarEcByListaCPF(blocoDezMil[i]).then(
+
+                function(dados) {
+                    $scope.loading = false;
+                    if (dados != "") {
+                        vm.resultado = vm.resultado.concat(vm.formataPessoa(JSON.parse(dados)["values"]));
+                    } else {
+                        vm.resultado = [];
+                    }
+
+                },
+                function() {
+                    $scope.loading = false;
+                    console.log("Erro ao localizar pessoa");
+                    vm.dados = {
+                        cpf: []
+                    };
+                }).then(
+                  function(){
+                    vm.cardsPraExportacao = []
+                    for(i=0;i<vm.resultado.length;i++){
+                      vm.onChangeBox(vm.resultado[i])
+                    }
+                  }
+                );
+        }
+
     }
 
     vm.formataPessoa = function(dados) {
@@ -100,9 +117,7 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filte
             if (duplicado.length == 0) {
                 listaPessoas.push(pessoa);
             }
-
         }
-
         return listaPessoas;
     }
 

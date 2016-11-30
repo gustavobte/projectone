@@ -6,9 +6,9 @@ servicos.factory('LoteSofiaService', function($q, SofiaService) {
         var q = $q.defer();
 
         var query = "SELECT * FROM " + ontologia + " WHERE " + ontologia + ".ec_numdocumento"
-        var queryFilter = query.concat(cpfs.length == 1 ? " = " + cpfs + " " : " IN (" + cpfs + ")")
+        query = query.concat(cpfs.length == 1 ? " = " + cpfs + " " : " IN (" + cpfs + ")")
 
-        SofiaService.listar(queryFilter, ontologia).then(
+        SofiaService.listar(query, ontologia).then(
 
             function(dados) {
                 q.resolve(dados);
@@ -62,7 +62,7 @@ servicos.filter('formataCPFCNPJ', function() {
 servicos.filter('formataTelefone', function() {
     return function(item) {
         if (item != undefined) {
-            return item.replace(/^(\d{2})(\d)/g,"($1) $2").replace(/(\d)(\d{4})$/,"$1-$2");
+            return item.replace(/^(\d{2})(\d)/g, "($1) $2").replace(/(\d)(\d{4})$/, "$1-$2");
         }
     }
 });
