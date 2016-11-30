@@ -13,7 +13,7 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
     vm.chek = false;
     vm.tipoDocumento = '';
 
-    $scope.carregarConteudo = function ($fileContent) {
+    vm.carregarConteudo = function ($fileContent) {
         vm.documentosImportados = $fileContent;
     };
 
