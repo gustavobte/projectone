@@ -7,13 +7,20 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
 
     var vm = this;
 
+    vm.cnpjImportados = ''
     vm.cpfsImportados = '';
     vm.delimiter = ',';
     vm.cardsPraExportacao = [];
     vm.chek = false;
+    vm.tipoDocumento = '';
 
     $scope.carregarConteudo = function ($fileContent) {
         vm.cpfsImportados = $fileContent;
+    };
+
+    $scope.carregarConteudoCnpj = function ($fileContent) {
+        vm.cnpj = $fileContent;
+        vm.carregado = "Carregado com sucesso";
     };
 
     vm.filtraCpfs = function (cpfs) {
@@ -85,7 +92,7 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
             }
         }
 
-    }
+    };
 
     vm.formataPessoa = function (dados) {
         var listaPessoas = [];
