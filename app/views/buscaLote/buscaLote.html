@@ -1,40 +1,4 @@
 <div class="row">
-
-    <div class="input-field col s8 offset-s2">
-        <select id="tipoDocumento" type='text' ng-model="vm.tipoDocumento">
-            <option value="">Tipo Documento</option>
-            <option value="cpf">CPF</option>
-            <option value="cnpj">CNPJ</option>
-        </select>
-        <label for="tipoDocumento">Selecione o tipo de documento para consulta:</label>
-    </div>
-
-</div>
-
-<div class="row" ng-show="vm.tipoDocumento == ''">
-    <div class="col s10 offset-s1 ">
-        <div class="card sticky-action ">
-            <md-toolbar class="md-table-toolbar ">
-                <div class="md-toolbar-tools teal darken-3">
-                    <span>Buscar Lote</span>
-                </div>
-            </md-toolbar>
-            <div class="row">
-
-                <div class="input-field col s12 center-align ">
-                    <br><br><br>
-                    <div class="chip ">
-                        <img src="img/list.svg" alt="Contact Person"> Selecione o tipo de Documento
-                    </div>
-                    <br><br><br><br>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row" ng-show="vm.tipoDocumento == 'cpf'">
     <div class="col s10 offset-s1 ">
         <div class="card sticky-action ">
             <md-toolbar class="md-table-toolbar ">
@@ -42,112 +6,90 @@
                     <span>Buscar Lote CPF</span>
                 </div>
             </md-toolbar>
+
             <div class="row">
-                <form action="">
-                    <div class="input-field col s12 ">
-                        <form ng-controller="BuscaLoteCtrl">
+                <div class="input-field col s12 ">
+                    <form ng-controller="BuscaLoteCtrl">
 
-                            <div class="row">
-
-                                <div class="input-field col s12">
-                                    <div class="file-field input-field ">
-                                        <div class="btn teal darken-3">
-                                            <span>Carregar CPFs - .CSV</span>
-                                            <input type="file" class="btn" on-read-file="carregarConteudo($fileContent)">
-                                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <div class="file-field input-field ">
+                                    <div class="btn teal darken-3">
+                                        <span>Carregar CPFs - .CSV</span>
+                                        <input type="file" multiple on-read-file="carregarConteudo($fileContent)">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate"
+                                               id="input-file-id"
+                                               type="text"
+                                               placeholder="Selecione os aquivos para consulta"
+                                               on-read-file="carregarConteudo($fileContent)">
                                     </div>
                                 </div>
-
-                                <p class="center-align">
-                                    <button class="btn waves-effect waves-light btn-large teal darken-3 "
-                                            ng-disabled="!vm.documentosImportados" ng-click="vm.listarEcByListaCPF()">Pesquisar
-                                        <i class="material-icons right">search</i>
-                                    </button>
-                                </p>
-
                             </div>
-                        </form>
 
-                        <div class="right-align" ng-show="loading == false">
-                            <div class="collection">
-                                    <span class="badge">
-                                            <input type="checkbox" id="select" ng-click="vm.selecionarTodos()"/>
-                                            <label for="select"></label>
-                                    </span>
-
-                                <a class="collection-item"><b>Selecionar Todos</b> (<span
-                                        ng-show="!vm.chek == true">0</span><span ng-show="vm.chek == true">{{vm.cardsPraExportacao.length}}</span>)
-
-                                </a>
+                            <div class="input-field col s4 offset-s2">
+                                <select id="tipoDocumento" type='text' ng-model="vm.tipoDocumento">
+                                    <option value="">Tipo Documento</option>
+                                    <option value="cpf">CPF</option>
+                                    <option value="cnpj">CNPJ</option>
+                                </select>
+                                <label for="tipoDocumento">Selecione o tipo de documento para consulta:</label>
                             </div>
                         </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s2">
+                    <p class="center-align">
+                        <button class="btn waves-effect waves-light btn-large teal darken-3 "
+                                ng-disabled="!vm.tipoDocumento" ng-click="listarEcByListaCPF()">Pesquisar
+                            <i class="material-icons right">search</i>
+                        </button>
+                    </p>
+                </div>
 
-                        <div class="collection" ng-repeat="pessoa in vm.dados" ng-show="loading == false">
+                <div class="row">
+                    <div class="col s2">
+                        <p class="center-align">
+                            <button class="btn waves-effect waves-light btn-large teal darken-3 "
+                                    ng-disabled="!vm.tipoDocumento" ng-click="listarEcByListaCPF()">Baixar
+                                <i class="material-icons">file_download</i>
+                            </button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
 
-                                <span class="badge">
-                                    <input type="checkbox" id="{{pessoa}}" ng-click="vm.onChangeBox(pessoa)"
-                                           ng-checked="vm.chek == true"/>
-                                    <label for="{{pessoa}}"></label>
-                                </span>
 
-                            <a class="collection-item">
-                                <b>{{pessoa.nome}}</b><span> {{pessoa.numDocumento | formataCPFCNPJ}}</span><br/>
-                                <b>Endereço: </b>
-                                <span ng-show="pessoa.logradouro != '' && pessoa.logradouro != null">{{pessoa.logradouro}},</span>
-                                <span ng-show="pessoa.quadraLote != '' && pessoa.quadraLote != null">{{pessoa.quadraLote}},</span>
-                                <span ng-show="pessoa.bairro != '' && pessoa.bairro != null">{{pessoa.bairro}},</span>
-                                <span ng-show="pessoa.estado != '' && pessoa.estado != null">{{pessoa.estado}},</span>
-                                <span ng-show="pessoa.cep != '' && pessoa.cep != null">{{pessoa.cep}}</span><br/>
-                                <b>Telefone: </b>
-                                <span ng-repeat="telefone in pessoa.telefone" style="padding-right: 20px;">{{telefone | formataTelefone}}</span>
-                            </a>
+        <!--Conteudo Busca Resultado-->
+        <!--loading-->
+        <div class="row">
+            <div class="center-align" ng-show="loading == true">
+                <div class="preloader-wrapper active">
+                    <div class="spinner-layer spinner-green-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
                         </div>
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--Conteudo Busca Resultado-->
-<div class="row">
-    <div class="center-align" ng-show="loading == true">
-        <div class="preloader-wrapper active">
-            <div class="spinner-layer spinner-green-only">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div>
-                <div class="gap-patch">
-                    <div class="circle"></div>
-                </div>
-                <div class="circle-clipper right">
-                    <div class="circle"></div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="fixed-action-btn toolbar">
-    <a class="btn-floating btn-large teal darken-1">
-        <i class="large material-icons">file_download</i>
-        <md-tooltip md-direction="top">Exportar</md-tooltip>
-    </a>
-    <ul><i class="material-icons">file_download</i>
-        <li type="button" ng-csv="vm.cardsPraExportacao" field-separator="|" add-bom="true" charset="utf-8"
-            filename="DestinatariosSefaz.txt" class="waves-effect waves-light">
-            <md-tooltip md-direction="top">Exportar CSV</md-tooltip>
-            <a><i class="material-icons">insert_chart</i></a>
-        </li>
-        <li type="button" class="waves-effect waves-light teal darken-2">
-            <md-tooltip md-direction="top">Exportar PDF</md-tooltip>
-            <a><i class="material-icons">picture_as_pdf</i></a>
-        </li>
-    </ul>
-</div>
-<h1>{{loading}}</h1>
-<div class="center-align animate shake" style="height: 50px;"
-     ng-show="(vm.cardsPraExportacao.length == 0 ) && loading == false">
-    <div class="chip ">
-        <img src="img/cpf.svg" alt="Contact Person"> Dados nao encontrados
+        <h1>{{loading}}</h1>
+        <div class="center-align animate shake" style="height: 50px;"
+             ng-show="(vm.cardsPraExportacao.length == 0 ) && loading == false">
+            <div class="chip ">
+                <img src="img/cpf.svg" alt="Contact Person"> Dados nao encontrados
+            </div>
+        </div>
     </div>
 </div>
