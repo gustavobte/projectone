@@ -5,8 +5,8 @@ servicos.factory('LoteSofiaService', function($q, SofiaService) {
     var listarEcByListaCPF = function(cpfs) {
         var q = $q.defer();
 
-        var query = "SELECT * FROM " + ontologia + " WHERE " + ontologia + ".ec_numdocumento"
-        query = query.concat(cpfs.length == 1 ? " = " + cpfs + " " : " IN (" + cpfs + ")")
+        var query = "SELECT * FROM " + ontologia + " WHERE " + ontologia + ".ec_numdocumento";
+        query = query.concat(cpfs.length == 1 ? " = " + cpfs + " " : " IN (" + cpfs + ")");
 
         SofiaService.listar(query, ontologia).then(
 

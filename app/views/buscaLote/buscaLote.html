@@ -3,7 +3,7 @@
         <div class="card sticky-action ">
             <md-toolbar class="md-table-toolbar ">
                 <div class="md-toolbar-tools teal darken-3">
-                    <span>Buscar Lote CPF</span>
+                    <span>Busca por lote</span>
                 </div>
             </md-toolbar>
 
@@ -14,7 +14,7 @@
                         <div class="row">
                             <div class="input-field col s6">
                                 <div class="file-field input-field ">
-                                    <div class="btn teal darken-3">
+                                    <div class="btn teal darken-3" ng-click="vm.limpaVars()">
                                         <span>Carregar Lista (CPF/CNPJ) - .CSV</span>
                                         <input type="file" multiple on-read-file="vm.carregarConteudo($fileContent)">
                                     </div>
@@ -66,7 +66,7 @@
         </div>
 
         <div class="row">
-            <div class="center-align" ng-show="!vm.finalizouConsulta && loading == false">
+            <div class="center-align" ng-show="vm.loading">
                 <div class="preloader-wrapper active">
                     <div class="spinner-layer spinner-green-only">
                         <div class="circle-clipper left">

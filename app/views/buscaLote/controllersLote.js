@@ -15,6 +15,7 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
 
     vm.carregarConteudo = function ($fileContent) {
         vm.documentosImportados = $fileContent;
+
     };
 
     vm.extrairNumeroDocumento = function (cpfs) {
@@ -27,6 +28,10 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
         vm.dados = {
             cpf: []
         };
+        vm.loading = false;
+        vm.documentosImportados = "";
+        vm.tipoDocumento = "";
+        vm.finalizouConsulta = false;
     };
 
     vm.substituiLinhasPorDelimitador = function (dados, delimitador) {
@@ -100,10 +105,8 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
         var index = vm.cardsPraExportacao.indexOf(pessoaExportacao);
 
         if (index == -1) {
-            console.log("acrescentando pessoa na lista para exportação");
             vm.cardsPraExportacao.push(pessoaExportacao);
         } else {
-            console.log("removendo pessoa na lista para exportação");
             vm.cardsPraExportacao.splice(index, 1)
         }
     };
@@ -117,44 +120,43 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
     };
 
     vm.listarEcByListaCPF = function () {
-        $scope.loading = true;
-        vm.limpaVars();
+        vm.loading = true;
 
         var documentos = vm.montaDocumentos(vm.documentosImportados, vm.delimiter);
         var documentosAgrupados = vm.agruparDocumentos(documentos);
 
-        var contador = 0;
-
-
+        var contador = 1;
         for (var i = 0; i < documentosAgrupados.length; i++) {
             LoteSofiaService.listarEcByListaCPF(documentosAgrupados[i]).then(
                 function (dados) {
-                    contador++;
-                    console.log(contador +" - " + documentosAgrupados.length);
                     if (dados != "") {
                         vm.resultado = vm.resultado.concat(vm.formataPessoa(JSON.parse(dados)["values"]));
                     } else {
                         vm.resultado = [];
                     }
-
+                    console.log(documentosAgrupados.length + " - " + contador);
+                    contador++;
+                    vm.finalizouConsulta = documentosAgrupados.length == 1 ? true : documentosAgrupados.length - 1 == contador;
+                    vm.loading = documentosAgrupados.length == 1 ? false : documentosAgrupados.length - 1 != contador;
                 },
                 function () {
-                    contador++;
                     console.log("Erro ao localizar pessoa");
                     vm.dados = {
                         cpf: []
                     };
+                    contador++;
+                    vm.finalizouConsulta = documentosAgrupados.length == 1 ? true : documentosAgrupados.length - 1 == contador;
+                    vm.loading = documentosAgrupados.length == 1 ? false : documentosAgrupados.length - 1 != contador;
                 }).then(
                 function () {
-                    vm.finalizouConsulta = documentosAgrupados.length == contador;
                     vm.cardsPraExportacao = [];
                     for (i = 0; i < vm.resultado.length; i++) {
                         vm.onChangeBox(vm.resultado[i])
                     }
                 }
             );
-            if (i == documentosAgrupados.length -1) {
-                $scope.loading = false;
+            if (contador == documentosAgrupados.length) {
+                console.log("Acabou")
             }
         }
 
