@@ -8,13 +8,20 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filte
     var vm = this;
 
     vm.cpf = '';
+    vm.cnpj=''
     vm.delimiter = ',';
     vm.cardsPraExportacao = [];
     vm.chek = false;
     vm.carregado = false;
+    vm.tipoDocumento = '';
 
     $scope.carregarConteudo = function($fileContent) {
         vm.cpf = $fileContent;
+        vm.carregado = "Carregado com sucesso";
+    };
+
+    $scope.carregarConteudoCnpj = function($fileContent) {
+        vm.cnpj = $fileContent;
         vm.carregado = "Carregado com sucesso";
     };
 
