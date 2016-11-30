@@ -6,7 +6,7 @@
             <option value="cpf">CPF</option>
             <option value="cnpj">CNPJ</option>
         </select>
-        <label for="delimiter">Selceione o tipo de documento para consulta:</label>
+        <label for="tipoDocumento">Selecione o tipo de documento para consulta:</label>
     </div>
 
 </div>
@@ -34,7 +34,6 @@
     </div>
 </div>
 
-
 <div class="row" ng-show="vm.tipoDocumento == 'cpf'">
     <div class="col s10 offset-s1 ">
         <div class="card sticky-action ">
@@ -54,21 +53,14 @@
                                     <div class="file-field input-field ">
                                         <div class="btn teal darken-3">
                                             <span>Carregar CPFs - .CSV</span>
-                                            <input type="file" multiple on-read-file="carregarConteudo($fileContent)">
-                                        </div>
-                                        <div class="file-path-wrapper">
-                                            <input class="file-path validate"
-                                                   id="input-file-id"
-                                                   type="text"
-                                                   placeholder="Selecione os aquivos para consulta"
-                                                   on-read-file="carregarConteudo($fileContent)">
+                                            <input type="file" class="btn" on-read-file="carregarConteudo($fileContent)">
                                         </div>
                                     </div>
                                 </div>
 
                                 <p class="center-align">
                                     <button class="btn waves-effect waves-light btn-large teal darken-3 "
-                                            ng-disabled="!vm.cpf" ng-click="listarEcByListaCPF()">Pesquisar
+                                            ng-disabled="!vm.documentosImportados" ng-click="vm.listarEcByListaCPF()">Pesquisar
                                         <i class="material-icons right">search</i>
                                     </button>
                                 </p>
@@ -110,63 +102,6 @@
                                 <span ng-repeat="telefone in pessoa.telefone" style="padding-right: 20px;">{{telefone | formataTelefone}}</span>
                             </a>
                         </div>
-
-
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="row" ng-show="vm.tipoDocumento == 'cnpj'">
-    <div class="col s10 offset-s1 ">
-        <div class="card sticky-action ">
-            <md-toolbar class="md-table-toolbar ">
-                <div class="md-toolbar-tools teal darken-3">
-                    <span>Buscar Lote CNPJ</span>
-                </div>
-            </md-toolbar>
-            <div class="row">
-                <form action="">
-                    <div class="input-field col s12 ">
-                        <form ng-controller="BuscaLoteCtrl">
-
-                            <div class="row">
-
-                                <div class="input-field col s12">
-
-                                    <div class="input-field col s8">
-                                        <input class="ng-hide" id="input-file-id-cnpj" multiple type="file"
-                                               on-read-file="carregarConteudoCnpj($fileContent)"/>
-                                        <label for="input-file-id-cnpj"
-                                               class="btn waves-effect waves-light btn-large teal darken-3 ">Carregar
-                                            CNPJs - .CSV</label>
-                                    </div>
-                                    <div class="input-field col s4">
-                                        <select id="delimiter" type='text' ng-model="vm.delimiter">
-                                            <option value=",">Virgula ( , )</option>
-                                            <option value=".">Ponto ( . )</option>
-                                            <option value="|">Pipe ( | )</option>
-                                        </select>
-                                        <label for="delimiter">Delimitador</label>
-                                    </div>
-
-                                </div>
-
-                                <p class="center-align">
-                                    <button class="btn waves-effect waves-light btn-large teal darken-3 "
-                                            ng-disabled="!vm.cpfsImportados" ng-click="listarEcByListaCPF()">Pesquisar
-                                        <i class="material-icons right">search</i>
-                                    </button>
-                                </p>
-
-                            </div>
-
-                            {{vm.cardsPraExportacao.length}}
-
-                        </form>
                     </div>
                 </form>
             </div>
