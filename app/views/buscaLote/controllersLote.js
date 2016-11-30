@@ -1,48 +1,50 @@
 //-----------ENDERECO SOFIA------------------------
-controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filter, $scope, LoteSofiaService, ResultadoService) {
+controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filter, $scope, LoteSofiaService, ResultadoService) {
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('select').material_select();
     });
 
     var vm = this;
 
-    vm.cpf = '';
+    vm.cpfsImportados = '';
     vm.delimiter = ',';
     vm.cardsPraExportacao = [];
     vm.chek = false;
-    vm.carregado = false;
 
-    $scope.carregarConteudo = function($fileContent) {
-        vm.cpf = $fileContent;
-        vm.carregado = "Carregado com sucesso";
+    $scope.carregarConteudo = function ($fileContent) {
+        vm.cpfsImportados = $fileContent;
     };
 
-    $scope.submitTable = function() {
-        console.log($scope.table);
-    }
-
-    vm.setPessoa = function(ec_id) {
-        ResultadoService.setPessoa(ec_id);
-    };
-
-    vm.filtraCpfs = function(cpfs) {
+    vm.filtraCpfs = function (cpfs) {
         var cpfFiltrado = new RegExp("[^\\d\\" + vm.delimiter + "]", "g");
         return cpfs.replace(cpfFiltrado, "")
     };
 
-    $scope.listarEcByListaCPF = function() {
-        $scope.loading = true;
-
+    vm.limpaVars = function () {
         vm.dados = {
             cpf: []
         };
+    };
 
-        var cpfs = vm.cpf.replace(/\n/g, vm.delimiter)
-        cpfs = vm.filtraCpfs(cpfs).split(vm.delimiter);
+    vm.substituiLinhasPorDelimitador = function (dados, delimitador) {
+        return dados.replace(/\n/g, delimitador);
+    };
+
+    vm.montaCPFS = function (dados, delimiter) {
+        var dadosDelimitados = vm.substituiLinhasPorDelimitador(dados, delimiter);
+        return vm.filtraCpfs(dadosDelimitados).split(delimiter);
+    };
+
+    $scope.listarEcByListaCPF = function () {
+        $scope.loading = true;
+
+        vm.limpaVars();
+
+        var cpfs = vm.montaCPFS(vm.cpfsImportados, vm.delimiter);
 
         for (var i = 0; i < cpfs.length; i++) {
-            var zeros = cpfs[i].length == 11 ? '000' : ''
+            var zeros = cpfs[i].length == 11 ? '000' : '';
             vm.dados.cpf.push("'" + zeros + cpfs[i] + "'");
         }
 
@@ -54,12 +56,10 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filte
         while (vm.dados.cpf.length > 0)
             blocoDezMil.push(vm.dados.cpf.splice(0, size));
 
-        for (i = 0; i < blocoDezMil.length; i++) {
+        for (i = 0; i <= blocoDezMil.length; i++) {
             $scope.loading = true;
             LoteSofiaService.listarEcByListaCPF(blocoDezMil[i]).then(
-
-                function(dados) {
-                    $scope.loading = false;
+                function (dados) {
                     if (dados != "") {
                         vm.resultado = vm.resultado.concat(vm.formataPessoa(JSON.parse(dados)["values"]));
                     } else {
@@ -67,25 +67,27 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filte
                     }
 
                 },
-                function() {
-                    $scope.loading = false;
+                function () {
                     console.log("Erro ao localizar pessoa");
                     vm.dados = {
                         cpf: []
                     };
                 }).then(
-                  function(){
+                function () {
                     vm.cardsPraExportacao = []
-                    for(i=0;i<vm.resultado.length;i++){
-                      vm.onChangeBox(vm.resultado[i])
+                    for (i = 0; i < vm.resultado.length; i++) {
+                        vm.onChangeBox(vm.resultado[i])
                     }
-                  }
-                );
+                }
+            );
+            if (i == blocoDezMil.length) {
+                $scope.loading = false;
+            }
         }
 
     }
 
-    vm.formataPessoa = function(dados) {
+    vm.formataPessoa = function (dados) {
         var listaPessoas = [];
         for (var i = 0; i < dados.length; i++) {
 
@@ -121,14 +123,14 @@ controladores.controller('BuscaLoteCtrl', function($rootScope, $location, $filte
         return listaPessoas;
     }
 
-    vm.selecionarTodos = function() {
+    vm.selecionarTodos = function () {
         vm.chek = !vm.chek;
         for (var i = 0; i < vm.dados.length; i++) {
             vm.onChangeBox(vm.dados[i])
         }
     }
 
-    vm.onChangeBox = function(pessoa) {
+    vm.onChangeBox = function (pessoa) {
 
         var endereco = new String(pessoa.nome + ", " + pessoa.logradouro + ", " + pessoa.quadraLote + ", " + pessoa.bairro + ", " + pessoa.estado + ", " + pessoa.cep);
         var pessoaExportacao = {

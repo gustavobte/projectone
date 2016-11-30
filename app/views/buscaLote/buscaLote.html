@@ -30,7 +30,7 @@
                                 </div>
 
                                 <p class="center-align">
-                                    <button class="btn waves-effect waves-light btn-large teal darken-3 " ng-disabled="!vm.cpf" ng-click="listarEcByListaCPF()">Pesquisar
+                                    <button class="btn waves-effect waves-light btn-large teal darken-3 " ng-disabled="!vm.cpfsImportados" ng-click="listarEcByListaCPF()">Pesquisar
                                         <i class="material-icons right">search</i>
                                     </button>
                                 </p>
@@ -81,8 +81,8 @@
         </li>
     </ul>
 </div>
-
-<div class="center-align animate shake" style="height: 50px;" ng-show="(vm.dados == 0 ) && loading == false">
+<h1>{{loading}}</h1>
+<div class="center-align animate shake" style="height: 50px;" ng-show="(vm.cardsPraExportacao.length == 0 ) && loading == false">
     <div class="chip ">
         <img src="img/cpf.svg" alt="Contact Person"> Dados nao encontrados
     </div>
