@@ -35,7 +35,7 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
 
     vm.trataDocumentos = function (dados, tipo) {
         var cnpj = "00000000000000";
-        var cpf = "00000000000000";
+        var cpf = "00000000000";
 
         var tipoDocumento = '';
         for (var i = 0; i < dados.length; i++) {
@@ -114,7 +114,6 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
         while (documentos.length > 0)
             documentosAgrupados.push(documentos.splice(0, size));
         return documentosAgrupados;
-
     };
 
     vm.listarEcByListaCPF = function () {
@@ -124,9 +123,14 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
         var documentos = vm.montaDocumentos(vm.documentosImportados, vm.delimiter);
         var documentosAgrupados = vm.agruparDocumentos(documentos);
 
+        var contador = 0;
+
+
         for (var i = 0; i < documentosAgrupados.length; i++) {
             LoteSofiaService.listarEcByListaCPF(documentosAgrupados[i]).then(
                 function (dados) {
+                    contador++;
+                    console.log(contador +" - " + documentosAgrupados.length);
                     if (dados != "") {
                         vm.resultado = vm.resultado.concat(vm.formataPessoa(JSON.parse(dados)["values"]));
                     } else {
@@ -135,12 +139,14 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
 
                 },
                 function () {
+                    contador++;
                     console.log("Erro ao localizar pessoa");
                     vm.dados = {
                         cpf: []
                     };
                 }).then(
                 function () {
+                    vm.finalizouConsulta = documentosAgrupados.length == contador;
                     vm.cardsPraExportacao = [];
                     for (i = 0; i < vm.resultado.length; i++) {
                         vm.onChangeBox(vm.resultado[i])
