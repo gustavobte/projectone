@@ -58,15 +58,7 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
         var listaPessoas = [];
         for (var j = 0; j < dados.length; j++) {
             if (dados[j].length > 0) {
-                var elemento = JSON.parse(dados[j]
-                    .replace('\\\"GLEBA B\\\"\"', 'GLEBA B\"')
-                    .replace('\\', '')
-                    .replace('\\\"', '')
-                    .replace('PARQUE N F "B"', 'PARQUE N F B"')
-                    .replace('CASA "2', 'CASA 2')
-                    .replace('QD "E LT 23', 'QD E LT 23')
-                    .replace('FAZ. COSTA "SITIO DO VOVÔ MESQUITA', 'FAZ. COSTA SITIO DO VOVÔ MESQUITA')
-                    .replace('PARQUE NAPOLIS "A', 'PARQUE NAPOLIS A'))["values"];
+                var elemento = JSON.parse(dados[j])["values"];
 
                 for (var i = 0; i < elemento.length; i++) {
 
@@ -92,9 +84,11 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
                         "numDocumento": numDocumento,
                         "tipoPessoa": elemento[i][2]
                     };
+
                     var duplicado = $filter("filter")(listaPessoas, {
                         numDocumento: pessoa.numDocumento
                     });
+
                     if (duplicado.length == 0) {
                         listaPessoas.push(pessoa);
                     }
