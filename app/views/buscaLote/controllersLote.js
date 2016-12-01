@@ -58,10 +58,13 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
         var listaPessoas = [];
         for (var j = 0; j < dados.length; j++) {
             if (dados[j].length > 0) {
-                try{
-                var elemento = JSON.parse(dados[j].replace('\\','\\\\').replace('\\\\\"','\\\"'))["values"];
+                try {
+                    // var regex = new RegExp('\\', 'g');
+                    //var regex2 = new RegExp('\\\\\"', 'g');
+                    var elementosReplace = dados[j].replace(/\\/g, '\\\\').replace(/\\\\\"/g, '\\\"');
+                    var elemento = JSON.parse(elementosReplace)["values"];
 
-                }catch(error){
+                } catch (error) {
                     alert("Aconteceu um erro na formataçao dos dados. Comunique com o departamento de TI.")
 
                 }
