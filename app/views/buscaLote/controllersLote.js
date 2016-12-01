@@ -131,7 +131,10 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
     };
 
     vm.listarEcByListaCPF = function () {
+        vm.finalizouConsulta = false;
         vm.loading = true;
+        vm.cardsPraExportacao = [];
+        vm.resultado = [];
 
         var documentos = vm.montaDocumentos(vm.documentosImportados, vm.delimiter);
         var documentosAgrupados = vm.agruparDocumentos(documentos);
