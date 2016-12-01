@@ -38,14 +38,11 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
         return dados.replace(/\n/g, delimitador);
     };
 
-    vm.trataDocumentos = function (dados, tipo) {
-        var cnpj = "00000000000000";
-        var cpf = "00000000000";
+    vm.trataDocumentos = function (dados) {
+        var base = "00000000000000";
 
-        var tipoDocumento = '';
         for (var i = 0; i < dados.length; i++) {
-            tipoDocumento = tipo == "cnpj" ? cnpj : cpf;
-            var documentoTratado = (tipoDocumento + dados[i]).slice(-tipoDocumento.length);
+            var documentoTratado = (base + dados[i]).slice(-base.length);
             vm.dados.cpf.push("'" + documentoTratado + "'");
         }
         return vm.dados.cpf;
@@ -54,40 +51,54 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
     vm.montaDocumentos = function (dados, delimiter) {
         var documentosDelimitados = vm.substituiLinhasPorDelimitador(dados, delimiter);
         var documentosExtraidos = vm.extrairNumeroDocumento(documentosDelimitados);
-        return vm.trataDocumentos(documentosExtraidos.split(delimiter), vm.tipoDocumento);
+        return vm.trataDocumentos(documentosExtraidos.split(delimiter));
     };
 
     vm.formataPessoa = function (dados) {
         var listaPessoas = [];
-        for (var i = 0; i < dados.length; i++) {
+        for (var j = 0; j < dados.length; j++) {
+            if (dados[j].length > 0) {
+                var elemento = JSON.parse(dados[j]
+                    .replace('\\\"GLEBA B\\\"\"', 'GLEBA B\"')
+                    .replace('\\', '')
+                    .replace('\\\"', '')
+                    .replace('PARQUE N F "B"', 'PARQUE N F B"')
+                    .replace('CASA "2', 'CASA 2')
+                    .replace('QD "E LT 23', 'QD E LT 23')
+                    .replace('FAZ. COSTA "SITIO DO VOVÔ MESQUITA', 'FAZ. COSTA SITIO DO VOVÔ MESQUITA')
+                    .replace('PARQUE NAPOLIS "A', 'PARQUE NAPOLIS A'))["values"];
 
-            var numDocumento;
-            var telefone;
+                for (var i = 0; i < elemento.length; i++) {
 
-            if (dados[i][2] == "J") {
-                numDocumento = dados[i][3]
-            } else {
-                numDocumento = dados[i][3].substring(3, 14)
-            }
+                    var numDocumento;
+                    var telefone;
 
-            telefone = dados[i][20] ? dados[i][20].split(" - ") : "-";
+                    if (elemento[i][2] == "J") {
+                        numDocumento = elemento[i][3]
+                    } else {
+                        numDocumento = elemento[i][3].substring(3, 14)
+                    }
 
-            var pessoa = {
-                "nome": dados[i][19],
-                "logradouro": dados[i][5] + " " + dados[i][6],
-                "quadraLote": dados[i][10],
-                "bairro": dados[i][11],
-                "estado": dados[i][13] + "-" + dados[i][14],
-                "cep": dados[i][12],
-                "telefone": telefone,
-                "numDocumento": numDocumento,
-                "tipoPessoa": dados[i][2]
-            };
-            var duplicado = $filter("filter")(listaPessoas, {
-                numDocumento: pessoa.numDocumento
-            });
-            if (duplicado.length == 0) {
-                listaPessoas.push(pessoa);
+                    telefone = elemento[i][20] ? elemento[i][20].split(" - ") : "-";
+
+                    var pessoa = {
+                        "nome": elemento[i][19],
+                        "logradouro": elemento[i][5] + " " + elemento[i][6],
+                        "quadraLote": elemento[i][10],
+                        "bairro": elemento[i][11],
+                        "estado": elemento[i][13] + "-" + elemento[i][14],
+                        "cep": elemento[i][12],
+                        "telefone": telefone,
+                        "numDocumento": numDocumento,
+                        "tipoPessoa": elemento[i][2]
+                    };
+                    var duplicado = $filter("filter")(listaPessoas, {
+                        numDocumento: pessoa.numDocumento
+                    });
+                    if (duplicado.length == 0) {
+                        listaPessoas.push(pessoa);
+                    }
+                }
             }
         }
         return listaPessoas;
@@ -125,40 +136,25 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
         var documentos = vm.montaDocumentos(vm.documentosImportados, vm.delimiter);
         var documentosAgrupados = vm.agruparDocumentos(documentos);
 
-        var contador = 1;
-        for (var i = 0; i < documentosAgrupados.length; i++) {
-            LoteSofiaService.listarEcByListaCPF(documentosAgrupados[i]).then(
-                function (dados) {
-                    if (dados != "") {
-                        vm.resultado = vm.resultado.concat(vm.formataPessoa(JSON.parse(dados)["values"]));
-                    } else {
-                        vm.resultado = [];
-                    }
-                    console.log(documentosAgrupados.length + " - " + contador);
-                    contador++;
-                    vm.finalizouConsulta = documentosAgrupados.length == 1 ? true : documentosAgrupados.length - 1 == contador;
-                    vm.loading = documentosAgrupados.length == 1 ? false : documentosAgrupados.length - 1 != contador;
-                },
-                function () {
-                    console.log("Erro ao localizar pessoa");
-                    vm.dados = {
-                        cpf: []
-                    };
-                    contador++;
-                    vm.finalizouConsulta = documentosAgrupados.length == 1 ? true : documentosAgrupados.length - 1 == contador;
-                    vm.loading = documentosAgrupados.length == 1 ? false : documentosAgrupados.length - 1 != contador;
-                }).then(
-                function () {
-                    vm.cardsPraExportacao = [];
-                    for (i = 0; i < vm.resultado.length; i++) {
-                        vm.onChangeBox(vm.resultado[i])
-                    }
+        LoteSofiaService.listarEc(documentosAgrupados, vm.tipoDocumento).then(
+            function (dados) {
+                if (dados != "") {
+                    vm.resultado = vm.resultado.concat(vm.formataPessoa(dados));
+                } else {
+                    vm.resultado = [];
                 }
-            );
-            if (contador == documentosAgrupados.length) {
-                console.log("Acabou")
-            }
-        }
+                vm.cardsPraExportacao = [];
+                for (var i = 0; i < vm.resultado.length; i++) {
+                    vm.onChangeBox(vm.resultado[i])
+                }
 
+                vm.finalizouConsulta = true;
+                vm.loading = false;
+            },
+            function () {
+                console.log("Erro ao localizar pessoa");
+                vm.finalizouConsulta = true;
+                vm.loading = false;
+            });
     };
 });
