@@ -1,3 +1,10 @@
+<div class="fixed-action-btn horizontal">
+    <a class="btn-floating btn-large teal darken-1 waves-light" href="#/home">
+        <md-tooltip md-direction="top">Voltar</md-tooltip>
+        <i class="material-icons">reply</i>
+    </a>
+</div>
+
 <div class="row">
     <div class="col s10 offset-s1 ">
         <div class="card sticky-action ">
@@ -12,7 +19,7 @@
                     <form ng-controller="BuscaLoteCtrl">
 
                         <div class="row">
-                            <div class="input-field col s6">
+                            <div class="input-field col s8">
                                 <div class="file-field input-field ">
                                     <div class="btn teal darken-3" ng-click="vm.limpaVars()">
                                         <span>Carregar Lista (CPF/CNPJ) - .CSV</span>
@@ -27,7 +34,7 @@
                                 </div>
                             </div>
 
-                            <div class="input-field col s4 offset-s2">
+                            <div class="input-field col s3 offset-s1">
                                 <select id="tipoDocumento" type='text' ng-model="vm.tipoDocumento">
                                     <option value="">Tipo Documento</option>
                                     <option value="cpf">CPF</option>
