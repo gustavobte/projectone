@@ -58,10 +58,13 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
         var listaPessoas = [];
         for (var j = 0; j < dados.length; j++) {
             if (dados[j].length > 0) {
-                try{
-                var elemento = JSON.parse(dados[j].replace('\\','\\\\').replace('\\\\\"','\\\"'))["values"];
+                try {
+                    // var regex = new RegExp('\\', 'g');
+                    //var regex2 = new RegExp('\\\\\"', 'g');
+                    var elementosReplace = dados[j].replace(/\\/g, '\\\\').replace(/\\\\\"/g, '\\\"');
+                    var elemento = JSON.parse(elementosReplace)["values"];
 
-                }catch(error){
+                } catch (error) {
                     alert("Aconteceu um erro na formataçao dos dados. Comunique com o departamento de TI.")
 
                 }
@@ -81,10 +84,15 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
 
                     var pessoa = {
                         "nome": elemento[i][19],
-                        "logradouro": elemento[i][5] + " " + elemento[i][6],
+                        "tipologradouro": elemento[i][5],
+                        "logradouro": elemento[i][6],
+                        "numero": elemento[i][7],
+                        "quadra": elemento[i][8],
+                        "lote": elemento[i][9],
                         "quadraLote": elemento[i][10],
                         "bairro": elemento[i][11],
-                        "estado": elemento[i][13] + "-" + elemento[i][14],
+                        "municipio": elemento[i][13] ,
+                        "estado": elemento[i][14],
                         "cep": elemento[i][12],
                         "telefone": telefone,
                         "numDocumento": numDocumento,
@@ -109,8 +117,19 @@ controladores.controller('BuscaLoteCtrl', function ($rootScope, $location, $filt
         var endereco = new String(pessoa.nome + ", " + pessoa.logradouro + ", " + pessoa.quadraLote + ", " + pessoa.bairro + ", " + pessoa.estado + ", " + pessoa.cep);
         var pessoaExportacao = {
             "CPF/CNPJ": pessoa.numDocumento,
-            "Endereco": endereco,
+            "Nome": pessoa.nome,
+            "TipoLogradouro": pessoa.tipologradouro,
+            "Logradouro": pessoa.logradouro,
+            "Numero": pessoa.numero,
+            "Quadra": pessoa.quadra,
+            "Lote": pessoa.lote,
+            "Complemento": pessoa.quadraLote,
+            "Bairro": pessoa.bairro,
+            "Municipio": pessoa.municipio,
+            "UF": pessoa.estado,
+            "CEP": pessoa.cep,
             "Telefone": pessoa.telefone.toString()
+
         };
 
         var index = vm.cardsPraExportacao.indexOf(pessoaExportacao);
